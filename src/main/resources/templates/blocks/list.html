@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Bloques - Quiz Live</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar h1 {
+            font-size: 24px;
+        }
+        
+        .navbar .user-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+        }
+        
+        .btn-danger {
+            background: #f44336;
+            color: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h2 {
+            color: #333;
+        }
+        
+        .blocks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .block-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .block-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .block-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .block-card .description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+            min-height: 40px;
+        }
+        
+        .block-stats {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        .stat {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .stat strong {
+            color: #333;
+        }
+        
+        .block-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .block-actions .btn {
+            flex: 1;
+            font-size: 14px;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 10px;
+        }
+        
+        .empty-state-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .empty-state h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .empty-state p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>🎮 Quiz Live</h1>
+        <div class="user-info">
+            <span>👤 <span th:text="${user != null ? user.username : 'Usuario'}">Usuario</span></span>
+            <form th:action="@{/logout}" method="post" style="display: inline;">
+                <button type="submit" class="btn btn-secondary">Cerrar Sesión</button>
+            </form>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="header">
+            <h2>📚 Mis Bloques de Preguntas</h2>
+            <a href="/blocks/new" class="btn btn-primary">➕ Crear Nuevo Bloque</a>
+        </div>
+        
+        <div th:if="${blocks != null && !blocks.empty}" class="blocks-grid">
+            <div th:each="block : ${blocks}" class="block-card">
+                <h3 th:text="${block.name}">Nombre del Bloque</h3>
+                <p class="description" th:text="${block.description ?: 'Sin descripción'}">Descripción</p>
+                
+                <div class="block-stats">
+                    <div class="stat">
+                        <strong th:text="${#lists.size(block.questions)}">0</strong> preguntas
+                    </div>
+                    <div class="stat" th:if="${#lists.size(block.questions) >= 20}">
+                        ✅ Listo para usar
+                    </div>
+                    <div class="stat" th:if="${#lists.size(block.questions) < 20}" style="color: #ff9800;">
+                        ⚠️ Necesita <span th:text="${20 - #lists.size(block.questions)}">20</span> más
+                    </div>
+                </div>
+                
+                <div class="block-actions">
+                    <a th:href="@{/blocks/{id}(id=${block.id})}" class="btn btn-secondary">Ver</a>
+                    <a th:href="@{/blocks/{id}/edit(id=${block.id})}" class="btn btn-primary">Editar</a>
+                    <form th:action="@{/blocks/{id}/delete(id=${block.id})}" method="post" style="flex: 1;">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Eliminar este bloque?')">
+                            🗑️
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div th:if="${blocks == null || blocks.empty}" class="empty-state">
+            <div class="empty-state-icon">📝</div>
+            <h3>No tienes bloques todavía</h3>
+            <p>Crea tu primer bloque de preguntas para comenzar</p>
+            <a href="/blocks/new" class="btn btn-primary">➕ Crear Mi Primer Bloque</a>
+        </div>
+    </div>
+</body>
+</html>

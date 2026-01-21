@@ -1,0 +1,174 @@
+package com.quizlive.service;
+
+import com.quizlive.model.*;
+import com.quizlive.repository.QuestionRepository;
+import com.quizlive.repository.RoomQuestionRepository;
+import com.quizlive.repository.RoomRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.security.SecureRandom;
+import java.util.*;
+import java.util.stream.Collectors;
+
+/**
+ * Service for Room management and configuration
+ */
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class RoomService {
+
+    private final RoomRepository roomRepository;
+    private final RoomQuestionRepository roomQuestionRepository;
+    private final QuestionRepository questionRepository;
+    private final BlockService blockService;
+    private final SecureRandom random = new SecureRandom();
+
+    /**
+     * Create a new room with configuration
+     */
+    @Transactional
+    public Room createRoom(Long blockId, Integer numQuestions, Room.SelectionMode selectionMode,
+                          Integer timePerQuestion, User host, List<Long> manualQuestionIds) {
+        // Validate block ownership
+        Block block = blockService.getBlockById(blockId, host.getId());
+
+        // Validate minimum questions
+        if (!block.hasMinimumQuestions()) {
+            throw new IllegalStateException("Block must have at least 20 questions to create a room");
+        }
+
+        // Validate num questions
+        if (numQuestions > block.getQuestions().size()) {
+            throw new IllegalArgumentException("Number of questions exceeds available questions in block");
+        }
+
+        // Generate unique PIN
+        String pin = generateUniquePin();
+
+        // Create room
+        Room room = new Room();
+        room.setPin(pin);
+        room.setHost(host);
+        room.setBlock(block);
+        room.setNumQuestions(numQuestions);
+        room.setSelectionMode(selectionMode);
+        room.setTimePerQuestion(timePerQuestion);
+        room.setState(Room.RoomState.WAITING);
+
+        Room savedRoom = roomRepository.save(room);
+
+        // Select and save questions
+        selectQuestionsForRoom(savedRoom, selectionMode, numQuestions, manualQuestionIds);
+
+        log.info("Created room with PIN {} for user {}", pin, host.getUsername());
+        return savedRoom;
+    }
+
+    /**
+     * Select questions for room based on mode
+     */
+    @Transactional
+    public void selectQuestionsForRoom(Room room, Room.SelectionMode mode, 
+                                        int numQuestions, List<Long> manualQuestionIds) {
+        List<Question> selectedQuestions;
+
+        if (mode == Room.SelectionMode.MANUAL) {
+            // Manual selection
+            if (manualQuestionIds == null || manualQuestionIds.size() != numQuestions) {
+                throw new IllegalArgumentException("Must provide exactly " + numQuestions + " question IDs for manual mode");
+            }
+            selectedQuestions = questionRepository.findAllById(manualQuestionIds);
+        } else {
+            // Random selection
+            List<Question> allQuestions = room.getBlock().getQuestions();
+            selectedQuestions = selectRandomQuestions(allQuestions, numQuestions);
+        }
+
+        // Create RoomQuestion entries with order
+        int orderNum = 1;
+        for (Question question : selectedQuestions) {
+            RoomQuestion roomQuestion = new RoomQuestion();
+            roomQuestion.setRoom(room);
+            roomQuestion.setQuestion(question);
+            roomQuestion.setOrderNum(orderNum++);
+            roomQuestion.setIsOpen(false);
+            roomQuestionRepository.save(roomQuestion);
+        }
+    }
+
+    /**
+     * Generate unique 4-6 digit PIN
+     */
+    private String generateUniquePin() {
+        String pin;
+        do {
+            pin = String.format("%04d", random.nextInt(10000)); // 4-digit PIN
+        } while (roomRepository.existsByPin(pin));
+        return pin;
+    }
+
+    /**
+     * Select random questions
+     */
+    private List<Question> selectRandomQuestions(List<Question> questions, int count) {
+        List<Question> shuffled = new ArrayList<>(questions);
+        Collections.shuffle(shuffled);
+        return shuffled.stream().limit(count).collect(Collectors.toList());
+    }
+
+    /**
+     * Find room by PIN
+     */
+    public Room getRoomByPin(String pin) {
+        return roomRepository.findByPin(pin)
+                .orElseThrow(() -> new IllegalArgumentException("Room not found with PIN: " + pin));
+    }
+
+    /**
+     * Get all rooms created by host
+     */
+    public List<Room> getRoomsByHost(Long hostId) {
+        return roomRepository.findByHostId(hostId);
+    }
+
+    /**
+     * Get room questions in order
+     */
+    public List<RoomQuestion> getRoomQuestions(Long roomId) {
+        return roomQuestionRepository.findByRoomIdOrderByOrderNumAsc(roomId);
+    }
+
+    /**
+     * Start the room (change state to RUNNING)
+     */
+    @Transactional
+    public void startRoom(Long roomId, Long hostId) {
+        Room room = roomRepository.findById(roomId)
+                .orElseThrow(() -> new IllegalArgumentException("Room not found"));
+        
+        if (!room.getHost().getId().equals(hostId)) {
+            throw new SecurityException("Only the host can start the room");
+        }
+
+        room.start();
+        roomRepository.save(room);
+        log.info("[Room {}] Game started by host {}", room.getPin(), room.getHost().getUsername());
+    }
+
+    /**
+     * Finish the room (change state to FINISHED)
+     */
+    @Transactional
+    public void finishRoom(Long roomId) {
+        Room room = roomRepository.findById(roomId)
+                .orElseThrow(() -> new IllegalArgumentException("Room not found"));
+        
+        room.finish();
+        roomRepository.save(room);
+        log.info("[Room {}] Game finished", room.getPin());
+    }
+}
