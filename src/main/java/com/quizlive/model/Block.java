@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Block entity representing a collection of questions (banco de preguntas)
- * Each block is owned by a user and must have at least 20 questions to be used in a room
+ * Each block is owned by a user and can be used in rooms based on available questions
  */
 @Entity
 @Table(name = "blocks")
@@ -61,13 +61,6 @@ public class Block {
     public void removeQuestion(Question question) {
         questions.remove(question);
         question.setBlock(null);
-    }
-
-    /**
-     * Check if block has minimum required questions (20) to be used in a room
-     */
-    public boolean hasMinimumQuestions() {
-        return questions.size() >= 20;
     }
 
     /**

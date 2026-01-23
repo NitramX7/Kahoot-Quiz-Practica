@@ -29,6 +29,7 @@
             </div>
 
             <form th:if="${!blocks.isEmpty()}" th:action="@{/rooms}" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 <div class="row gap-4" style="display: grid; grid-template-columns: 1fr 350px;">
                     <!-- Left Column - Configuration -->
                     <div class="card">
@@ -110,7 +111,7 @@
                     <i class="fas fa-database"></i>
                 </div>
                 <h3>No tienes bloques suficientes</h3>
-                <p class="text-muted mb-4">Para crear una sala, necesitas al menos un bloque con 20 o más preguntas.</p>
+                <p class="text-muted mb-4">Para crear una sala, necesitas al menos un bloque.</p>
                 <a href="/banco-preguntas" class="btn btn-primary" style="display: inline-flex;">
                     <i class="fas fa-plus"></i> Crear Preguntas
                 </a>

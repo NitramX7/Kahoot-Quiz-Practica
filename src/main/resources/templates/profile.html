@@ -83,6 +83,7 @@
                     </div>
                     <div class="card-body">
                         <form th:action="@{/profile/update}" method="post">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                             <!-- Avatar Color Picker -->
                             <div class="form-group">
                                 <label class="form-label">Color del Avatar</label>
@@ -139,6 +140,7 @@
                     </div>
                     <div class="card-body">
                         <form th:action="@{/profile/change-password}" method="post">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                             <div class="form-group">
                                 <label class="form-label">Contraseña Actual</label>
                                 <input type="password" name="currentPassword" class="form-control" required

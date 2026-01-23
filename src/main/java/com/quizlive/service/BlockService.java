@@ -43,13 +43,6 @@ public class BlockService {
     }
 
     /**
-     * Get blocks with minimum questions (20+)
-     */
-    public List<Block> getBlocksWithMinimumQuestions(Long userId, int minQuestions) {
-        return blockRepository.findByOwnerIdWithMinimumQuestions(userId, minQuestions);
-    }
-
-    /**
      * Get block by ID with ownership validation
      */
     public Block getBlockById(Long blockId, Long userId) {
@@ -91,12 +84,4 @@ public class BlockService {
         log.info("Deleted block {}", blockId);
     }
 
-    /**
-     * Validate if block can be used for room (≥20 questions)
-     */
-    public boolean canBeUsedInRoom(Long blockId) {
-        Block block = blockRepository.findById(blockId)
-                .orElseThrow(() -> new IllegalArgumentException("Block not found"));
-        return block.hasMinimumQuestions();
-    }
 }

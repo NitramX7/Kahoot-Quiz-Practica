@@ -28,6 +28,7 @@
             <div class="card" style="max-width: 700px;">
                 <div class="card-body">
                     <form th:action="@{/blocks/{id}(id=${block.id})}" method="post">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                         <div class="form-group">
                             <label class="form-label">Nombre del Bloque</label>
                             <input type="text" name="name" class="form-control" th:value="${block.name}" required

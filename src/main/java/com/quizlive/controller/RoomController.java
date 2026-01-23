@@ -30,10 +30,10 @@ public class RoomController {
     @GetMapping("/new")
     public String showCreateRoomForm(Principal principal, Model model) {
         User user = userService.findByUsername(principal.getName());
-        List<Block> availableBlocks = blockService.getBlocksWithMinimumQuestions(user.getId(), 20);
+        List<Block> availableBlocks = blockService.getBlocksByUser(user.getId());
         
         if (availableBlocks.isEmpty()) {
-            model.addAttribute("error", "Necesitas tener al menos un bloque con 20 o más preguntas para crear una sala.");
+            model.addAttribute("error", "Necesitas crear al menos un bloque para poder crear una sala.");
         }
         
         model.addAttribute("blocks", availableBlocks);

@@ -1,5 +1,6 @@
 package com.quizlive.controller;
 
+import com.quizlive.dto.BlockDTO;
 import com.quizlive.dto.QuestionDTO;
 import com.quizlive.model.Block;
 import com.quizlive.model.Question;
@@ -116,23 +117,13 @@ public class QuestionBankController {
 
     @GetMapping("/api/blocks")
     @ResponseBody
-    public ResponseEntity<List<Block>> getUserBlocks(Authentication authentication) {
+    public ResponseEntity<List<BlockDTO>> getUserBlocks(Authentication authentication) {
         User user = userService.findByUsername(authentication.getName());
         List<Block> blocks = blockService.getBlocksByUser(user.getId());
-        // Avoid infinite recursion in JSON if Block has List<Question> which has Block (standard JPA issue)
-        // Ideally we should use BlockDTO, but for now we rely on @JsonIgnore or careful serialization
-        // Or we can just return a simplified list here or use a DTO.
-        // Let's assume Jackson handles it or we should create BlockDTO if it fails.
-        // For simplicity, let's just null out the relationships or ensure @JsonIgnore is on Block.questions
-        // But since we can't easily modify Block now without checking imports.
-        // Just checking Block.java... it has @OneToMany assigned to 'questions'.
-        // If it doesn't have @JsonIgnore, it will crash.
-        // Re-reading Block.java from previous step... Step 30.
-        // It uses lombok @Data which includes toString (can cause circle) and getters.
-        // It does NOT have @JsonIgnore on questions. This will cause StackOverflowError.
-        // I should stick to DTOs or modify Block.java.
-        // Modifying Block.java is safer.
-        return ResponseEntity.ok(blocks);
+        List<BlockDTO> dtos = blocks.stream()
+                .map(block -> new BlockDTO(block.getId(), block.getName()))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(dtos);
     }
     
     // Helper

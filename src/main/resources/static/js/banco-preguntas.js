@@ -7,6 +7,7 @@ const toast = new bootstrap.Toast(document.getElementById('liveToast'));
 
 // Init
 document.addEventListener('DOMContentLoaded', () => {
+    setupCsrf();
     loadBlocks();
     loadQuestions();
 
@@ -17,6 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+function setupCsrf() {
+    const token = document.querySelector('meta[name="_csrf"]')?.getAttribute('content');
+    const header = document.querySelector('meta[name="_csrf_header"]')?.getAttribute('content');
+    if (token && header) {
+        axios.defaults.headers.common[header] = token;
+    }
+}
 
 // Load Blocks for dropdowns
 async function loadBlocks() {
@@ -260,9 +269,15 @@ async function deleteQuestion(id) {
 
 // Utility
 function showToast(title, message, colorClass) {
-    document.getElementById('toastTitle').textContent = title;
-    document.getElementById('toastTitle').className = `me-auto fw-bold ${colorClass || ''}`;
-    document.getElementById('toastMessage').textContent = message;
+    const titleEl = document.getElementById('toastTitle');
+    const messageEl = document.getElementById('toastMessage');
+    if (!titleEl || !messageEl) {
+        alert(`${title}: ${message}`);
+        return;
+    }
+    titleEl.textContent = title;
+    titleEl.className = `me-auto fw-bold ${colorClass || ''}`;
+    messageEl.textContent = message;
     toast.show();
 }
 

@@ -20,13 +20,6 @@ public interface BlockRepository extends JpaRepository<Block, Long> {
     List<Block> findByOwnerId(Long userId);
 
     /**
-     * Find blocks by user ID with at least minimum questions
-     */
-    @Query("SELECT b FROM Block b WHERE b.owner.id = :userId AND SIZE(b.questions) >= :minQuestions")
-    List<Block> findByOwnerIdWithMinimumQuestions(@Param("userId") Long userId, 
-                                                    @Param("minQuestions") int minQuestions);
-
-    /**
      * Check if a specific user owns a specific block
      */
     @Query("SELECT COUNT(b) > 0 FROM Block b WHERE b.id = :blockId AND b.owner.id = :userId")

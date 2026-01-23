@@ -48,6 +48,7 @@
                     <div class="user-role">Administrador</div>
                 </div>
                 <form action="/logout" method="post" style="margin: 0;">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                     <button type="submit" class="action-btn" style="border: none; background: transparent;">
                         <i class="fas fa-sign-out-alt" style="color: var(--gray-400);"></i>
                     </button>
@@ -61,6 +62,7 @@
                     <div class="user-role">Administrador</div>
                 </div>
                 <form action="/logout" method="post" style="margin: 0;">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                     <button type="submit" class="action-btn" style="border: none; background: transparent;">
                         <i class="fas fa-sign-out-alt" style="color: var(--gray-400);"></i>
                     </button>

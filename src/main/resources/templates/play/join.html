@@ -97,6 +97,7 @@
         </div>
 
         <form th:action="@{/play/join}" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
             <div class="form-group">
                 <input type="text" name="pin" th:value="${pin}" placeholder="PIN del juego" class="form-control"
                     required maxlength="6" autofocus>

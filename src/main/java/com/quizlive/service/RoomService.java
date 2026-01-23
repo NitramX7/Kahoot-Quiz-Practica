@@ -36,11 +36,6 @@ public class RoomService {
         // Validate block ownership
         Block block = blockService.getBlockById(blockId, host.getId());
 
-        // Validate minimum questions
-        if (!block.hasMinimumQuestions()) {
-            throw new IllegalStateException("Block must have at least 20 questions to create a room");
-        }
-
         // Validate num questions
         if (numQuestions > block.getQuestions().size()) {
             throw new IllegalArgumentException("Number of questions exceeds available questions in block");

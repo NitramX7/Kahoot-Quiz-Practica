@@ -296,6 +296,7 @@
                 <span th:text="${user.displayName != null ? user.displayName : user.username}">Usuario</span>
             </a>
             <form th:action="@{/logout}" method="post" style="display: flex;">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 <button type="submit" class="logout-btn" title="Cerrar Sesión">
                     <i class="fas fa-sign-out-alt"></i>
                 </button>
