@@ -49,6 +49,22 @@ public class User {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    // Profile fields
+    @Column(name = "avatar_color", length = 7)
+    private String avatarColor = "#2563EB"; // Default blue color
+
+    @Column(name = "display_name", length = 100)
+    private String displayName; // Optional display name
+
+    @Column(name = "total_points")
+    private Integer totalPoints = 0;
+
+    @Column(name = "quizzes_won")
+    private Integer quizzesWon = 0;
+
+    @Column(name = "bio", length = 500)
+    private String bio; // User biography
+
     @Column(nullable = false)
     private boolean enabled = true;
 

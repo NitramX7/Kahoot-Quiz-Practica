@@ -26,4 +26,9 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
      * Delete all questions in a block
      */
     void deleteByBlockId(Long blockId);
+
+    /**
+     * Find all questions owned by a specific user
+     */
+    List<Question> findByBlock_Owner_Id(Long userId);
 }

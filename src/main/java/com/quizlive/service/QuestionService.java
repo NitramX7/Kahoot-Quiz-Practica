@@ -101,4 +101,31 @@ public class QuestionService {
     public long countQuestionsByBlock(Long blockId) {
         return questionRepository.countByBlockId(blockId);
     }
+
+    /**
+     * Get all questions for a specific user across all blocks
+     */
+    public List<Question> getAllQuestionsByUser(Long userId) {
+        return questionRepository.findByBlock_Owner_Id(userId);
+    }
+
+    /**
+     * Duplicate a question
+     */
+    @Transactional
+    public Question duplicateQuestion(Long questionId, Long userId) {
+        Question original = getQuestionById(questionId, userId);
+        
+        Question copy = new Question();
+        copy.setBlock(original.getBlock());
+        copy.setText(original.getText() + " (Copia)");
+        copy.setOption1(original.getOption1());
+        copy.setOption2(original.getOption2());
+        copy.setOption3(original.getOption3());
+        copy.setOption4(original.getOption4());
+        copy.setCorrectOption(original.getCorrectOption());
+        
+        log.info("Duplicated question {} -> {}", questionId, copy.getText());
+        return questionRepository.save(copy);
+    }
 }

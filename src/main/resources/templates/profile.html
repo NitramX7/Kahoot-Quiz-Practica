@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil | QuizMaster Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/quizmaster.css?v=2">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <i class="fas fa-cube"></i>
+                QuizMaster Pro
+            </div>
+            
+            <nav class="sidebar-menu">
+                <a href="/blocks" class="menu-item">
+                    <i class="fas fa-th-large"></i>
+                    Mis Bloques
+                </a>
+                <a href="/banco-preguntas" class="menu-item">
+                    <i class="fas fa-database"></i>
+                    Banco Preguntas
+                </a>
+                <a href="/profile" class="menu-item active">
+                    <i class="fas fa-user-circle"></i>
+                    Mi Perfil
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-card">
+                    <div class="user-avatar" 
+                         th:style="'background:' + ${user.avatarColor}" 
+                         th:text="${#strings.substring(user.username, 0, 1).toUpperCase()}">U</div>
+                    <div class="user-details">
+                        <div class="user-name" th:text="${user.displayName != null ? user.displayName : user.username}">Usuario</div>
+                        <div class="user-role">Administrador</div>
+                    </div>
+                    <form action="/logout" method="post" style="margin: 0;">
+                        <button type="submit" class="action-btn" style="border: none; background: transparent;">
+                            <i class="fas fa-sign-out-alt" style="color: var(--gray-400);"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Mi Perfil</h1>
+                    <p class="page-subtitle">Gestiona tu información personal y configuración</p>
+                </div>
+            </div>
+
+            <!-- Success/Error Messages -->
+            <div th:if="${success}" class="alert alert-success mb-4" style="background: #DCFCE7; color: #166534; padding: 12px 20px; border-radius: 8px; font-weight: 500;">
+                <i class="fas fa-check-circle"></i> <span th:text="${success}">Éxito</span>
+            </div>
+            <div th:if="${error}" class="alert alert-danger mb-4" style="background: #FEE2E2; color: #DC2626; padding: 12px 20px; border-radius: 8px; font-weight: 500;">
+                <i class="fas fa-exclamation-circle"></i> <span th:text="${error}">Error</span>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-bottom: 32px;">
+                <div class="card" style="text-align: center; padding: 24px;">
+                    <div style="font-size: 48px; color: #2563EB; margin-bottom: 12px;">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div style="font-size: 32px; font-weight: 800; color: var(--gray-900);" th:text="${user.totalPoints}">0</div>
+                    <div class="text-muted" style="font-size: 14px;">Puntos Totales</div>
+                </div>
+
+                <div class="card" style="text-align: center; padding: 24px;">
+                    <div style="font-size: 48px; color: #10B981; margin-bottom: 12px;">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div style="font-size: 32px; font-weight: 800; color: var(--gray-900);" th:text="${user.quizzesWon}">0</div>
+                    <div class="text-muted" style="font-size: 14px;">Quizzes Ganados</div>
+                </div>
+
+                <div class="card" style="text-align: center; padding: 24px;">
+                    <div style="font-size: 48px; color: #8B5CF6; margin-bottom: 12px;">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div style="font-size: 32px; font-weight: 800; color: var(--gray-900);" th:text="${blocksCount}">0</div>
+                    <div class="text-muted" style="font-size: 14px;">Bloques Creados</div>
+                </div>
+
+                <div class="card" style="text-align: center; padding: 24px;">
+                    <div style="font-size: 48px; color: #F59E0B; margin-bottom: 12px;">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <div style="font-size: 32px; font-weight: 800; color: var(--gray-900);" th:text="${questionsCount}">0</div>
+                    <div class="text-muted" style="font-size: 14px;">Preguntas Creadas</div>
+                </div>
+            </div>
+
+            <!-- Profile Information -->
+            <div class="row gap-4" style="display: grid; grid-template-columns: 1fr 1fr;">
+                <!-- Left Column - Profile Info -->
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-user"></i> Información del Perfil
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/profile/update}" method="post">
+                            <!-- Avatar Color Picker -->
+                            <div class="form-group">
+                                <label class="form-label">Color del Avatar</label>
+                                <div style="display: flex; align-items: center; gap: 16px;">
+                                    <div class="user-avatar" 
+                                         id="avatarPreview"
+                                         th:style="'background:' + ${user.avatarColor} + '; width: 80px; height: 80px; font-size: 32px;'" 
+                                         th:text="${#strings.substring(user.username, 0, 1).toUpperCase()}">U</div>
+                                    <div style="flex: 1;">
+                                        <input type="color" 
+                                               name="avatarColor" 
+                                               class="form-control" 
+                                               th:value="${user.avatarColor}" 
+                                               style="height: 50px; cursor: pointer;"
+                                               onchange="document.getElementById('avatarPreview').style.background = this.value">
+                                        <small class="text-muted">Selecciona un color para tu avatar</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Nombre de Usuario</label>
+                                <input type="text" name="username" class="form-control" th:value="${user.username}" required minlength="3" maxlength="50">
+                                <small class="text-muted">Este es tu nombre de inicio de sesión</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Nombre para Mostrar</label>
+                                <input type="text" name="displayName" class="form-control" th:value="${user.displayName}" placeholder="Nombre que verán otros usuarios">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" name="email" class="form-control" th:value="${user.email}" placeholder="tu@email.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Biografía</label>
+                                <textarea name="bio" class="form-control" rows="4" maxlength="500" placeholder="Cuéntanos algo sobre ti..." th:text="${user.bio}"></textarea>
+                                <small class="text-muted">Máximo 500 caracteres</small>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                                <i class="fas fa-save"></i> Guardar Cambios
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Right Column - Change Password -->
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-lock"></i> Cambiar Contraseña
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/profile/change-password}" method="post">
+                            <div class="form-group">
+                                <label class="form-label">Contraseña Actual</label>
+                                <input type="password" name="currentPassword" class="form-control" required placeholder="••••••••">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Nueva Contraseña</label>
+                                <input type="password" name="newPassword" class="form-control" required minlength="6" placeholder="Mínimo 6 caracteres">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Confirmar Nueva Contraseña</label>
+                                <input type="password" name="confirmPassword" class="form-control" required minlength="6" placeholder="Repite la nueva contraseña">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                                <i class="fas fa-key"></i> Cambiar Contraseña
+                            </button>
+                        </form>
+
+                        <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--gray-200);">
+                            <h6 style="font-weight: 600; margin-bottom: 8px; font-size: 14px;">Requisitos de contraseña:</h6>
+                            <ul style="font-size: 13px; color: var(--gray-600); padding-left: 20px;">
+                                <li>Mínimo 6 caracteres</li>
+                                <li>Recomendado: Combinar letras y números</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        // Show success popup when changes are saved
+        window.addEventListener('DOMContentLoaded', function() {
+            const successAlert = document.querySelector('.alert-success');
+            if (successAlert) {
+                alert('✓ Cambios guardados correctamente');
+            }
+            
+            const errorAlert = document.querySelector('.alert-danger');
+            if (errorAlert) {
+                alert('✗ ' + errorAlert.querySelector('span').textContent);
+            }
+        });
+    </script>
+</body>
+</html>

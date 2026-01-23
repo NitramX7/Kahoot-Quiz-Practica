@@ -57,4 +57,26 @@ public class UserService {
         return userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + id));
     }
+
+    /**
+     * Update username (checking for uniqueness)
+     */
+    @Transactional
+    public void updateUsername(User user, String newUsername) {
+        if (userRepository.existsByUsername(newUsername)) {
+            throw new IllegalArgumentException("El nombre de usuario ya existe");
+        }
+        user.setUsername(newUsername);
+        userRepository.save(user);
+        log.info("Username updated to: {}", newUsername);
+    }
+
+    /**
+     * Save/Update user
+     */
+    @Transactional
+    public User save(User user) {
+        log.info("Updating user: {}", user.getUsername());
+        return userRepository.save(user);
+    }
 }

@@ -45,9 +45,11 @@ public class Block {
 
     // Relationships
     @OneToMany(mappedBy = "block", cascade = CascadeType.ALL, orphanRemoval = true)
+    @com.fasterxml.jackson.annotation.JsonIgnore
     private List<Question> questions = new ArrayList<>();
 
     @OneToMany(mappedBy = "block")
+    @com.fasterxml.jackson.annotation.JsonIgnore
     private List<Room> rooms = new ArrayList<>();
 
     // Helper methods

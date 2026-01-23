@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Live - Inicio</title>
+    <title>QuizMaster Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,190 +15,289 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #1E293B;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             color: white;
-        }
-        
-        .container {
-            text-align: center;
-            max-width: 800px;
-            padding: 40px;
+            overflow-x: hidden;
         }
         
         .hero {
-            margin-bottom: 50px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.1), transparent 70%);
+            pointer-events: none;
+        }
+        
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 48px;
+            font-size: 36px;
+            font-weight: 800;
+            position: relative;
+        }
+        
+        .brand i {
+            font-size: 48px;
+            color: #2563EB;
         }
         
         .hero h1 {
-            font-size: 64px;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #fff 0%, #94A3B8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .hero p {
             font-size: 24px;
-            opacity: 0.9;
+            color: #94A3B8;
+            margin-bottom: 48px;
+            max-width: 600px;
         }
         
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        
-        .feature {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 10px;
-            transition: transform 0.3s;
-        }
-        
-        .feature:hover {
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.15);
-        }
-        
-        .feature-icon {
-            font-size: 48px;
-            margin-bottom: 10px;
-        }
-        
-        .feature h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-        
-        .feature p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-        
-        .actions {
+        .cta-buttons {
             display: flex;
             gap: 20px;
-            justify-content: center;
+            margin-bottom: 80px;
             flex-wrap: wrap;
+            justify-content: center;
         }
         
         .btn {
-            padding: 15px 40px;
-            font-size: 18px;
-            font-weight: 600;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
             text-decoration: none;
-            display: inline-block;
-            transition: transform 0.2s;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
         }
         
         .btn-primary {
-            background: white;
-            color: #667eea;
+            background: #2563EB;
+            color: white;
+            border: 2px solid #2563EB;
+        }
+        
+        .btn-primary:hover {
+            background: #1E40AF;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
         }
         
         .btn-secondary {
-            background: rgba(255,255,255,0.2);
+            background: transparent;
             color: white;
-            border: 2px solid white;
+            border: 2px solid #475569;
         }
         
-        .btn:hover {
-            transform: translateY(-3px);
+        .btn-secondary:hover {
+            border-color: #64748B;
+            background: rgba(255,255,255,0.05);
         }
         
-        .stats {
-            margin-top: 40px;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255,255,255,0.3);
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
         }
         
-        .stats-grid {
+        .feature-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255,255,255,0.08);
+            border-color: #2563EB;
+        }
+        
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #2563EB, #1E40AF);
+            border-radius: 16px;
             display: flex;
-            gap: 30px;
+            align-items: center;
             justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
         }
         
-        .stat {
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .feature-card p {
+            color: #94A3B8;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .footer {
             text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 36px;
-            font-weight: bold;
-        }
-        
-        .stat-label {
+            padding: 40px 20px;
+            color: #64748B;
             font-size: 14px;
-            opacity: 0.8;
+        }
+        
+        .tech-stack {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tech-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #2563EB;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 400px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="hero">
-            <h1>🎮 Quiz Live</h1>
-            <p>Crea, juega y aprende en tiempo real</p>
+    <div class="hero">
+        <div class="brand">
+            <i class="fas fa-cube"></i>
+            <span>QuizMaster Pro</span>
         </div>
         
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon">📚</div>
-                <h3>Banco de Preguntas</h3>
-                <p>Crea tus propios bloques con múltiples preguntas</p>
-            </div>
-            
-            <div class="feature">
-                <div class="feature-icon">🏠</div>
-                <h3>Salas Multi-Usuario</h3>
-                <p>PIN único para cada sala de juego</p>
-            </div>
-            
-            <div class="feature">
-                <div class="feature-icon">⚡</div>
-                <h3>Tiempo Real</h3>
-                <p>Procesamiento concurrente de respuestas</p>
-            </div>
-            
-            <div class="feature">
-                <div class="feature-icon">🏆</div>
-                <h3>Rankings</h3>
-                <p>Compite con tus compañeros</p>
-            </div>
-        </div>
+        <h1>Quiz Live</h1>
+        <p>Crea, juega y aprende en tiempo real con cuestionarios interactivos</p>
         
-        <div class="actions">
+        <div class="cta-buttons">
             <a href="/login" class="btn btn-primary">
-                👤 Iniciar Sesión (Anfitrión)
+                <i class="fas fa-user"></i>
+                Iniciar Sesión (Anfitrión)
             </a>
             <a href="/play/join" class="btn btn-secondary">
-                🎮 Unirse a Juego (Jugador)
+                <i class="fas fa-gamepad"></i>
+                Unirse a Juego (Jugador)
             </a>
         </div>
         
-        <div class="stats">
-            <div class="stats-grid">
-                <div class="stat">
-                    <div class="stat-number">✅</div>
-                    <div class="stat-label">Sistema Funcional</div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-database"></i>
                 </div>
-                <div class="stat">
-                    <div class="stat-number">PSP</div>
-                    <div class="stat-label">Concurrencia Real</div>
+                <h3>Banco de Preguntas</h3>
+                <p>Organiza y gestiona miles de preguntas en bloques temáticos personalizados</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
                 </div>
-                <div class="stat">
-                    <div class="stat-number">Spring Boot</div>
-                    <div class="stat-label">Framework MVC</div>
+                <h3>Salas Multi-Usuario</h3>
+                <p>PIN único para cada sala de juego con soporte para jugadores simultáneos</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
                 </div>
+                <h3>Tiempo Real</h3>
+                <p>Procesamiento concurrente de respuestas con tecnología Spring Boot</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3>Rankings</h3>
+                <p>Compite con tus compañeros y sube en la tabla de posiciones</p>
             </div>
         </div>
+    </div>
+    
+    <div class="footer">
+        <div class="tech-stack">
+            <div class="tech-item">
+                <div class="tech-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <span style="color: #10B981; font-weight: 600;">Sistema Funcional</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <span style="color: #94A3B8;">Spring Boot MVC</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">
+                    <i class="fas fa-sync"></i>
+                </div>
+                <span style="color: #94A3B8;">Concurrencia Real</span>
+            </div>
+        </div>
+        <p style="margin-top: 32px;">&copy; 2026 QuizMaster Pro - Powered by Spring Boot</p>
     </div>
 </body>
 </html>
