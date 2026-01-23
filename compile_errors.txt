@@ -1,0 +1,633 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< com.quizlive:quiz-live >-----------------------
+[INFO] Building Quiz Live 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ quiz-live ---
+[INFO] Copying 3 resources from src\main\resources to target\classes
+[INFO] Copying 14 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ quiz-live ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 31 source files with javac [debug release 17] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/model/Block.java:[58,17] cannot find symbol
+  symbol:   method setBlock(com.quizlive.model.Block)
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/model/Block.java:[63,17] cannot find symbol
+  symbol:   method setBlock(<nulltype>)
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/model/User.java:[81,14] cannot find symbol
+  symbol:   method setOwner(com.quizlive.model.User)
+  location: variable block of type com.quizlive.model.Block
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/model/User.java:[86,14] cannot find symbol
+  symbol:   method setOwner(<nulltype>)
+  location: variable block of type com.quizlive.model.Block
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/model/Room.java:[76,15] cannot find symbol
+  symbol:   method setRoom(com.quizlive.model.Room)
+  location: variable player of type com.quizlive.model.Player
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/model/Room.java:[81,15] cannot find symbol
+  symbol:   method setRoom(<nulltype>)
+  location: variable player of type com.quizlive.model.Player
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/model/Room.java:[86,21] cannot find symbol
+  symbol:   method setRoom(com.quizlive.model.Room)
+  location: variable roomQuestion of type com.quizlive.model.RoomQuestion
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/model/Player.java:[59,43] cannot find symbol
+  symbol:   method getRoomQuestion()
+  location: variable answer of type com.quizlive.model.Answer
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[36,44] cannot find symbol
+  symbol:   method getUsername()
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[46,78] cannot find symbol
+  symbol:   method getId()
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[59,69] cannot find symbol
+  symbol:   method getId()
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[69,20] cannot find symbol
+  symbol:   method getBlockId()
+  location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[70,20] cannot find symbol
+  symbol:   method getText()
+  location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[71,20] cannot find symbol
+  symbol:   method getOption1()
+  location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[72,20] cannot find symbol
+  symbol:   method getOption2()
+  location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[73,20] cannot find symbol
+  symbol:   method getOption3()
+  location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[74,20] cannot find symbol
+  symbol:   method getOption4()
+  location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[75,20] cannot find symbol
+  symbol:   method getCorrectOption()
+  location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[76,21] cannot find symbol
+  symbol:   method getId()
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[89,20] cannot find symbol
+  symbol:   method getText()
+  location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[90,20] cannot find symbol
+  symbol:   method getOption1()
+  location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[91,20] cannot find symbol
+  symbol:   method getOption2()
+  location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[92,20] cannot find symbol
+  symbol:   method getOption3()
+  location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[93,20] cannot find symbol
+  symbol:   method getOption4()
+  location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[94,20] cannot find symbol
+  symbol:   method getCorrectOption()
+  location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[95,21] cannot find symbol
+  symbol:   method getId()
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[105,48] cannot find symbol
+  symbol:   method getId()
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[113,73] cannot find symbol
+  symbol:   method getId()
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[121,63] cannot find symbol
+  symbol:   method getId()
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[141,27] cannot find symbol
+  symbol:   method getId()
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[142,32] cannot find symbol
+  symbol:   method getBlock()
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[143,34] cannot find symbol
+  symbol:   method getBlock()
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[144,29] cannot find symbol
+  symbol:   method getText()
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[145,32] cannot find symbol
+  symbol:   method getOption1()
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[146,32] cannot find symbol
+  symbol:   method getOption2()
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[147,32] cannot find symbol
+  symbol:   method getOption3()
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[148,32] cannot find symbol
+  symbol:   method getOption4()
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[149,38] cannot find symbol
+  symbol:   method getCorrectOption()
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[34,17] cannot find symbol
+  symbol:   method setBlock(com.quizlive.model.Block)
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[35,17] cannot find symbol
+  symbol:   method setText(java.lang.String)
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[36,17] cannot find symbol
+  symbol:   method setOption1(java.lang.String)
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[37,17] cannot find symbol
+  symbol:   method setOption2(java.lang.String)
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[38,17] cannot find symbol
+  symbol:   method setOption3(java.lang.String)
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[39,17] cannot find symbol
+  symbol:   method setOption4(java.lang.String)
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[40,17] cannot find symbol
+  symbol:   method setCorrectOption(java.lang.Integer)
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[43,9] cannot find symbol
+  symbol:   variable log
+  location: class com.quizlive.service.QuestionService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[64,43] cannot find symbol
+  symbol:   method getBlock()
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[77,17] cannot find symbol
+  symbol:   method setText(java.lang.String)
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[78,17] cannot find symbol
+  symbol:   method setOption1(java.lang.String)
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[79,17] cannot find symbol
+  symbol:   method setOption2(java.lang.String)
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[80,17] cannot find symbol
+  symbol:   method setOption3(java.lang.String)
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[81,17] cannot find symbol
+  symbol:   method setOption4(java.lang.String)
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[82,17] cannot find symbol
+  symbol:   method setCorrectOption(java.lang.Integer)
+  location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[84,9] cannot find symbol
+  symbol:   variable log
+  location: class com.quizlive.service.QuestionService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[95,9] cannot find symbol
+  symbol:   variable log
+  location: class com.quizlive.service.QuestionService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[120,31] cannot find symbol
+  symbol:   method getBlock()
+  location: variable original of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[121,30] cannot find symbol
+  symbol:   method getText()
+  location: variable original of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[122,33] cannot find symbol
+  symbol:   method getOption1()
+  location: variable original of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[123,33] cannot find symbol
+  symbol:   method getOption2()
+  location: variable original of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[124,33] cannot find symbol
+  symbol:   method getOption3()
+  location: variable original of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[125,33] cannot find symbol
+  symbol:   method getOption4()
+  location: variable original of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[126,39] cannot find symbol
+  symbol:   method getCorrectOption()
+  location: variable original of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[128,9] cannot find symbol
+  symbol:   variable log
+  location: class com.quizlive.service.QuestionService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[128,66] cannot find symbol
+  symbol:   method getText()
+  location: variable copy of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/BlockService.java:[29,14] cannot find symbol
+  symbol:   method setName(java.lang.String)
+  location: variable block of type com.quizlive.model.Block
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/BlockService.java:[30,14] cannot find symbol
+  symbol:   method setDescription(java.lang.String)
+  location: variable block of type com.quizlive.model.Block
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/BlockService.java:[31,14] cannot find symbol
+  symbol:   method setOwner(com.quizlive.model.User)
+  location: variable block of type com.quizlive.model.Block
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/BlockService.java:[34,9] cannot find symbol
+  symbol:   variable log
+  location: class com.quizlive.service.BlockService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/BlockService.java:[34,63] cannot find symbol
+  symbol:   method getUsername()
+  location: variable owner of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/BlockService.java:[59,19] cannot find symbol
+  symbol:   method getOwner()
+  location: variable block of type com.quizlive.model.Block
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/BlockService.java:[72,14] cannot find symbol
+  symbol:   method setName(java.lang.String)
+  location: variable block of type com.quizlive.model.Block
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/BlockService.java:[73,14] cannot find symbol
+  symbol:   method setDescription(java.lang.String)
+  location: variable block of type com.quizlive.model.Block
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/BlockService.java:[75,9] cannot find symbol
+  symbol:   variable log
+  location: class com.quizlive.service.BlockService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/BlockService.java:[91,9] cannot find symbol
+  symbol:   variable log
+  location: class com.quizlive.service.BlockService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/UserService.java:[35,13] cannot find symbol
+  symbol:   method setUsername(java.lang.String)
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/UserService.java:[36,13] cannot find symbol
+  symbol:   method setPassword(java.lang.String)
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/UserService.java:[37,13] cannot find symbol
+  symbol:   method setEmail(java.lang.String)
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/UserService.java:[38,13] cannot find symbol
+  symbol:   method setRole(java.lang.String)
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/UserService.java:[39,13] cannot find symbol
+  symbol:   method setEnabled(boolean)
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/UserService.java:[41,9] cannot find symbol
+  symbol:   variable log
+  location: class com.quizlive.service.UserService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/UserService.java:[69,13] cannot find symbol
+  symbol:   method setUsername(java.lang.String)
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/UserService.java:[71,9] cannot find symbol
+  symbol:   variable log
+  location: class com.quizlive.service.UserService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/UserService.java:[79,9] cannot find symbol
+  symbol:   variable log
+  location: class com.quizlive.service.UserService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/UserService.java:[79,43] cannot find symbol
+  symbol:   method getUsername()
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/ProfileController.java:[38,61] cannot find symbol
+  symbol:   method getId()
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/ProfileController.java:[39,73] cannot find symbol
+  symbol:   method getId()
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/ProfileController.java:[64,84] cannot find symbol
+  symbol:   method getUsername()
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/ProfileController.java:[72,46] cannot find symbol
+  symbol:   method getPassword()
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/ProfileController.java:[85,17] cannot find symbol
+  symbol:   method setDisplayName(java.lang.String)
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/ProfileController.java:[89,17] cannot find symbol
+  symbol:   method setEmail(java.lang.String)
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/ProfileController.java:[93,17] cannot find symbol
+  symbol:   method setBio(java.lang.String)
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/ProfileController.java:[97,17] cannot find symbol
+  symbol:   method setAvatarColor(java.lang.String)
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/ProfileController.java:[120,59] cannot find symbol
+  symbol:   method getPassword()
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/ProfileController.java:[137,13] cannot find symbol
+  symbol:   method setPassword(java.lang.String)
+  location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/PlayerService.java:[39,56] cannot find symbol
+  symbol:   method getId()
+  location: variable room of type com.quizlive.model.Room
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/PlayerService.java:[44,15] cannot find symbol
+  symbol:   method setRoom(com.quizlive.model.Room)
+  location: variable player of type com.quizlive.model.Player
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/PlayerService.java:[45,15] cannot find symbol
+  symbol:   method setName(java.lang.String)
+  location: variable player of type com.quizlive.model.Player
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/PlayerService.java:[46,15] cannot find symbol
+  symbol:   method setScore(int)
+  location: variable player of type com.quizlive.model.Player
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/PlayerService.java:[49,9] cannot find symbol
+  symbol:   variable log
+  location: class com.quizlive.service.PlayerService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/CustomUserDetailsService.java:[32,32] cannot find symbol
+  symbol:   method isEnabled()
+  location: variable user of type com.quizlive.model.User
+[INFO] 100 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.099 s
+[INFO] Finished at: 2026-01-23T10:03:55+01:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project quiz-live: Compilation failure: Compilation failure: 
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/model/Block.java:[58,17] cannot find symbol
+[ERROR]   symbol:   method setBlock(com.quizlive.model.Block)
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/model/Block.java:[63,17] cannot find symbol
+[ERROR]   symbol:   method setBlock(<nulltype>)
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/model/User.java:[81,14] cannot find symbol
+[ERROR]   symbol:   method setOwner(com.quizlive.model.User)
+[ERROR]   location: variable block of type com.quizlive.model.Block
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/model/User.java:[86,14] cannot find symbol
+[ERROR]   symbol:   method setOwner(<nulltype>)
+[ERROR]   location: variable block of type com.quizlive.model.Block
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/model/Room.java:[76,15] cannot find symbol
+[ERROR]   symbol:   method setRoom(com.quizlive.model.Room)
+[ERROR]   location: variable player of type com.quizlive.model.Player
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/model/Room.java:[81,15] cannot find symbol
+[ERROR]   symbol:   method setRoom(<nulltype>)
+[ERROR]   location: variable player of type com.quizlive.model.Player
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/model/Room.java:[86,21] cannot find symbol
+[ERROR]   symbol:   method setRoom(com.quizlive.model.Room)
+[ERROR]   location: variable roomQuestion of type com.quizlive.model.RoomQuestion
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/model/Player.java:[59,43] cannot find symbol
+[ERROR]   symbol:   method getRoomQuestion()
+[ERROR]   location: variable answer of type com.quizlive.model.Answer
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[36,44] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[46,78] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[59,69] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[69,20] cannot find symbol
+[ERROR]   symbol:   method getBlockId()
+[ERROR]   location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[70,20] cannot find symbol
+[ERROR]   symbol:   method getText()
+[ERROR]   location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[71,20] cannot find symbol
+[ERROR]   symbol:   method getOption1()
+[ERROR]   location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[72,20] cannot find symbol
+[ERROR]   symbol:   method getOption2()
+[ERROR]   location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[73,20] cannot find symbol
+[ERROR]   symbol:   method getOption3()
+[ERROR]   location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[74,20] cannot find symbol
+[ERROR]   symbol:   method getOption4()
+[ERROR]   location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[75,20] cannot find symbol
+[ERROR]   symbol:   method getCorrectOption()
+[ERROR]   location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[76,21] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[89,20] cannot find symbol
+[ERROR]   symbol:   method getText()
+[ERROR]   location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[90,20] cannot find symbol
+[ERROR]   symbol:   method getOption1()
+[ERROR]   location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[91,20] cannot find symbol
+[ERROR]   symbol:   method getOption2()
+[ERROR]   location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[92,20] cannot find symbol
+[ERROR]   symbol:   method getOption3()
+[ERROR]   location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[93,20] cannot find symbol
+[ERROR]   symbol:   method getOption4()
+[ERROR]   location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[94,20] cannot find symbol
+[ERROR]   symbol:   method getCorrectOption()
+[ERROR]   location: variable dto of type com.quizlive.dto.QuestionDTO
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[95,21] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[105,48] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[113,73] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[121,63] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[141,27] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[142,32] cannot find symbol
+[ERROR]   symbol:   method getBlock()
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[143,34] cannot find symbol
+[ERROR]   symbol:   method getBlock()
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[144,29] cannot find symbol
+[ERROR]   symbol:   method getText()
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[145,32] cannot find symbol
+[ERROR]   symbol:   method getOption1()
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[146,32] cannot find symbol
+[ERROR]   symbol:   method getOption2()
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[147,32] cannot find symbol
+[ERROR]   symbol:   method getOption3()
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[148,32] cannot find symbol
+[ERROR]   symbol:   method getOption4()
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/QuestionBankController.java:[149,38] cannot find symbol
+[ERROR]   symbol:   method getCorrectOption()
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[34,17] cannot find symbol
+[ERROR]   symbol:   method setBlock(com.quizlive.model.Block)
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[35,17] cannot find symbol
+[ERROR]   symbol:   method setText(java.lang.String)
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[36,17] cannot find symbol
+[ERROR]   symbol:   method setOption1(java.lang.String)
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[37,17] cannot find symbol
+[ERROR]   symbol:   method setOption2(java.lang.String)
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[38,17] cannot find symbol
+[ERROR]   symbol:   method setOption3(java.lang.String)
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[39,17] cannot find symbol
+[ERROR]   symbol:   method setOption4(java.lang.String)
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[40,17] cannot find symbol
+[ERROR]   symbol:   method setCorrectOption(java.lang.Integer)
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[43,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.quizlive.service.QuestionService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[64,43] cannot find symbol
+[ERROR]   symbol:   method getBlock()
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[77,17] cannot find symbol
+[ERROR]   symbol:   method setText(java.lang.String)
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[78,17] cannot find symbol
+[ERROR]   symbol:   method setOption1(java.lang.String)
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[79,17] cannot find symbol
+[ERROR]   symbol:   method setOption2(java.lang.String)
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[80,17] cannot find symbol
+[ERROR]   symbol:   method setOption3(java.lang.String)
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[81,17] cannot find symbol
+[ERROR]   symbol:   method setOption4(java.lang.String)
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[82,17] cannot find symbol
+[ERROR]   symbol:   method setCorrectOption(java.lang.Integer)
+[ERROR]   location: variable question of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[84,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.quizlive.service.QuestionService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[95,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.quizlive.service.QuestionService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[120,31] cannot find symbol
+[ERROR]   symbol:   method getBlock()
+[ERROR]   location: variable original of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[121,30] cannot find symbol
+[ERROR]   symbol:   method getText()
+[ERROR]   location: variable original of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[122,33] cannot find symbol
+[ERROR]   symbol:   method getOption1()
+[ERROR]   location: variable original of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[123,33] cannot find symbol
+[ERROR]   symbol:   method getOption2()
+[ERROR]   location: variable original of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[124,33] cannot find symbol
+[ERROR]   symbol:   method getOption3()
+[ERROR]   location: variable original of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[125,33] cannot find symbol
+[ERROR]   symbol:   method getOption4()
+[ERROR]   location: variable original of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[126,39] cannot find symbol
+[ERROR]   symbol:   method getCorrectOption()
+[ERROR]   location: variable original of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[128,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.quizlive.service.QuestionService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/QuestionService.java:[128,66] cannot find symbol
+[ERROR]   symbol:   method getText()
+[ERROR]   location: variable copy of type com.quizlive.model.Question
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/BlockService.java:[29,14] cannot find symbol
+[ERROR]   symbol:   method setName(java.lang.String)
+[ERROR]   location: variable block of type com.quizlive.model.Block
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/BlockService.java:[30,14] cannot find symbol
+[ERROR]   symbol:   method setDescription(java.lang.String)
+[ERROR]   location: variable block of type com.quizlive.model.Block
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/BlockService.java:[31,14] cannot find symbol
+[ERROR]   symbol:   method setOwner(com.quizlive.model.User)
+[ERROR]   location: variable block of type com.quizlive.model.Block
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/BlockService.java:[34,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.quizlive.service.BlockService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/BlockService.java:[34,63] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable owner of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/BlockService.java:[59,19] cannot find symbol
+[ERROR]   symbol:   method getOwner()
+[ERROR]   location: variable block of type com.quizlive.model.Block
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/BlockService.java:[72,14] cannot find symbol
+[ERROR]   symbol:   method setName(java.lang.String)
+[ERROR]   location: variable block of type com.quizlive.model.Block
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/BlockService.java:[73,14] cannot find symbol
+[ERROR]   symbol:   method setDescription(java.lang.String)
+[ERROR]   location: variable block of type com.quizlive.model.Block
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/BlockService.java:[75,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.quizlive.service.BlockService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/BlockService.java:[91,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.quizlive.service.BlockService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/UserService.java:[35,13] cannot find symbol
+[ERROR]   symbol:   method setUsername(java.lang.String)
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/UserService.java:[36,13] cannot find symbol
+[ERROR]   symbol:   method setPassword(java.lang.String)
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/UserService.java:[37,13] cannot find symbol
+[ERROR]   symbol:   method setEmail(java.lang.String)
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/UserService.java:[38,13] cannot find symbol
+[ERROR]   symbol:   method setRole(java.lang.String)
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/UserService.java:[39,13] cannot find symbol
+[ERROR]   symbol:   method setEnabled(boolean)
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/UserService.java:[41,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.quizlive.service.UserService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/UserService.java:[69,13] cannot find symbol
+[ERROR]   symbol:   method setUsername(java.lang.String)
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/UserService.java:[71,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.quizlive.service.UserService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/UserService.java:[79,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.quizlive.service.UserService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/UserService.java:[79,43] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/ProfileController.java:[38,61] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/ProfileController.java:[39,73] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/ProfileController.java:[64,84] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/ProfileController.java:[72,46] cannot find symbol
+[ERROR]   symbol:   method getPassword()
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/ProfileController.java:[85,17] cannot find symbol
+[ERROR]   symbol:   method setDisplayName(java.lang.String)
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/ProfileController.java:[89,17] cannot find symbol
+[ERROR]   symbol:   method setEmail(java.lang.String)
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/ProfileController.java:[93,17] cannot find symbol
+[ERROR]   symbol:   method setBio(java.lang.String)
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/ProfileController.java:[97,17] cannot find symbol
+[ERROR]   symbol:   method setAvatarColor(java.lang.String)
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/ProfileController.java:[120,59] cannot find symbol
+[ERROR]   symbol:   method getPassword()
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/controller/ProfileController.java:[137,13] cannot find symbol
+[ERROR]   symbol:   method setPassword(java.lang.String)
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/PlayerService.java:[39,56] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable room of type com.quizlive.model.Room
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/PlayerService.java:[44,15] cannot find symbol
+[ERROR]   symbol:   method setRoom(com.quizlive.model.Room)
+[ERROR]   location: variable player of type com.quizlive.model.Player
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/PlayerService.java:[45,15] cannot find symbol
+[ERROR]   symbol:   method setName(java.lang.String)
+[ERROR]   location: variable player of type com.quizlive.model.Player
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/PlayerService.java:[46,15] cannot find symbol
+[ERROR]   symbol:   method setScore(int)
+[ERROR]   location: variable player of type com.quizlive.model.Player
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/PlayerService.java:[49,9] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.quizlive.service.PlayerService
+[ERROR] /D:/Programacion/Codigo/PracticaSpringBoot+Hilos/src/main/java/com/quizlive/service/CustomUserDetailsService.java:[32,32] cannot find symbol
+[ERROR]   symbol:   method isEnabled()
+[ERROR]   location: variable user of type com.quizlive.model.User
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

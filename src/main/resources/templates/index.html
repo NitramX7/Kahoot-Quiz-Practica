@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Inter', system-ui, sans-serif;
             background: #1E293B;
@@ -21,7 +22,7 @@
             color: white;
             overflow-x: hidden;
         }
-        
+
         .hero {
             min-height: 100vh;
             display: flex;
@@ -32,7 +33,7 @@
             padding: 40px 20px;
             position: relative;
         }
-        
+
         .hero::before {
             content: '';
             position: absolute;
@@ -43,7 +44,7 @@
             background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.1), transparent 70%);
             pointer-events: none;
         }
-        
+
         .brand {
             display: flex;
             align-items: center;
@@ -53,12 +54,12 @@
             font-weight: 800;
             position: relative;
         }
-        
+
         .brand i {
             font-size: 48px;
             color: #2563EB;
         }
-        
+
         .hero h1 {
             font-size: 72px;
             font-weight: 900;
@@ -69,14 +70,14 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
         .hero p {
             font-size: 24px;
             color: #94A3B8;
             margin-bottom: 48px;
             max-width: 600px;
         }
-        
+
         .cta-buttons {
             display: flex;
             gap: 20px;
@@ -84,7 +85,7 @@
             flex-wrap: wrap;
             justify-content: center;
         }
-        
+
         .btn {
             padding: 16px 32px;
             border-radius: 12px;
@@ -96,30 +97,30 @@
             align-items: center;
             gap: 12px;
         }
-        
+
         .btn-primary {
             background: #2563EB;
             color: white;
             border: 2px solid #2563EB;
         }
-        
+
         .btn-primary:hover {
             background: #1E40AF;
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
         }
-        
+
         .btn-secondary {
             background: transparent;
             color: white;
             border: 2px solid #475569;
         }
-        
+
         .btn-secondary:hover {
             border-color: #64748B;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
         }
-        
+
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -128,22 +129,22 @@
             margin: 0 auto;
             position: relative;
         }
-        
+
         .feature-card {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
             padding: 32px;
             transition: all 0.3s;
         }
-        
+
         .feature-card:hover {
             transform: translateY(-8px);
-            background: rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.08);
             border-color: #2563EB;
         }
-        
+
         .feature-icon {
             width: 64px;
             height: 64px;
@@ -155,26 +156,26 @@
             font-size: 28px;
             margin-bottom: 20px;
         }
-        
+
         .feature-card h3 {
             font-size: 20px;
             font-weight: 700;
             margin-bottom: 12px;
         }
-        
+
         .feature-card p {
             color: #94A3B8;
             font-size: 15px;
             line-height: 1.6;
         }
-        
+
         .footer {
             text-align: center;
             padding: 40px 20px;
             color: #64748B;
             font-size: 14px;
         }
-        
+
         .tech-stack {
             display: flex;
             gap: 32px;
@@ -183,14 +184,14 @@
             margin-top: 40px;
             flex-wrap: wrap;
         }
-        
+
         .tech-item {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 8px;
         }
-        
+
         .tech-icon {
             width: 48px;
             height: 48px;
@@ -202,45 +203,143 @@
             font-size: 20px;
             color: #2563EB;
         }
-        
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 48px;
             }
-            
+
             .hero p {
                 font-size: 18px;
             }
-            
+
             .cta-buttons {
                 flex-direction: column;
                 width: 100%;
                 max-width: 400px;
             }
         }
+
+        /* Top Navbar */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            z-index: 1000;
+            display: flex;
+            justify-content: flex-end;
+            pointer-events: none;
+        }
+
+        .user-profile-top {
+            pointer-events: auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .user-profile-top .user-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .user-avatar-sm {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .logout-btn {
+            background: transparent;
+            border: none;
+            color: #94A3B8;
+            cursor: pointer;
+            padding: 4px;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logout-btn:hover {
+            color: #EF4444;
+        }
     </style>
 </head>
+
 <body>
+    <!-- Top Navigation for authenticated users -->
+    <div class="top-nav" th:if="${user != null}">
+        <div class="user-profile-top">
+            <a href="/profile" class="user-link">
+                <div class="user-avatar-sm" th:style="'background:' + ${user.avatarColor}"
+                    th:text="${#strings.substring(user.username, 0, 1).toUpperCase()}">U</div>
+                <span th:text="${user.displayName != null ? user.displayName : user.username}">Usuario</span>
+            </a>
+            <form th:action="@{/logout}" method="post" style="display: flex;">
+                <button type="submit" class="logout-btn" title="Cerrar Sesión">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </form>
+        </div>
+    </div>
     <div class="hero">
         <div class="brand">
             <i class="fas fa-cube"></i>
             <span>QuizMaster Pro</span>
         </div>
-        
+
         <h1>Quiz Live</h1>
         <p>Crea, juega y aprende en tiempo real con cuestionarios interactivos</p>
-        
+
         <div class="cta-buttons">
-            <a href="/login" class="btn btn-primary">
-                <i class="fas fa-user"></i>
-                Iniciar Sesión (Anfitrión)
-            </a>
-            <a href="/play/join" class="btn btn-secondary">
+            <th:block th:if="${user == null}">
+                <a href="/login" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Iniciar Sesión
+                </a>
+                <a href="/register" class="btn btn-secondary">
+                    <i class="fas fa-user-plus"></i>
+                    Registrarse
+                </a>
+            </th:block>
+
+            <th:block th:if="${user != null}">
+                <a href="/rooms/new" class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                    Crear Sala
+                </a>
+                <a href="/blocks" class="btn btn-secondary">
+                    <i class="fas fa-layer-group"></i>
+                    Mis Bloques
+                </a>
+            </th:block>
+
+            <a href="/play/join" class="btn btn-secondary" style="border-color: #2563EB; color: #2563EB;">
                 <i class="fas fa-gamepad"></i>
-                Unirse a Juego (Jugador)
+                Unirse a Juego
             </a>
         </div>
-        
+
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">
@@ -249,7 +348,7 @@
                 <h3>Banco de Preguntas</h3>
                 <p>Organiza y gestiona miles de preguntas en bloques temáticos personalizados</p>
             </div>
-            
+
             <div class="feature-card">
                 <div class="feature-icon">
                     <i class="fas fa-users"></i>
@@ -257,7 +356,7 @@
                 <h3>Salas Multi-Usuario</h3>
                 <p>PIN único para cada sala de juego con soporte para jugadores simultáneos</p>
             </div>
-            
+
             <div class="feature-card">
                 <div class="feature-icon">
                     <i class="fas fa-bolt"></i>
@@ -265,7 +364,7 @@
                 <h3>Tiempo Real</h3>
                 <p>Procesamiento concurrente de respuestas con tecnología Spring Boot</p>
             </div>
-            
+
             <div class="feature-card">
                 <div class="feature-icon">
                     <i class="fas fa-trophy"></i>
@@ -275,7 +374,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="footer">
         <div class="tech-stack">
             <div class="tech-item">
@@ -300,4 +399,5 @@
         <p style="margin-top: 32px;">&copy; 2026 QuizMaster Pro - Powered by Spring Boot</p>
     </div>
 </body>
+
 </html>

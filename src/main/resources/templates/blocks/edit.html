@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,26 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/css/quizmaster.css?v=2">
 </head>
+
 <body>
     <div class="app-layout">
         <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-brand">
-                <i class="fas fa-cube"></i>
-                QuizMaster Pro
-            </div>
-            
-            <nav class="sidebar-menu">
-                <a href="/blocks" class="menu-item active">
-                    <i class="fas fa-th-large"></i>
-                    Mis Bloques
-                </a>
-                <a href="/banco-preguntas" class="menu-item">
-                    <i class="fas fa-database"></i>
-                    Banco Preguntas
-                </a>
-            </nav>
-        </aside>
+        <div th:replace="~{fragments/sidebar :: sidebar('bloques')}"></div>
 
         <!-- Main Content -->
         <main class="main-content">
@@ -44,14 +30,16 @@
                     <form th:action="@{/blocks/{id}(id=${block.id})}" method="post">
                         <div class="form-group">
                             <label class="form-label">Nombre del Bloque</label>
-                            <input type="text" name="name" class="form-control" th:value="${block.name}" required minlength="3" maxlength="100">
+                            <input type="text" name="name" class="form-control" th:value="${block.name}" required
+                                minlength="3" maxlength="100">
                         </div>
-                        
+
                         <div class="form-group">
                             <label class="form-label">Descripción</label>
-                            <textarea name="description" class="form-control" rows="4" maxlength="500" th:text="${block.description}"></textarea>
+                            <textarea name="description" class="form-control" rows="4" maxlength="500"
+                                th:text="${block.description}"></textarea>
                         </div>
-                        
+
                         <div class="d-flex justify-between gap-3">
                             <a href="/blocks" class="btn btn-outline">
                                 <i class="fas fa-times"></i> Cancelar
@@ -66,4 +54,5 @@
         </main>
     </div>
 </body>
+
 </html>

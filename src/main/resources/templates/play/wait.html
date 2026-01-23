@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esperando al Anfitrión | QuizMaster Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/quizmaster.css?v=2">
+    <style>
+        body {
+            background: #2563EB;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            color: white;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .wait-container {
+            max-width: 500px;
+        }
+
+        .spinner {
+            font-size: 80px;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .player-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            margin-top: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            font-size: 40px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wait-container">
+        <div class="spinner">
+            <i class="fas fa-gamepad"></i>
+        </div>
+
+        <h1>¡Ya estás dentro!</h1>
+        <p>Espera a que el anfitrión comience la partida...</p>
+
+        <div class="player-info">
+            <i class="fas fa-user-circle"></i>
+            <span th:text="${playerName}">Jugador</span>
+            <span style="opacity: 0.5; margin: 0 5px;">•</span>
+            <span th:text="${'PIN: ' + room.pin}">PIN: 0000</span>
+        </div>
+
+        <div style="margin-top: 60px; font-size: 14px; opacity: 0.7;">
+            <p>¿Sabías que la rapidez al responder te da más puntos?</p>
+        </div>
+    </div>
+
+    <!-- Script to check room status and redirect when game starts -->
+    <script th:inline="javascript">
+        const roomPin = /*[[${room.pin}]]*/ '0000';
+
+        function checkStatus() {
+            fetch('/api/rooms/' + roomPin + '/status')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.state === 'RUNNING') {
+                        window.location.href = '/play/game';
+                    }
+                })
+                .catch(err => console.error('Error checking room status', err));
+        }
+
+        // Poll every 1 second for faster response
+        setInterval(checkStatus, 1000);
+    </script>
+</body>
+
+</html>

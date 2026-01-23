@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,26 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/css/quizmaster.css?v=2">
 </head>
+
 <body>
     <div class="app-layout">
-        <!--Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-brand">
-                <i class="fas fa-cube"></i>
-                QuizMaster Pro
-            </div>
-            
-            <nav class="sidebar-menu">
-                <a href="/blocks" class="menu-item active">
-                    <i class="fas fa-th-large"></i>
-                    Mis Bloques
-                </a>
-                <a href="/banco-preguntas" class="menu-item">
-                    <i class="fas fa-database"></i>
-                    Banco Preguntas
-                </a>
-            </nav>
-        </aside>
+        <!-- Sidebar -->
+        <div th:replace="~{fragments/sidebar :: sidebar('bloques')}"></div>
 
         <!-- Main Content -->
         <main class="main-content">
@@ -37,7 +23,8 @@
                     </a>
                     <div>
                         <h1 class="page-title" style="margin-bottom: 4px;" th:text="${block.name}">Bloque</h1>
-                        <p class="text-muted" style="margin: 0;" th:text="${block.description ?: 'Sin descripción'}">Descripción</p>
+                        <p class="text-muted" style="margin: 0;" th:text="${block.description ?: 'Sin descripción'}">
+                            Descripción</p>
                     </div>
                 </div>
                 <a th:href="@{/blocks/{id}/edit(id=${block.id})}" class="btn btn-primary">
@@ -49,20 +36,27 @@
                 <!-- Stats Card -->
                 <div class="card">
                     <div class="card-body">
-                        <h5 style="font-size: 14px; font-weight: 600; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px;">Estadísticas</h5>
+                        <h5
+                            style="font-size: 14px; font-weight: 600; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px;">
+                            Estadísticas</h5>
                         <div style="text-align: center; padding: 20px 0;">
-                            <div style="font-size: 48px; font-weight: 800; color: var(--primary);" th:text="${#lists.size(block.questions)}">0</div>
+                            <div style="font-size: 48px; font-weight: 800; color: var(--primary);"
+                                th:text="${#lists.size(block.questions)}">0</div>
                             <div class="text-muted">Preguntas</div>
                         </div>
-                        <div class="mt-3" th:if="${#lists.size(block.questions) >= 20}" style="background: #DCFCE7; color: #166534; padding: 12px; border-radius: 8px; text-align: center; font-weight: 600; font-size: 14px;">
+                        <div class="mt-3" th:if="${#lists.size(block.questions) >= 20}"
+                            style="background: #DCFCE7; color: #166534; padding: 12px; border-radius: 8px; text-align: center; font-weight: 600; font-size: 14px;">
                             <i class="fas fa-check-circle"></i> Listo para usar
                         </div>
-                        <div class="mt-3" th:if="${#lists.size(block.questions) < 20}" style="background: #FEF3C7; color: #92400E; padding: 12px; border-radius: 8px; font-size: 13px; text-align: center;">
-                            <i class="fas fa-exclamation-triangle"></i> 
-                            <span>Necesita <strong th:text="${20 - #lists.size(block.questions)}">20</strong> preguntas más</span>
+                        <div class="mt-3" th:if="${#lists.size(block.questions) < 20}"
+                            style="background: #FEF3C7; color: #92400E; padding: 12px; border-radius: 8px; font-size: 13px; text-align: center;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Necesita <strong th:text="${20 - #lists.size(block.questions)}">20</strong> preguntas
+                                más</span>
                         </div>
                         <hr style="margin: 24px 0; border-color: var(--gray-200);">
-                        <a href="/banco-preguntas" class="btn btn-outline" style="width: 100%; justify-content: center;">
+                        <a href="/banco-preguntas" class="btn btn-outline"
+                            style="width: 100%; justify-content: center;">
                             <i class="fas fa-plus"></i> Añadir Preguntas
                         </a>
                     </div>
@@ -85,15 +79,18 @@
                             <i class="fas fa-plus"></i> Crear Preguntas
                         </a>
                     </div>
-                    
+
                     <div th:if="${!block.questions.empty}" style="padding: 0;">
-                        <div th:each="q, iter : ${block.questions}" style="padding: 20px 24px; border-bottom: 1px solid var(--gray-200);">
+                        <div th:each="q, iter : ${block.questions}"
+                            style="padding: 20px 24px; border-bottom: 1px solid var(--gray-200);">
                             <div class="d-flex gap-3">
-                                <div style="flex-shrink: 0; width: 32px; height: 32px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600;">
+                                <div
+                                    style="flex-shrink: 0; width: 32px; height: 32px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600;">
                                     <span th:text="${iter.count}">1</span>
                                 </div>
                                 <div style="flex: 1;">
-                                    <div style="font-weight: 600; margin-bottom: 8px;" th:text="${q.text}">Pregunta</div>
+                                    <div style="font-weight: 600; margin-bottom: 8px;" th:text="${q.text}">Pregunta
+                                    </div>
                                     <div class="text-muted" style="font-size: 13px;">
                                         <i class="fas fa-check text-success"></i>
                                         <span th:text="${q.correctAnswer}">Respuesta correcta</span>
@@ -107,4 +104,5 @@
         </main>
     </div>
 </body>
+
 </html>
