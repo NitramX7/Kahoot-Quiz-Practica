@@ -4,6 +4,7 @@ import com.quizlive.model.*;
 import com.quizlive.repository.QuestionRepository;
 import com.quizlive.repository.RoomQuestionRepository;
 import com.quizlive.repository.RoomRepository;
+import com.quizlive.repository.PlayerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ public class RoomService {
     private final RoomQuestionRepository roomQuestionRepository;
     private final QuestionRepository questionRepository;
     private final BlockService blockService;
+    private final PlayerRepository playerRepository;
     private final SecureRandom random = new SecureRandom();
 
     /**
@@ -124,6 +126,14 @@ public class RoomService {
     }
 
     /**
+     * Find room by ID
+     */
+    public Room getRoomById(Long roomId) {
+        return roomRepository.findById(roomId)
+                .orElseThrow(() -> new IllegalArgumentException("Room not found"));
+    }
+
+    /**
      * Get all rooms created by host
      */
     public List<Room> getRoomsByHost(Long hostId) {
@@ -165,5 +175,102 @@ public class RoomService {
         room.finish();
         roomRepository.save(room);
         log.info("[Room {}] Game finished", room.getPin());
+    }
+
+    /**
+     * Move to the next question
+     */
+    @Transactional
+    public RoomQuestion getNextQuestion(Long roomId) {
+        Room room = roomRepository.findById(roomId)
+                .orElseThrow(() -> new IllegalArgumentException("Room not found"));
+
+        if (!room.isRunning()) {
+            throw new IllegalStateException("Room is not running");
+        }
+
+        List<RoomQuestion> questions = roomQuestionRepository.findByRoomIdOrderByOrderNumAsc(roomId);
+        
+        // Find current open question and close it
+        Optional<RoomQuestion> currentOpen = questions.stream()
+                .filter(RoomQuestion::getIsOpen)
+                .findFirst();
+        
+        currentOpen.ifPresent(RoomQuestion::close);
+
+        // Find next question
+        Optional<RoomQuestion> nextQuestion = questions.stream()
+                .filter(rq -> rq.getStartTime() == null) // Not yet started
+                .findFirst();
+
+        if (nextQuestion.isPresent()) {
+            RoomQuestion q = nextQuestion.get();
+            q.open();
+            roomQuestionRepository.save(q);
+            log.info("[Room {}] Opened question {}", room.getPin(), q.getOrderNum());
+            return q;
+        } else {
+            // No more questions, finish game
+            finishRoom(roomId);
+            return null;
+        }
+    }
+
+    /**
+     * Get the currently active question (or the last one if just finished)
+     */
+    public RoomQuestion getCurrentQuestion(Long roomId) {
+        return roomQuestionRepository.findByRoomIdOrderByOrderNumAsc(roomId).stream()
+                .filter(rq -> rq.getIsOpen() || (rq.getStartTime() != null && rq.getCloseTime() != null))
+                .reduce((first, second) -> second) // Get the last one that was active
+                .orElse(null);
+    }
+    
+    // Explicitly find the strictly active one for players
+    public RoomQuestion getActiveQuestion(Long roomId) {
+         return roomQuestionRepository.findByRoomIdOrderByOrderNumAsc(roomId).stream()
+                .filter(RoomQuestion::getIsOpen)
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Transactional
+    public void submitAnswer(Long roomId, Long playerId, Long roomQuestionId, Integer selectedOption) {
+        RoomQuestion roomQuestion = roomQuestionRepository.findById(roomQuestionId)
+                .orElseThrow(() -> new IllegalArgumentException("Question not found"));
+        
+        if (!roomQuestion.canAcceptAnswers()) {
+            throw new IllegalStateException("Question is not open for answers");
+        }
+
+        Player player = playerRepository.findById(playerId)
+                .orElseThrow(() -> new IllegalArgumentException("Player not found"));
+
+        if (player.hasAnsweredQuestion(roomQuestionId)) {
+           throw new IllegalStateException("Player already answered this question");
+        }
+
+        Answer answer = new Answer();
+        answer.setPlayer(player);
+        answer.setRoomQuestion(roomQuestion);
+        answer.setSelectedOption(selectedOption);
+        
+        // Calculate response time (simple diff)
+        long diff = java.time.Duration.between(roomQuestion.getStartTime(), java.time.LocalDateTime.now()).toMillis();
+        answer.setResponseTime(diff);
+
+        // Check correctness
+        Question originalQuestion = roomQuestion.getQuestion();
+        boolean isCorrect = originalQuestion.getCorrectOption().equals(selectedOption);
+        answer.setIsCorrect(isCorrect);
+        
+        // Calculate points
+        answer.calculatePoints(true, roomQuestion.getRoom().getTimePerQuestion());
+        
+        // Save answer and update player score
+        player.addScore(answer.getPointsEarned());
+        player.getAnswers().add(answer); // Maintain bidirectionality
+        
+        playerRepository.save(player);
     }
 }

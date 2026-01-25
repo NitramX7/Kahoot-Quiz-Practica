@@ -26,10 +26,12 @@ public class Answer {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "player_id", nullable = false)
+    @com.fasterxml.jackson.annotation.JsonIgnore
     private Player player;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "room_question_id", nullable = false)
+    @com.fasterxml.jackson.annotation.JsonIgnore
     private RoomQuestion roomQuestion;
 
     @Min(value = 1, message = "Selected option must be between 1 and 4")

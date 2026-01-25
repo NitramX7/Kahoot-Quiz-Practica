@@ -71,4 +71,35 @@ public class PlayController {
             return "redirect:/play/join?error=room_not_found";
         }
     }
+    @GetMapping("/game")
+    public String showGame(HttpSession session, Model model) {
+        String pin = (String) session.getAttribute("playerPin");
+        String name = (String) session.getAttribute("playerName");
+        
+        if (pin == null || name == null) {
+            return "redirect:/play/join";
+        }
+        
+        Room room = roomService.getRoomByPin(pin);
+        Player player = playerService.getPlayerByPinAndName(pin, name);
+        
+        model.addAttribute("room", room);
+        model.addAttribute("player", player);
+        
+        // Inject current question for initial render
+        try {
+             com.quizlive.service.GameEngineService gameEngineService = applicationContext.getBean(com.quizlive.service.GameEngineService.class);
+             com.quizlive.model.RoomQuestion currentQuestion = gameEngineService.getCurrentQuestion(pin);
+             if (currentQuestion != null) {
+                 model.addAttribute("currentQuestion", currentQuestion);
+             }
+        } catch (Exception e) {
+            log.warn("Could not fetch current question for room {}: {}", pin, e.getMessage());
+        }
+        
+        return "play/game/game";
+    }
+
+    @org.springframework.beans.factory.annotation.Autowired
+    private org.springframework.context.ApplicationContext applicationContext;
 }

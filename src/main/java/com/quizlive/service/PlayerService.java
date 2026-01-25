@@ -73,6 +73,14 @@ public class PlayerService {
     }
 
     /**
+     * Find player by ID
+     */
+    public Player getPlayerById(Long playerId) {
+        return playerRepository.findById(playerId)
+                .orElseThrow(() -> new IllegalArgumentException("Player not found"));
+    }
+
+    /**
      * Update player score (thread-safe when called with proper synchronization)
      */
     @Transactional

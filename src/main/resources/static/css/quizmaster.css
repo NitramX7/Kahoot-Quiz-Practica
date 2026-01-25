@@ -394,3 +394,38 @@ textarea.form-control {
     border-color: #A855F7;
     color: #9333EA;
 }
+
+/* === MOBILE RESPONSIVENESS === */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .options-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 50vh;
+    }
+    
+    .option-btn {
+        min-height: 80px;
+    }
+
+    .page-title {
+        font-size: 24px;
+    }
+    
+    /* Toggle button for sidebar would be needed, but for game view we just want full width */
+}

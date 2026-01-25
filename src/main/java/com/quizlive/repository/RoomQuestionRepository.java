@@ -40,4 +40,10 @@ public interface RoomQuestionRepository extends JpaRepository<RoomQuestion, Long
      */
     @Query("SELECT rq FROM RoomQuestion rq WHERE rq.room.id = :roomId AND rq.startTime IS NULL ORDER BY rq.orderNum ASC")
     List<RoomQuestion> findUnopenedQuestionsByRoomId(@Param("roomId") Long roomId);
+
+    /**
+     * Find a question with its Question entity eagerly loaded
+     */
+    @Query("SELECT rq FROM RoomQuestion rq JOIN FETCH rq.question WHERE rq.id = :id")
+    Optional<RoomQuestion> findByIdWithQuestion(@Param("id") Long id);
 }

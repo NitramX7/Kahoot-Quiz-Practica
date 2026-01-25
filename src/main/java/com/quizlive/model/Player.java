@@ -27,6 +27,7 @@ public class Player {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "room_id", nullable = false)
+    @com.fasterxml.jackson.annotation.JsonIgnore
     private Room room;
 
     @NotBlank(message = "Player name is required")

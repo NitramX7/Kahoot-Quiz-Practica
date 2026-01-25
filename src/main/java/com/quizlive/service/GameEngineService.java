@@ -313,7 +313,33 @@ public class GameEngineService {
             } finally {
                 clearMDC();
             }
-        }, answerProcessingExecutor); // PSP-C: Use ExecutorService thread pool
+        }, answerProcessingExecutor) // PSP-C: Use ExecutorService thread pool
+                .thenApply(answer -> {
+                    // Check if all players have answered
+                    try {
+                        RoomState roomState = activeRooms.get(pin);
+                        if (roomState != null) {
+                            long totalPlayers = playerRepository.countByRoomId(roomState.roomId);
+                            int answersCount = roomState.playerAnsweredQuestions.entrySet().stream()
+                                    .filter(entry -> entry.getValue().contains(roomQuestionId))
+                                    .mapToInt(e -> 1)
+                                    .sum();
+                            
+                            log.debug("[Thread: {}] Progress check: {}/{} answers for question {}", 
+                                    Thread.currentThread().getName(), answersCount, totalPlayers, roomQuestionId);
+
+                            if (answersCount >= totalPlayers) {
+                                log.info("[Thread: {}] All active players ({}) answered. Closing question early.", 
+                                        Thread.currentThread().getName(), totalPlayers);
+                                // Schedule immediate close (short delay to ensure this request finishes)
+                                timerExecutor.schedule(() -> closeQuestion(pin, roomQuestionId), 1, TimeUnit.SECONDS);
+                            }
+                        }
+                    } catch (Exception e) {
+                        log.error("Error checking auto-advance condition", e);
+                    }
+                    return answer;
+                });
     }
 
     /**
@@ -347,7 +373,11 @@ public class GameEngineService {
         if (roomState == null) {
             throw new IllegalStateException("Room not active");
         }
-        return roomState.getCurrentQuestion();
+        RoomQuestion current = roomState.getCurrentQuestion();
+        if (current == null) {
+            return null;
+        }
+        return roomQuestionRepository.findByIdWithQuestion(current.getId()).orElse(current);
     }
 
     /**

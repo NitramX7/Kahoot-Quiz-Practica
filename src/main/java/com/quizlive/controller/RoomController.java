@@ -4,6 +4,7 @@ import com.quizlive.model.Block;
 import com.quizlive.model.Room;
 import com.quizlive.model.User;
 import com.quizlive.service.BlockService;
+import com.quizlive.service.GameEngineService;
 import com.quizlive.service.PlayerService;
 import com.quizlive.service.RoomService;
 import com.quizlive.service.UserService;
@@ -26,6 +27,7 @@ public class RoomController {
     private final BlockService blockService;
     private final UserService userService;
     private final PlayerService playerService;
+    private final GameEngineService gameEngineService;
 
     @GetMapping("/new")
     public String showCreateRoomForm(Principal principal, Model model) {
@@ -75,7 +77,40 @@ public class RoomController {
     @PostMapping("/{id}/start")
     public String startRoom(@PathVariable Long id, Principal principal) {
         User host = userService.findByUsername(principal.getName());
-        roomService.startRoom(id, host.getId());
+        Room room = roomService.getRoomById(id);
+        if (!room.getHost().getId().equals(host.getId())) {
+            throw new SecurityException("Only the host can start the room");
+        }
+        gameEngineService.startGame(room.getPin());
         return "redirect:/rooms/" + id + "/game"; // This page doesn't exist yet, but the flow is correct
+    }
+    @GetMapping("/{id}/game")
+    public String showGame(@PathVariable Long id, Principal principal, Model model) {
+        User user = userService.findByUsername(principal.getName());
+        Room room = roomService.getRoomById(id);
+        model.addAttribute("room", room);
+        try {
+            var q = gameEngineService.getCurrentQuestion(room.getPin());
+            model.addAttribute("currentQuestion", q);
+        } catch (Exception e) {
+            log.warn("Could not fetch current question for room {}: {}", room.getPin(), e.getMessage());
+        }
+        return "rooms/game_host";
+    }
+
+    @GetMapping("/{pin}/play")
+    public String showPlayerGame(@PathVariable String pin, @RequestParam String playerName, Model model) {
+        // This should be the player view
+        var room = roomService.getRoomByPin(pin);
+        var player = playerService.getPlayerByPinAndName(pin, playerName);
+        model.addAttribute("room", room);
+        model.addAttribute("player", player);
+        return "play/game/game";
+    }
+
+    @GetMapping("/{id}/podium")
+    public String showPodium(@PathVariable Long id, Model model) {
+        model.addAttribute("ranking", playerService.getRankingByRoom(id));
+        return "rooms/podium";
     }
 }
