@@ -5,7 +5,14 @@ let currentQuestionId = window.currentQuestionId ?? null;
 
 console.log("Game initialized", { roomId, playerId, currentQuestionId });
 
-const csrfToken = document.querySelector('input[name="_csrf"]').value;
+function getCsrf() {
+  const tokenMeta = document.querySelector('meta[name="_csrf"]');
+  const headerMeta = document.querySelector('meta[name="_csrf_header"]');
+  const tokenInput = document.querySelector('input[name="_csrf"]');
+  const token = (tokenMeta && tokenMeta.content) || (tokenInput && tokenInput.value) || null;
+  const header = (headerMeta && headerMeta.content) || "X-CSRF-TOKEN";
+  return { token, header };
+}
 
 function submitAnswer(option) {
   console.log("Submitting answer...", { option, currentQuestionId });
@@ -19,12 +26,17 @@ function submitAnswer(option) {
   document.getElementById("gameScreen").style.display = "none";
   document.getElementById("waitingScreen").style.display = "flex";
 
+  const { token, header } = getCsrf();
+  const headers = {
+    "Content-Type": "application/json",
+  };
+  if (token) {
+    headers[header] = token;
+  }
+
   fetch(`/api/rooms/${roomId}/submit-answer`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-CSRF-TOKEN": csrfToken,
-    },
+    headers,
     body: JSON.stringify({
       playerId: playerId,
       questionId: currentQuestionId,
@@ -34,9 +46,20 @@ function submitAnswer(option) {
     .then((response) => {
       if (!response.ok) {
         console.error("Submission failed", response.status);
-        // Optionally show error or revert UI
+        return null;
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (!data) return;
+      const title = document.getElementById("resultTitle");
+      const text = document.getElementById("resultText");
+      if (data.correct) {
+        if (title) title.textContent = "¡Correcta!";
+        if (text) text.textContent = `+${data.points} puntos (total: ${data.totalScore})`;
       } else {
-        console.log("Answer submitted successfully");
+        if (title) title.textContent = "Incorrecta";
+        if (text) text.textContent = `0 puntos (total: ${data.totalScore})`;
       }
     })
     .catch((error) => console.error("Network error:", error));
@@ -52,8 +75,7 @@ setInterval(() => {
         window.location.reload();
       }
       if (data.finished) {
-        // End game logic if needed (e.g. redirect to podium)
-        // For now just reload which might show finished state or 404
+        window.location.href = `/rooms/${roomId}/podium`;
       }
     });
 }, 2000);

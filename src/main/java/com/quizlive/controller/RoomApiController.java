@@ -51,14 +51,19 @@ public class RoomApiController {
     }
 
     @PostMapping("/{roomId}/submit-answer")
-    public void submitAnswer(@PathVariable Long roomId, @RequestBody Map<String, Object> payload) {
+    public Map<String, Object> submitAnswer(@PathVariable Long roomId, @RequestBody Map<String, Object> payload) {
         Long playerId = Long.valueOf(payload.get("playerId").toString());
         Long questionId = Long.valueOf(payload.get("questionId").toString());
         Integer selectedOption = Integer.valueOf(payload.get("selectedOption").toString());
 
         Room room = roomService.getRoomById(roomId);
         Player player = playerService.getPlayerById(playerId);
-        gameEngineService.submitAnswer(room.getPin(), player.getName(), questionId, selectedOption).join();
+        var answer = gameEngineService.submitAnswer(room.getPin(), player.getName(), questionId, selectedOption).join();
+        Map<String, Object> response = new HashMap<>();
+        response.put("correct", answer.getIsCorrect());
+        response.put("points", answer.getPointsEarned());
+        response.put("totalScore", answer.getPlayer() != null ? answer.getPlayer().getScore() : 0);
+        return response;
     }
 
     @GetMapping("/{roomId}/current-question")

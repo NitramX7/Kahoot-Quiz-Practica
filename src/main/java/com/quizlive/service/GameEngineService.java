@@ -245,7 +245,7 @@ public class GameEngineService {
                 }
 
                 // PSP-D: Check if question is still open (thread-safe check)
-                RoomQuestion roomQuestion = roomQuestionRepository.findById(roomQuestionId)
+                RoomQuestion roomQuestion = roomQuestionRepository.findByIdWithQuestion(roomQuestionId)
                         .orElseThrow(() -> new IllegalArgumentException("Question not found"));
 
                 if (!roomQuestion.canAcceptAnswers()) {
@@ -298,6 +298,7 @@ public class GameEngineService {
                 // Update player score in database
                 player.addScore(answer.getPointsEarned());
                 playerRepository.save(player);
+                playerRepository.flush();
 
                 long processingTime = System.currentTimeMillis() - startTime;
                 log.info("[Thread: {}] Answer processed in {}ms - Player: {}, Correct: {}, Points: {}", 
