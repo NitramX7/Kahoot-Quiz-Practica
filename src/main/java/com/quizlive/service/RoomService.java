@@ -210,7 +210,8 @@ public class RoomService {
             log.info("[Room {}] Opened question {}", room.getPin(), q.getOrderNum());
             return q;
         } else {
-            // No more questions, finish game
+            // No more questions, finish game and show podium
+            log.info("[Room {}] ¡Todas las preguntas respondidas! Mostrando podio al usuario...", room.getPin());
             finishRoom(roomId);
             return null;
         }

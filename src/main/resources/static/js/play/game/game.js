@@ -70,12 +70,19 @@ setInterval(() => {
   fetch(`/api/rooms/${roomId}/current-question`)
     .then((res) => res.json())
     .then((data) => {
+      console.log("Polling response completo:", data);
+      console.log("data.finished =", data.finished);
+      console.log("Todas las propiedades:", Object.keys(data));
+      
       if (data.id && data.id !== currentQuestionId) {
         // New question!
+        console.log("Nueva pregunta detectada, recargando...");
         window.location.reload();
       }
       if (data.finished) {
+        console.log("¡Juego terminado! Redirigiendo a podio...", { roomId });
         window.location.href = `/rooms/${roomId}/podium`;
       }
-    });
+    })
+    .catch((error) => console.error("Error en polling:", error));
 }, 2000);

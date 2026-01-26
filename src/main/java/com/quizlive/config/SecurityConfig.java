@@ -26,8 +26,13 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/register", "/play/**", "/api/rooms/**", "/h2-console/**", "/css/**", "/js/**", "/error").permitAll()
-                .requestMatchers("/blocks/**", "/questions/**", "/rooms/**", "/banco-preguntas/**", "/profile/**", "/api/**").authenticated()
+                // Permitir acceso público sin autenticación
+                .requestMatchers("/", "/register", "/login", "/play/**", "/api/rooms/**", "/h2-console/**", "/css/**", "/js/**", "/error").permitAll()
+                // Permitir acceso al podio (después del juego) sin autenticación
+                .requestMatchers("/rooms/*/podium").permitAll()
+                // Requerir autenticación para estas rutas
+                .requestMatchers("/blocks/**", "/questions/**", "/rooms/**", "/banco-preguntas/**", "/profile/**").authenticated()
+                // El resto requiere autenticación
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
@@ -41,7 +46,7 @@ public class SecurityConfig {
                 .permitAll()
             )
             .csrf(csrf -> csrf
-                .ignoringRequestMatchers("/h2-console/**", "/play/**")
+                .ignoringRequestMatchers("/h2-console/**", "/play/**", "/api/rooms/**")
             )
             .headers(headers -> headers
                 .frameOptions(frame -> frame.sameOrigin())
