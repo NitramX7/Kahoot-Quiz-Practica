@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 /**
- * Initialize database with sample data for testing
+ * Inicializa la base de datos con datos de ejemplo para pruebas
  */
 @Component
 @RequiredArgsConstructor
@@ -27,7 +27,7 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        // Check if data already exists
+        // Comprobar si los datos ya existen
         if (userRepository.count() > 0) {
             log.info("Database already initialized, skipping data creation");
             return;
@@ -35,18 +35,18 @@ public class DataInitializer implements CommandLineRunner {
 
         log.info("Initializing database with sample data...");
 
-        // Create test users
+        // Crear usuarios de prueba
         User host1 = createUser("host1", "password", "host1@quizlive.com");
         User host2 = createUser("host2", "password", "host2@quizlive.com");
 
-        // Create blocks with 25 questions each
+        // Crear bloques con 25 preguntas cada uno
         Block block1 = createBlock("Matemáticas Básicas", "Preguntas de aritmética y álgebra", host1);
         Block block2 = createBlock("Historia Mundial", "Eventos históricos importantes", host2);
 
-        // Add 25 questions to block1
+        // Añadir 25 preguntas al bloque 1
         addMathQuestions(block1);
 
-        // Add 25 questions to block2
+        // Añadir 25 preguntas al bloque 2
         addHistoryQuestions(block2);
 
         log.info("Database initialized successfully!");

@@ -11,7 +11,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 /**
- * Answer entity storing player responses with timing and correctness
+ * Entidad Answer que almacena respuestas del jugador con tiempo y corrección
  */
 @Entity
 @Table(name = "answers")
@@ -40,7 +40,7 @@ public class Answer {
     private Integer selectedOption;
 
     @Column(name = "response_time", nullable = false)
-    private Long responseTime; // Time in milliseconds from question start
+    private Long responseTime; // Tiempo en milisegundos desde el inicio de la pregunta
 
     @Column(name = "is_correct", nullable = false)
     private Boolean isCorrect;
@@ -53,30 +53,30 @@ public class Answer {
     private LocalDateTime submittedAt;
 
     /**
-     * Calculate points earned based on correctness and optional speed bonus
-     * Basic: +1 for correct, 0 for incorrect
-     * Optional: bonus points for faster answers
-     */
+ * Calcular puntos obtenidos según corrección y bono opcional de velocidad
+ * Básico: +1 por correcta, 0 por incorrecta
+ * Opcional: puntos extra por respuestas más rápidas
+ */
     public void calculatePoints(boolean useSpeedBonus, int maxTime) {
         if (!isCorrect) {
             this.pointsEarned = 0;
             return;
         }
 
-        // Base points for correct answer
+        // Puntos base por respuesta correcta
         int points = 1;
 
-        // Optional speed bonus: extra points for quick answers
+        // Bono opcional de velocidad: puntos extra por respuestas rápidas
         if (useSpeedBonus && responseTime != null) {
-            double timeRatio = (double) responseTime / (maxTime * 1000); // Convert to seconds
+            double timeRatio = (double) responseTime / (maxTime * 1000); // Convertir a segundos
             if (timeRatio < 0.25) {
-                points += 3; // Very fast: +3 bonus
+                points += 3; // Muy rápido: +3 de bonificación
             } else if (timeRatio < 0.5) {
-                points += 2; // Fast: +2 bonus
+                points += 2; // Rápido: +2 de bonificación
             } else if (timeRatio < 0.75) {
-                points += 1; // Medium: +1 bonus
+                points += 1; // Medio: +1 de bonificación
             }
-            // Slow: no bonus
+            // Lento: sin bonificación
         }
 
         this.pointsEarned = points;

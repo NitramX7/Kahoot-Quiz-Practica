@@ -8,20 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * Repository for Block entity
- */
 @Repository
 public interface BlockRepository extends JpaRepository<Block, Long> {
 
-    /**
-     * Find all blocks owned by a specific user
-     */
     List<Block> findByOwnerId(Long userId);
 
-    /**
-     * Check if a specific user owns a specific block
-     */
     @Query("SELECT COUNT(b) > 0 FROM Block b WHERE b.id = :blockId AND b.owner.id = :userId")
     boolean isOwnedByUser(@Param("blockId") Long blockId, @Param("userId") Long userId);
 }

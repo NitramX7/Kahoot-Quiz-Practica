@@ -18,7 +18,7 @@ public class QuestionDTO {
     @NotNull(message = "Block ID is required")
     private Long blockId;
     
-    private String blockName; // For display purposes
+    private String blockName; // Para mostrar
     
     @NotBlank(message = "Question text is required")
     private String text;

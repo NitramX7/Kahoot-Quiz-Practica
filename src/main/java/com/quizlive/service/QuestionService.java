@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Service for Question management
+ * Servicio de gestión de preguntas
  */
 @Service
 @RequiredArgsConstructor
@@ -22,12 +22,12 @@ public class QuestionService {
     private final BlockService blockService;
 
     /**
-     * Create a new question in a block
-     */
+ * Crear una nueva pregunta en un bloque
+ */
     @Transactional
     public Question createQuestion(Long blockId, String text, String option1, String option2,
                                    String option3, String option4, Integer correctOption, Long userId) {
-        // Validate block ownership
+        // Validar propiedad del bloque
         Block block = blockService.getBlockById(blockId, userId);
 
         Question question = new Question();
@@ -45,30 +45,30 @@ public class QuestionService {
     }
 
     /**
-     * Get all questions in a block
-     */
+ * Obtener todas las preguntas de un bloque
+ */
     public List<Question> getQuestionsByBlock(Long blockId, Long userId) {
-        // Validate ownership
+        // Validar propiedad
         blockService.getBlockById(blockId, userId);
         return questionRepository.findByBlockId(blockId);
     }
 
     /**
-     * Get question by ID with ownership validation
-     */
+ * Obtener pregunta por ID con validación de propiedad
+ */
     public Question getQuestionById(Long questionId, Long userId) {
         Question question = questionRepository.findById(questionId)
                 .orElseThrow(() -> new IllegalArgumentException("Question not found"));
         
-        // Validate ownership through block
+        // Validar propiedad a través del bloque
         blockService.getBlockById(question.getBlock().getId(), userId);
         
         return question;
     }
 
     /**
-     * Update question
-     */
+ * Actualizar pregunta
+ */
     @Transactional
     public Question updateQuestion(Long questionId, String text, String option1, String option2,
                                    String option3, String option4, Integer correctOption, Long userId) {
@@ -86,8 +86,8 @@ public class QuestionService {
     }
 
     /**
-     * Delete question
-     */
+ * Eliminar pregunta
+ */
     @Transactional
     public void deleteQuestion(Long questionId, Long userId) {
         Question question = getQuestionById(questionId, userId);
@@ -96,22 +96,22 @@ public class QuestionService {
     }
 
     /**
-     * Count questions in a block
-     */
+ * Contar preguntas en un bloque
+ */
     public long countQuestionsByBlock(Long blockId) {
         return questionRepository.countByBlockId(blockId);
     }
 
     /**
-     * Get all questions for a specific user across all blocks
-     */
+ * Obtener todas las preguntas de un usuario en todos sus bloques
+ */
     public List<Question> getAllQuestionsByUser(Long userId) {
         return questionRepository.findByBlock_Owner_Id(userId);
     }
 
     /**
-     * Duplicate a question
-     */
+ * Duplicar una pregunta
+ */
     @Transactional
     public Question duplicateQuestion(Long questionId, Long userId) {
         Question original = getQuestionById(questionId, userId);

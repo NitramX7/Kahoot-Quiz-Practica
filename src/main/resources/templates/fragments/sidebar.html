@@ -54,7 +54,7 @@
                     </button>
                 </form>
             </div>
-            <!-- Fallback if user is not in model explicitly (e.g. just username) -->
+            <!--Alternativa si el usuario no está en el modelo (p. ej., solo username)-->
             <div class="user-card" th:if="${user == null && username != null}">
                 <div class="user-avatar" th:text="${#strings.substring(username, 0, 1).toUpperCase()}">U</div>
                 <div class="user-details">

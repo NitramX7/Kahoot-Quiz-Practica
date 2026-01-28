@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Service for Block (question collection) management
+ * Servicio para la gestión de Bloques (colección de preguntas)
  */
 @Service
 @RequiredArgsConstructor
@@ -21,8 +21,8 @@ public class BlockService {
     private final BlockRepository blockRepository;
 
     /**
-     * Create a new block
-     */
+ * Crear un nuevo bloque
+ */
     @Transactional
     public Block createBlock(String name, String description, User owner) {
         Block block = new Block();
@@ -36,15 +36,15 @@ public class BlockService {
     }
 
     /**
-     * Get all blocks owned by a user
-     */
+ * Obtener todos los bloques de un usuario
+ */
     public List<Block> getBlocksByUser(Long userId) {
         return blockRepository.findByOwnerId(userId);
     }
 
     /**
-     * Get block by ID with ownership validation
-     */
+ * Obtener bloque por ID con validación de propiedad
+ */
     public Block getBlockById(Long blockId, Long userId) {
         Block block = blockRepository.findById(blockId)
                 .orElseThrow(() -> new IllegalArgumentException("Block not found"));
@@ -57,8 +57,8 @@ public class BlockService {
     }
 
     /**
-     * Update block
-     */
+ * Actualizar bloque
+ */
     @Transactional
     public Block updateBlock(Long blockId, String name, String description, Long userId) {
         Block block = getBlockById(blockId, userId);
@@ -70,8 +70,8 @@ public class BlockService {
     }
 
     /**
-     * Delete block (with room usage validation)
-     */
+ * Eliminar bloque (con validación de uso en salas)
+ */
     @Transactional
     public void deleteBlock(Long blockId, Long userId) {
         Block block = getBlockById(blockId, userId);

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Service for User management and authentication
+ * Servicio para gestión de usuarios y autenticación
  */
 @Service
 @RequiredArgsConstructor
@@ -20,8 +20,8 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     /**
-     * Register a new user
-     */
+ * Registrar un nuevo usuario
+ */
     @Transactional
     public User registerUser(String username, String password, String email) {
         if (userRepository.existsByUsername(username)) {
@@ -43,11 +43,11 @@ public class UserService {
     }
 
     /**
-     * Find user by username
-     */
+ * Buscar usuario por nombre de usuario
+ */
     /**
-     * Find user by username
-     */
+ * Buscar usuario por nombre de usuario
+ */
     public User findByUsername(String identifier) {
         return userRepository.findByUsername(identifier)
                 .or(() -> userRepository.findByEmail(identifier))
@@ -55,24 +55,24 @@ public class UserService {
     }
 
     /**
-     * Find user by email
-     */
+ * Buscar usuario por email
+ */
     public User findByEmail(String email) {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("User not found: " + email));
     }
 
     /**
-     * Get user by ID
-     */
+ * Obtener usuario por ID
+ */
     public User getUserById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + id));
     }
 
     /**
-     * Update username (checking for uniqueness)
-     */
+ * Actualizar nombre de usuario (comprobando unicidad)
+ */
     @Transactional
     public void updateUsername(User user, String newUsername) {
         if (userRepository.existsByUsername(newUsername)) {
@@ -84,8 +84,8 @@ public class UserService {
     }
 
     /**
-     * Save/Update user
-     */
+ * Guardar/Actualizar usuario
+ */
     @Transactional
     public User save(User user) {
         log.info("Updating user: {}", user.getUsername());

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Player entity representing a participant in a room
+ * Entidad Player que representa un participante en una sala
  */
 @Entity
 @Table(name = "players")
@@ -41,20 +41,20 @@ public class Player {
     @Column(name = "joined_at", nullable = false, updatable = false)
     private LocalDateTime joinedAt;
 
-    // Relationships
+    // Relaciones
     @OneToMany(mappedBy = "player", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Answer> answers = new ArrayList<>();
 
     /**
-     * Add points to player's score (thread-safe when used with proper synchronization)
-     */
+ * Añadir puntos a la puntuación del jugador (thread-safe con sincronización adecuada)
+ */
     public void addScore(int points) {
         this.score += points;
     }
 
     /**
-     * Check if player has already answered a specific question
-     */
+ * Comprobar si el jugador ya ha respondido una pregunta específica
+ */
     public boolean hasAnsweredQuestion(Long roomQuestionId) {
         return answers.stream()
                 .anyMatch(answer -> answer.getRoomQuestion().getId().equals(roomQuestionId));

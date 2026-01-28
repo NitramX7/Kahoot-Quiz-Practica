@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 /**
- * Security Configuration with database authentication
+ * Configuración de seguridad con autenticación en base de datos
  */
 @Configuration
 @EnableWebSecurity

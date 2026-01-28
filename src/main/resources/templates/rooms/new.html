@@ -11,10 +11,10 @@
 
 <body>
     <div class="app-layout">
-        <!-- Sidebar -->
+        <!--Barra lateral-->
         <div th:replace="~{fragments/sidebar :: sidebar('')}"></div>
 
-        <!-- Main Content -->
+        <!--Contenido principal-->
         <main class="main-content">
             <div class="page-header">
                 <div>
@@ -31,7 +31,7 @@
             <form th:if="${!blocks.isEmpty()}" th:action="@{/rooms}" method="post">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 <div class="row gap-4" style="display: grid; grid-template-columns: 1fr 350px;">
-                    <!-- Left Column - Configuration -->
+                    <!--Columna izquierda - Configuración-->
                     <div class="card">
                         <div class="card-header">
                             <i class="fas fa-sliders-h"></i> Ajustes de la Partida
@@ -64,7 +64,7 @@
                         </div>
                     </div>
 
-                    <!-- Right Column - Mode -->
+                    <!--Columna derecha - Modo-->
                     <div class="card">
                         <div class="card-header">
                             <i class="fas fa-magic"></i> Modo de Selección

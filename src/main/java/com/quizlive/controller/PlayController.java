@@ -34,7 +34,7 @@ public class PlayController {
         try {
             Player player = playerService.joinRoom(pin, playerName);
             
-            // Store player info in session for subsequent game steps
+            // Guardar info del jugador en sesión para pasos posteriores del juego
             session.setAttribute("playerPin", pin);
             session.setAttribute("playerName", playerName);
             session.setAttribute("playerId", player.getId());
@@ -86,7 +86,7 @@ public class PlayController {
         model.addAttribute("room", room);
         model.addAttribute("player", player);
         
-        // Inject current question for initial render
+        // Inyectar la pregunta actual para el renderizado inicial
         try {
              com.quizlive.service.GameEngineService gameEngineService = applicationContext.getBean(com.quizlive.service.GameEngineService.class);
              com.quizlive.model.RoomQuestion currentQuestion = gameEngineService.getCurrentQuestion(pin);

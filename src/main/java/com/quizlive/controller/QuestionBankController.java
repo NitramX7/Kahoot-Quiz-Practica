@@ -29,7 +29,7 @@ public class QuestionBankController {
     private final BlockService blockService;
     private final UserService userService;
 
-    // --- View Endpoints ---
+    // --- Endpoints de vista ---
 
     @GetMapping("/banco-preguntas")
     public String viewQuestionBank(Model model, Authentication authentication) {
@@ -38,7 +38,7 @@ public class QuestionBankController {
         return "banco-preguntas";
     }
 
-    // --- REST API Endpoints ---
+    // --- Endpoints REST ---
 
     @GetMapping("/api/questions")
     @ResponseBody
@@ -126,7 +126,7 @@ public class QuestionBankController {
         return ResponseEntity.ok(dtos);
     }
     
-    // Helper
+    // Ayuda
     private QuestionDTO convertToDTO(Question question) {
         QuestionDTO dto = new QuestionDTO();
         dto.setId(question.getId());

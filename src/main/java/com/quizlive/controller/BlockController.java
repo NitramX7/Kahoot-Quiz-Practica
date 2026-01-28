@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Controller for Block (question collection) management
+ * Controlador para la gestión de Bloques (colección de preguntas)
  */
 @Controller
 @RequestMapping("/blocks")
@@ -25,8 +25,8 @@ public class BlockController {
     private final UserService userService;
 
     /**
-     * List all blocks for current user
-     */
+ * Listar todos los bloques del usuario actual
+ */
     @GetMapping
     public String listBlocks(@AuthenticationPrincipal UserDetails userDetails, Model model) {
         User user = userService.findByUsername(userDetails.getUsername());
@@ -38,16 +38,16 @@ public class BlockController {
     }
 
     /**
-     * Show create block form
-     */
+ * Mostrar formulario de creación de bloque
+ */
     @GetMapping("/new")
     public String showCreateForm(Model model) {
         return "blocks/create";
     }
 
     /**
-     * Create new block
-     */
+ * Crear un nuevo bloque
+ */
     @PostMapping
     public String createBlock(@RequestParam String name,
                              @RequestParam(required = false) String description,
@@ -58,8 +58,8 @@ public class BlockController {
     }
 
     /**
-     * Show edit block form
-     */
+ * Mostrar formulario de edición de bloque
+ */
     @GetMapping("/{id}/edit")
     public String showEditForm(@PathVariable Long id,
                               @AuthenticationPrincipal UserDetails userDetails,
@@ -71,8 +71,8 @@ public class BlockController {
     }
 
     /**
-     * Update block
-     */
+ * Actualizar bloque
+ */
     @PostMapping("/{id}")
     public String updateBlock(@PathVariable Long id,
                              @RequestParam String name,
@@ -84,8 +84,8 @@ public class BlockController {
     }
 
     /**
-     * Delete block
-     */
+ * Eliminar bloque
+ */
     @PostMapping("/{id}/delete")
     public String deleteBlock(@PathVariable Long id,
                              @AuthenticationPrincipal UserDetails userDetails) {
@@ -93,15 +93,15 @@ public class BlockController {
         try {
             blockService.deleteBlock(id, user.getId());
         } catch (IllegalStateException e) {
-            // Block is being used by rooms
+            // El bloque está siendo usado por salas
             return "redirect:/blocks?error=" + e.getMessage();
         }
         return "redirect:/blocks";
     }
 
     /**
-     * View block details with questions
-     */
+ * Ver detalles del bloque con preguntas
+ */
     @GetMapping("/{id}")
     public String viewBlock(@PathVariable Long id,
                            @AuthenticationPrincipal UserDetails userDetails,

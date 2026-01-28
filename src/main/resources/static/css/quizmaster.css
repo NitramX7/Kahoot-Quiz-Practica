@@ -1,4 +1,4 @@
-/* QuizMaster Pro Theme - v2.0 */
+/* Tema QuizMaster Pro - v2.0 */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
@@ -31,7 +31,7 @@ body {
     line-height: 1.6;
 }
 
-/* === SIDEBAR LAYOUT === */
+/* === DISEÑO DE BARRA LATERAL === */
 .app-layout {
     display: flex;
     min-height: 100vh;
@@ -138,7 +138,7 @@ body {
     color: var(--gray-400);
 }
 
-/* === MAIN CONTENT === */
+/* === CONTENIDO PRINCIPAL === */
 .main-content {
     flex: 1;
     margin-left: 260px;
@@ -162,7 +162,7 @@ body {
     color: var(--gray-500);
 }
 
-/* === BUTTONS === */
+/* === BOTONES === */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -212,7 +212,7 @@ body {
     background: var(--gray-50);
 }
 
-/* === CARDS === */
+/* === TARJETAS === */
 .card {
     background: white;
     border-radius: 12px;
@@ -231,7 +231,7 @@ body {
     font-size: 16px;
 }
 
-/* === TABLE === */
+/* === TABLA === */
 .table-container {
     overflow-x: auto;
 }
@@ -266,7 +266,7 @@ tbody td {
     color: var(--gray-700);
 }
 
-/* === FORMS === */
+/* === FORMULARIOS === */
 .form-group {
     margin-bottom: 20px;
 }
@@ -300,7 +300,7 @@ textarea.form-control {
     min-height: 100px;
 }
 
-/* === SEARCH BAR === */
+/* === BARRA DE BÚSQUEDA === */
 .search-box {
     position: relative;
     flex: 1;
@@ -319,7 +319,7 @@ textarea.form-control {
     color: var(--gray-400);
 }
 
-/* === UTILITIES === */
+/* === UTILIDADES === */
 .d-flex { display: flex; }
 .align-center { align-items: center; }
 .justify-between { justify-content: space-between; }
@@ -332,7 +332,7 @@ textarea.form-control {
 .text-right { text-align: right; }
 .text-muted { color: var(--gray-500); }
 
-/* === BADGES === */
+/* === INSIGNIAS === */
 .badge {
     display: inline-flex;
     padding: 4px 12px;
@@ -351,7 +351,7 @@ textarea.form-control {
     color: #166534;
 }
 
-/* === ACTION BUTTONS IN TABLE === */
+/* === BOTONES DE ACCIÓN EN TABLA === */
 .action-btns {
     display: flex;
     gap: 8px;
@@ -395,7 +395,7 @@ textarea.form-control {
     color: #9333EA;
 }
 
-/* === MOBILE RESPONSIVENESS === */
+/* === RESPONSIVE MÓVIL === */
 @media (max-width: 768px) {
     .sidebar {
         transform: translateX(-100%);
@@ -427,5 +427,5 @@ textarea.form-control {
         font-size: 24px;
     }
     
-    /* Toggle button for sidebar would be needed, but for game view we just want full width */
+    /* Haría falta un botón para alternar la barra lateral, pero en vista de juego queremos ancho completo */
 }

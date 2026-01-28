@@ -63,10 +63,10 @@
 
 <body>
     <div class="app-layout">
-        <!-- Sidebar -->
+        <!--Barra lateral-->
         <div th:replace="~{fragments/sidebar :: sidebar('')}"></div>
 
-        <!-- Main Content -->
+        <!--Contenido principal-->
         <main class="main-content" style="max-width: 1000px; margin: 0 auto;">
             <div class="pin-display">
                 <p
@@ -112,7 +112,7 @@
         </main>
     </div>
 
-    <!-- Script to refresh player list every 2 seconds -->
+    <!--Script para refrescar la lista de jugadores cada 2 segundos-->
     <script th:inline="javascript">
         const roomPin = [[${ room.pin }]];
         const roomId = [[${ room.id }]];

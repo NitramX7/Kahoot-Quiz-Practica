@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Block entity representing a collection of questions (banco de preguntas)
- * Each block is owned by a user and can be used in rooms based on available questions
+ * Entidad Block que representa una colección de preguntas (banco de preguntas)
+ * Cada bloque pertenece a un usuario y puede usarse en salas según las preguntas disponibles
  */
 @Entity
 @Table(name = "blocks")
@@ -43,7 +43,7 @@ public class Block {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    // Relationships
+    // Relaciones
     @OneToMany(mappedBy = "block", cascade = CascadeType.ALL, orphanRemoval = true)
     @com.fasterxml.jackson.annotation.JsonIgnore
     private List<Question> questions = new ArrayList<>();
@@ -52,7 +52,7 @@ public class Block {
     @com.fasterxml.jackson.annotation.JsonIgnore
     private List<Room> rooms = new ArrayList<>();
 
-    // Helper methods
+    // Métodos auxiliares
     public void addQuestion(Question question) {
         questions.add(question);
         question.setBlock(this);
@@ -64,8 +64,8 @@ public class Block {
     }
 
     /**
-     * Check if this block can be deleted (no rooms using it)
-     */
+ * Comprobar si este bloque puede eliminarse (ninguna sala lo usa)
+ */
     public boolean canBeDeleted() {
         return rooms.isEmpty();
     }

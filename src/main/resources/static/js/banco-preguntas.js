@@ -1,17 +1,17 @@
-// Global state
+// Estado global
 let allQuestions = [];
 let deleteId = null;
 const questionModal = new bootstrap.Modal(document.getElementById('questionModal'));
 const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
 const toast = new bootstrap.Toast(document.getElementById('liveToast'));
 
-// Init
+// Inicialización
 document.addEventListener('DOMContentLoaded', () => {
     setupCsrf();
     loadBlocks();
     loadQuestions();
 
-    // Setup delete confirmation
+    // Configurar confirmación de borrado
     document.getElementById('confirmDeleteBtn').addEventListener('click', () => {
         if (deleteId) {
             deleteQuestion(deleteId);
@@ -27,7 +27,7 @@ function setupCsrf() {
     }
 }
 
-// Load Blocks for dropdowns
+// Cargar bloques para desplegables
 async function loadBlocks() {
     try {
         const response = await axios.get('/api/blocks');
@@ -35,20 +35,20 @@ async function loadBlocks() {
         const select = document.getElementById('blockSelect');
         const filter = document.getElementById('filterBlock');
         
-        // Clear existing (keep first option)
+        // Limpiar existentes (mantener primera opción)
         select.innerHTML = '<option value="" selected disabled>Selecciona un bloque</option>';
         filter.innerHTML = '<option value="">Todos los Bloques</option>';
 
         blocks.forEach(block => {
-            // Add to modal select
+            // Añadir al selector de la ventana
             const option = document.createElement('option');
             option.value = block.id;
             option.textContent = block.name;
             select.appendChild(option);
 
-            // Add to filter
+            // Añadir al filtro
             const filterOption = document.createElement('option');
-            filterOption.value = block.name; // Filter by name for simplicity in frontend filtering
+            filterOption.value = block.name; // Filtrar por nombre para simplificar el filtrado en frontend
             filterOption.textContent = block.name;
             filter.appendChild(filterOption);
         });
@@ -58,12 +58,12 @@ async function loadBlocks() {
     }
 }
 
-// Load Questions
+// Cargar preguntas
 async function loadQuestions() {
     try {
         const response = await axios.get('/api/questions');
         allQuestions = response.data;
-        // Apply current filters instead of rendering all
+        // Aplicar filtros actuales en lugar de renderizar todo
         filterQuestions();
     } catch (error) {
         showToast('Error', 'No se pudieron cargar las preguntas.', 'text-danger');
@@ -82,7 +82,7 @@ async function duplicateQuestion(id) {
     }
 }
 
-// Render Questions Table
+// Renderizar tabla de preguntas
 function renderQuestions(questions) {
     const tbody = document.getElementById('questionsTableBody');
     tbody.innerHTML = '';
@@ -101,7 +101,7 @@ function renderQuestions(questions) {
     questions.forEach((q, index) => {
         const tr = document.createElement('tr');
         
-        // Format options with correct one highlighted
+        // Formatear opciones con la correcta resaltada
         let optionsHtml = '<ul class="list-unstyled mb-0 small">';
         optionsHtml += `<li class="${q.correctOption === 1 ? 'text-success fw-bold' : ''}">${q.correctOption === 1 ? '<i class="fas fa-check me-1"></i>' : ''} ${escapeHtml(q.option1)}</li>`;
         optionsHtml += `<li class="${q.correctOption === 2 ? 'text-success fw-bold' : ''}">${q.correctOption === 2 ? '<i class="fas fa-check me-1"></i>' : ''} ${escapeHtml(q.option2)}</li>`;
@@ -130,7 +130,7 @@ function renderQuestions(questions) {
     });
 }
 
-// Filter logic
+// Lógica de filtrado
 function filterQuestions() {
     const searchText = document.getElementById('searchInput').value.toLowerCase();
     const blockFilter = document.getElementById('filterBlock').value;
@@ -150,11 +150,11 @@ function filterQuestions() {
     renderQuestions(filtered);
 }
 
-// Modal Helpers
+// Ayudas de la ventana
 function prepareCreateModal() {
     document.getElementById('questionForm').reset();
     document.getElementById('questionId').value = '';
-    document.getElementById('blockSelectContainer').style.display = 'block'; // Show block select
+    document.getElementById('blockSelectContainer').style.display = 'block'; // Mostrar selector de bloque
     document.getElementById('questionModalLabel').textContent = 'Nueva Pregunta';
 }
 
@@ -163,16 +163,16 @@ function prepareEditModal(id) {
     if (!question) return;
 
     document.getElementById('questionId').value = question.id;
-    document.getElementById('blockSelectContainer').style.display = 'none'; // Hide block select
+    document.getElementById('blockSelectContainer').style.display = 'none'; // Ocultar selector de bloque
     
-    // Force string conversion for robust matching
+    // Forzar conversión a cadena para coincidencia robusta
     const blockSelect = document.getElementById('blockSelect');
     blockSelect.value = String(question.blockId);
     
-    // Debug: check if selection worked
+    // Debug: comprobar si la selección funcionó
     if (!blockSelect.value) {
         console.warn(`Block ID ${question.blockId} not found in dropdown options`, blockSelect.options);
-        // Try fallback to find option iterating (in case of type mismatch or whitespace)
+        // Intentar alternativa buscando la opción iterando (por si hay desajuste de tipo o espacios)
         for (let i = 0; i < blockSelect.options.length; i++) {
             if (blockSelect.options[i].value == question.blockId) {
                 blockSelect.selectedIndex = i;
@@ -187,7 +187,7 @@ function prepareEditModal(id) {
     document.getElementById('option3').value = question.option3;
     document.getElementById('option4').value = question.option4;
     
-    // Select radio button
+    // Seleccionar botón de opción
     const radios = document.getElementsByName('correctOption');
     for (const radio of radios) {
         if (parseInt(radio.value) === question.correctOption) {
@@ -200,7 +200,7 @@ function prepareEditModal(id) {
     questionModal.show();
 }
 
-// CRUD Operations
+// Operaciones CRUD
 async function saveQuestion() {
     const id = document.getElementById('questionId').value;
     const blockId = document.getElementById('blockSelect').value;
@@ -215,7 +215,7 @@ async function saveQuestion() {
         if (r.checked) correctOption = parseInt(r.value);
     });
 
-    // Validation
+    // Validación
     if (!blockId || !text || !option1 || !option2 || !option3 || !option4 || !correctOption) {
         showToast('Atención', 'Por favor completa todos los campos requeridos.', 'text-warning');
         return;
@@ -233,11 +233,11 @@ async function saveQuestion() {
 
     try {
         if (id) {
-            // Update
+            // Actualizar
             await axios.put(`/api/questions/${id}`, payload);
             showToast('Éxito', 'Pregunta actualizada correctamente.', 'text-success');
         } else {
-            // Create
+            // Crear
             await axios.post('/api/questions', payload);
             showToast('Éxito', 'Pregunta creada correctamente.', 'text-success');
         }
@@ -267,7 +267,7 @@ async function deleteQuestion(id) {
     }
 }
 
-// Utility
+// Utilidades
 function showToast(title, message, colorClass) {
     const titleEl = document.getElementById('toastTitle');
     const messageEl = document.getElementById('toastMessage');

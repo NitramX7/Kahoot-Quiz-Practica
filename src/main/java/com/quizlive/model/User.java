@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * User entity representing quiz hosts/anfitriones
- * Each user can create and manage their own blocks and rooms
+ * Entidad User que representa a los anfitriones de quizzes
+ * Cada usuario puede crear y gestionar sus propios bloques y salas
  */
 @Entity
 @Table(name = "users")
@@ -43,18 +43,18 @@ public class User {
     private String email;
 
     @Column(nullable = false)
-    private String role = "HOST"; // HOST role by default
+    private String role = "HOST"; // Rol HOST por defecto
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    // Profile fields
+    // Campos de perfil
     @Column(name = "avatar_color", length = 7)
-    private String avatarColor = "#2563EB"; // Default blue color
+    private String avatarColor = "#2563EB"; // Color azul por defecto
 
     @Column(name = "display_name", length = 100)
-    private String displayName; // Optional display name
+    private String displayName; // Nombre visible opcional
 
     @Column(name = "total_points")
     private Integer totalPoints = 0;
@@ -63,19 +63,19 @@ public class User {
     private Integer quizzesWon = 0;
 
     @Column(name = "bio", length = 500)
-    private String bio; // User biography
+    private String bio; // Biografía del usuario
 
     @Column(nullable = false)
     private boolean enabled = true;
 
-    // Relationships
+    // Relaciones
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Block> blocks = new ArrayList<>();
 
     @OneToMany(mappedBy = "host", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Room> rooms = new ArrayList<>();
 
-    // Helper methods
+    // Métodos auxiliares
     public void addBlock(Block block) {
         blocks.add(block);
         block.setOwner(this);

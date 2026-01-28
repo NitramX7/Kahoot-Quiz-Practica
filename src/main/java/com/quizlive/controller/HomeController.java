@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- * Home controller
+ * Controlador de inicio
  */
 @Controller
 @RequiredArgsConstructor
@@ -22,7 +22,7 @@ public class HomeController {
                 User user = userService.findByUsername(principal.getName());
                 model.addAttribute("user", user);
             } catch (Exception e) {
-                // Ignore if user not found for some reason
+                // Ignorar si el usuario no se encuentra por algún motivo
             }
         }
         return "index";

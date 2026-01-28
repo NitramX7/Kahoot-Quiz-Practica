@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Lightweight block DTO for dropdowns and filters.
+ * DTO de bloque ligero para desplegables y filtros.
  */
 @Data
 @NoArgsConstructor

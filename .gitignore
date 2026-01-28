@@ -30,20 +30,20 @@ out/
 HELP.md
 .spring-boot-devtools.properties
 
-# Logs
+# Registros
 *.log
 logs/
 
-# OS
+# Sistema operativo
 .DS_Store
 Thumbs.db
 
-# H2 Database
+# Base de datos H2
 *.db
 *.mv.db
 *.trace.db
 
-# Application
+# Aplicación
 application-local.properties
 
 *.md

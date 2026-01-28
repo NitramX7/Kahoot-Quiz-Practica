@@ -39,7 +39,7 @@ public class RoomController {
         }
         
         model.addAttribute("blocks", availableBlocks);
-        model.addAttribute("user", user); // For the sidebar
+        model.addAttribute("user", user); // Para la barra lateral
         return "rooms/new";
     }
 
@@ -63,14 +63,14 @@ public class RoomController {
         User user = userService.findByUsername(principal.getName());
         Room room = roomService.getRoomByPin(pin);
         
-        // Security check: only host can see the host lobby
+        // Comprobación de seguridad: solo el anfitrión puede ver el lobby del anfitrión
         if (!room.getHost().getId().equals(user.getId())) {
             return "redirect:/blocks?error=access_denied";
         }
         
         model.addAttribute("room", room);
         model.addAttribute("players", playerService.getPlayersByRoom(room.getId()));
-        model.addAttribute("user", user); // For the sidebar
+        model.addAttribute("user", user); // Para la barra lateral
         return "rooms/lobby";
     }
 
@@ -82,7 +82,7 @@ public class RoomController {
             throw new SecurityException("Only the host can start the room");
         }
         gameEngineService.startGame(room.getPin());
-        return "redirect:/rooms/" + id + "/game"; // This page doesn't exist yet, but the flow is correct
+        return "redirect:/rooms/" + id + "/game"; // Esta página aún no existe, pero el flujo es correcto
     }
     @GetMapping("/{id}/game")
     public String showGame(@PathVariable Long id, Principal principal, Model model) {
@@ -100,7 +100,7 @@ public class RoomController {
 
     @GetMapping("/{pin}/play")
     public String showPlayerGame(@PathVariable String pin, @RequestParam String playerName, Model model) {
-        // This should be the player view
+        // Esta debería ser la vista del jugador
         var room = roomService.getRoomByPin(pin);
         var player = playerService.getPlayerByPinAndName(pin, playerName);
         model.addAttribute("room", room);

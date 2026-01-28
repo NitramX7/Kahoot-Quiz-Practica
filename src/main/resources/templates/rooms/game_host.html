@@ -170,7 +170,7 @@
         // Need CSRF token for POST
         // In this simple version we might need to add it to meta tags or hidden input
     </script>
-    <!-- Add CSRF token for JS -->
+    <!--Añadir token CSRF para JS-->
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     <script>
         // Fix CSRF lookup

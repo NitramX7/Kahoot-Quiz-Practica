@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 /**
- * RoomQuestion entity linking rooms to selected questions
- * Maintains order and open/closed state for each question in the game
+ * Entidad RoomQuestion que vincula salas con preguntas seleccionadas
+ * Mantiene el orden y el estado abierto/cerrado de cada pregunta en el juego
  */
 @Entity
 @Table(name = "room_questions")
@@ -32,36 +32,36 @@ public class RoomQuestion {
     private Question question;
 
     @Column(name = "order_num", nullable = false)
-    private Integer orderNum; // Order in which this question appears (1, 2, 3...)
+    private Integer orderNum; // Orden en el que aparece esta pregunta (1, 2, 3...)
 
     @Column(name = "is_open", nullable = false)
-    private Boolean isOpen = false; // Whether players can currently answer this question
+    private Boolean isOpen = false; // Si los jugadores pueden responder esta pregunta ahora
 
     @Column(name = "start_time")
-    private LocalDateTime startTime; // When this question was opened
+    private LocalDateTime startTime; // Cuándo se abrió esta pregunta
 
     @Column(name = "close_time")
-    private LocalDateTime closeTime; // When this question was closed
+    private LocalDateTime closeTime; // Cuándo se cerró esta pregunta
 
     /**
-     * Open the question for answers
-     */
+ * Abrir la pregunta para respuestas
+ */
     public void open() {
         this.isOpen = true;
         this.startTime = LocalDateTime.now();
     }
 
     /**
-     * Close the question (time expired or all players answered)
-     */
+ * Cerrar la pregunta (tiempo agotado o todos respondieron)
+ */
     public void close() {
         this.isOpen = false;
         this.closeTime = LocalDateTime.now();
     }
 
     /**
-     * Check if question is still accepting answers
-     */
+ * Comprobar si la pregunta sigue aceptando respuestas
+ */
     public boolean canAcceptAnswers() {
         return isOpen && startTime != null && closeTime == null;
     }

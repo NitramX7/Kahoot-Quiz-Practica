@@ -28,13 +28,13 @@ public class ProfileController {
 
 
     /**
-     * Show user profile/settings page
-     */
+ * Mostrar página de perfil/configuración de usuario
+ */
     @GetMapping
     public String showProfile(@AuthenticationPrincipal UserDetails userDetails, Model model) {
         User user = userService.findByUsername(userDetails.getUsername());
         
-        // Calculate statistics
+        // Calcular estadísticas
         long blocksCount = blockService.getBlocksByUser(user.getId()).size();
         long questionsCount = questionService.getAllQuestionsByUser(user.getId()).size();
         
@@ -46,8 +46,8 @@ public class ProfileController {
     }
 
     /**
-     * Update user profile information
-     */
+ * Actualizar información del perfil del usuario
+ */
     @PostMapping("/update")
     public String updateProfile(
             @RequestParam(required = false) String username,
@@ -60,12 +60,12 @@ public class ProfileController {
         
         User user = userService.findByUsername(userDetails.getUsername());
         
-        // Update username (check for uniqueness)
+        // Actualizar nombre de usuario (comprobar unicidad)
         if (username != null && !username.trim().isEmpty() && !username.equals(user.getUsername())) {
             try {
                 userService.updateUsername(user, username.trim());
                 
-                // Update Security Context with new username
+                // Actualizar el contexto de seguridad con el nuevo nombre de usuario
                 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
                 Authentication newAuth = new UsernamePasswordAuthenticationToken(
                     new org.springframework.security.core.userdetails.User(
@@ -80,7 +80,7 @@ public class ProfileController {
             }
         }
         
-        // Update fields
+        // Actualizar campos
         if (displayName != null && !displayName.trim().isEmpty()) {
             user.setDisplayName(displayName.trim());
         }
@@ -104,8 +104,8 @@ public class ProfileController {
     }
 
     /**
-     * Change user password
-     */
+ * Cambiar contraseña del usuario
+ */
     @PostMapping("/change-password")
     public String changePassword(
             @RequestParam String currentPassword,
@@ -116,13 +116,13 @@ public class ProfileController {
         
         User user = userService.findByUsername(userDetails.getUsername());
         
-        // Validate current password
+        // Validar contraseña actual
         if (!passwordEncoder.matches(currentPassword, user.getPassword())) {
             redirectAttributes.addFlashAttribute("error", "La contraseña actual es incorrecta");
             return "redirect:/profile";
         }
         
-        // Validate new password
+        // Validar nueva contraseña
         if (newPassword.length() < 6) {
             redirectAttributes.addFlashAttribute("error", "La nueva contraseña debe tener al menos 6 caracteres");
             return "redirect:/profile";
@@ -133,7 +133,7 @@ public class ProfileController {
             return "redirect:/profile";
         }
         
-        // Update password
+        // Actualizar contraseña
         user.setPassword(passwordEncoder.encode(newPassword));
         userService.save(user);
         

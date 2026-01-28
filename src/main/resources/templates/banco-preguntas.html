@@ -14,12 +14,12 @@
 
 <body>
     <div class="app-layout">
-        <!-- Sidebar -->
+        <!--Barra lateral-->
         <div th:replace="~{fragments/sidebar :: sidebar('banco')}"></div>
 
-        <!-- Main Content -->
+        <!--Contenido principal-->
         <main class="main-content">
-            <!-- Page Header -->
+            <!--Encabezado de página-->
             <div class="page-header d-flex justify-between align-center">
                 <div>
                     <h1 class="page-title">Banco de Preguntas</h1>
@@ -32,7 +32,7 @@
                 </button>
             </div>
 
-            <!-- Filters Card -->
+            <!--Tarjeta de filtros-->
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="d-flex gap-3">
@@ -49,7 +49,7 @@
                 </div>
             </div>
 
-            <!-- Questions Table -->
+            <!--Tabla de preguntas-->
             <div class="card">
                 <div class="table-container">
                     <table id="questionsTable">
@@ -77,7 +77,7 @@
         </main>
     </div>
 
-    <!-- Modal Create/Edit -->
+    <!--Ventana de creación/edición-->
     <div class="modal fade" id="questionModal" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content" style="border-radius: 16px; border: none;">
@@ -160,7 +160,7 @@
         </div>
     </div>
 
-    <!-- Delete Modal -->
+    <!--Ventana de eliminación-->
     <div class="modal fade" id="deleteModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content" style="border-radius: 16px; border: none;">
@@ -180,7 +180,7 @@
         </div>
     </div>
 
-    <!-- Toast -->
+    <!--Notificación-->
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="liveToast" class="toast" role="alert">
             <div class="toast-header">

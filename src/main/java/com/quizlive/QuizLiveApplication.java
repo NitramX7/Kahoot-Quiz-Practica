@@ -4,15 +4,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Quiz Live Application - Multi-room concurrent quiz system
- * 
- * This application implements a Quizizz-like platform with:
- * - Spring Boot MVC architecture
- * - Multi-user block and question management
- * - Multi-room concurrent game engine
- * - Thread-safe answer processing
- * - Real-time timers per question
- * 
+ * Aplicación Quiz Live - Sistema de cuestionarios concurrentes multi-sala
+ *
+ * Esta aplicación implementa una plataforma tipo Quizizz con:
+ * - Arquitectura Spring Boot MVC
+ * - Gestión de bloques y preguntas multiusuario
+ * - Motor de juego concurrente multi-sala
+ * - Procesamiento de respuestas thread-safe
+ * - Temporizadores en tiempo real por pregunta
+ *
  * @author Quiz Live Team
  * @version 1.0.0
  */

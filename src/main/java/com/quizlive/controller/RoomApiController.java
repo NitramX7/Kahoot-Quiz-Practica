@@ -90,12 +90,12 @@ public class RoomApiController {
             response.put("isOpen", question.getIsOpen());
             response.put("answersCount", answerRepository.countByRoomQuestionId(question.getId()));
             response.put("finished", false);
-            // Don't send correct option to players here if insecure, but for simplicity sending minimal data
-            // To be secure, we should NOT send the correct answer until it's closed, but this is for polling state
+            // No enviar la opción correcta a los jugadores si no es seguro, pero por simplicidad se envían datos mínimos
+            // Para ser seguros, NO deberíamos enviar la respuesta correcta hasta que se cierre, pero esto es para el sondeo de estado
             
             if (question.getIsOpen()) {
                 response.put("state", "ACTIVE");
-                // Calculate time remaining
+                // Calcular tiempo restante
                 long elapsed = java.time.Duration.between(question.getStartTime(), java.time.LocalDateTime.now()).getSeconds();
                 long total = question.getRoom().getTimePerQuestion();
                 response.put("remainingSeconds", Math.max(0, total - elapsed));

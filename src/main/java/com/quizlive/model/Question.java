@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Question entity with 4 options and correct answer validation
+ * Entidad Question con 4 opciones y validación de respuesta correcta
  */
 @Entity
 @Table(name = "questions")
@@ -52,8 +52,8 @@ public class Question {
     private Integer correctOption;
 
     /**
-     * Get the correct answer text based on correctOption
-     */
+ * Obtener el texto de la respuesta correcta según correctOption
+ */
     public String getCorrectAnswer() {
         return switch (correctOption) {
             case 1 -> option1;
@@ -65,15 +65,15 @@ public class Question {
     }
 
     /**
-     * Check if a given option number is correct
-     */
+ * Comprobar si un número de opción es correcto
+ */
     public boolean isCorrect(Integer selectedOption) {
         return correctOption.equals(selectedOption);
     }
 
     /**
-     * Validate that all options are different (optional but recommended)
-     */
+ * Validar que todas las opciones son distintas (opcional pero recomendado)
+ */
     @PrePersist
     @PreUpdate
     public void validateOptions() {

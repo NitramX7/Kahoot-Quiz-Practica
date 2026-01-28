@@ -1,6 +1,6 @@
 const roomId = window.roomId ?? 0;
 const playerId = window.playerId ?? 0;
-// Use safe initialization from model attribute, default to null if not present
+// Usar inicialización segura desde el atributo del modelo, por defecto null si no existe
 let currentQuestionId = window.currentQuestionId ?? null;
 
 console.log("Game initialized", { roomId, playerId, currentQuestionId });
@@ -65,7 +65,7 @@ function submitAnswer(option) {
     .catch((error) => console.error("Network error:", error));
 }
 
-// Poll for next question
+// Consultar la siguiente pregunta
 setInterval(() => {
   fetch(`/api/rooms/${roomId}/current-question`)
     .then((res) => res.json())
@@ -75,7 +75,7 @@ setInterval(() => {
       console.log("Todas las propiedades:", Object.keys(data));
       
       if (data.id && data.id !== currentQuestionId) {
-        // New question!
+        // ¡Nueva pregunta!
         console.log("Nueva pregunta detectada, recargando...");
         window.location.reload();
       }

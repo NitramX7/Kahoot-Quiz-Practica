@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Service for Player management
+ * Servicio de gestión de jugadores
  */
 @Service
 @RequiredArgsConstructor
@@ -23,19 +23,19 @@ public class PlayerService {
     private final RoomRepository roomRepository;
 
     /**
-     * Join a room (create player)
-     */
+ * Unirse a una sala (crear jugador)
+ */
     @Transactional
     public Player joinRoom(String pin, String playerName) {
         Room room = roomRepository.findByPin(pin)
                 .orElseThrow(() -> new IllegalArgumentException("Room not found with PIN: " + pin));
 
-        // Check room state
+        // Comprobar estado de la sala
         if (!room.isWaiting()) {
             throw new IllegalStateException("Room is not accepting new players");
         }
 
-        // Check duplicate name
+        // Comprobar nombre duplicado
         if (playerRepository.existsByRoomIdAndName(room.getId(), playerName)) {
             throw new IllegalArgumentException("Player name already exists in this room");
         }
@@ -51,38 +51,38 @@ public class PlayerService {
     }
 
     /**
-     * Get all players in a room
-     */
+ * Obtener todos los jugadores de una sala
+ */
     public List<Player> getPlayersByRoom(Long roomId) {
         return playerRepository.findByRoomId(roomId);
     }
 
     /**
-     * Get players sorted by score (ranking)
-     */
+ * Obtener jugadores ordenados por puntuación (ranking)
+ */
     public List<Player> getRankingByRoom(Long roomId) {
         return playerRepository.findByRoomIdOrderByScoreDesc(roomId);
     }
 
     /**
-     * Find player by PIN and name
-     */
+ * Buscar jugador por PIN y nombre
+ */
     public Player getPlayerByPinAndName(String pin, String name) {
         return playerRepository.findByRoomPinAndName(pin, name)
                 .orElseThrow(() -> new IllegalArgumentException("Player not found"));
     }
 
     /**
-     * Find player by ID
-     */
+ * Buscar jugador por ID
+ */
     public Player getPlayerById(Long playerId) {
         return playerRepository.findById(playerId)
                 .orElseThrow(() -> new IllegalArgumentException("Player not found"));
     }
 
     /**
-     * Update player score (thread-safe when called with proper synchronization)
-     */
+ * Actualizar puntuación del jugador (thread-safe si se llama con sincronización adecuada)
+ */
     @Transactional
     public void updatePlayerScore(Long playerId, int points) {
         Player player = playerRepository.findById(playerId)

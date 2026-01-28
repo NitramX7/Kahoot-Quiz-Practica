@@ -11,12 +11,12 @@
 
 <body>
     <div class="app-layout">
-        <!-- Sidebar -->
+        <!--Barra lateral-->
         <div th:replace="~{fragments/sidebar :: sidebar('bloques')}"></div>
 
-        <!-- Main Content -->
+        <!--Contenido principal-->
         <main class="main-content">
-            <!-- Page Header -->
+            <!--Encabezado de página-->
             <div class="page-header d-flex justify-between align-center">
                 <div>
                     <h1 class="page-title">Mis Bloques</h1>
@@ -28,7 +28,7 @@
                 </a>
             </div>
 
-            <!-- Blocks Grid -->
+            <!--Cuadrícula de bloques-->
             <div th:if="${blocks != null && !blocks.empty}"
                 style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px;">
                 <div th:each="block : ${blocks}" class="card" style="transition: transform 0.2s;">
@@ -74,7 +74,7 @@
                 </div>
             </div>
 
-            <!-- Empty State -->
+            <!--Estado vacío-->
             <div th:if="${blocks == null || blocks.empty}" class="card" style="padding: 80px 40px; text-align: center;">
                 <div style="font-size: 80px; color: var(--gray-300); margin-bottom: 20px;">
                     <i class="fas fa-inbox"></i>
