@@ -266,6 +266,52 @@ logging.pattern.console=[Room %X{roomPin}] [%thread] %msg%n
 - [ ] Panel de administración
 - [ ] Tests de carga con JMeter
 
+## 🧪 Demostración PSP
+
+Para demostrar el cumplimiento de requisitos PSP, sigue la guía en [DEMO_PSP.md](DEMO_PSP.md).
+
+### Quick Test de Concurrencia
+
+1. **Ejecutar con captura de logs**:
+   ```bash
+   test-concurrent.bat
+   ```
+   O manualmente:
+   ```bash
+   mvn spring-boot:run > logs.txt 2>&1
+   ```
+
+2. **Crear 2 salas con diferentes hosts** (host1 y host2)
+3. **Unir 3+ jugadores a cada sala**
+4. **Iniciar ambas salas simultáneamente**
+5. **Observar logs** mostrando threads y PINs distintos
+
+### Endpoints de Monitoreo
+
+```bash
+# Ver salas activas
+curl http://localhost:8080/api/monitor/active-rooms
+
+# Detalles de una sala específica
+curl http://localhost:8080/api/monitor/room/1234
+
+# Estadísticas del sistema
+curl http://localhost:8080/api/monitor/stats
+
+# Health check
+curl http://localhost:8080/api/monitor/health
+```
+
+## 📸 Ejemplo de Logs Concurrentes
+
+```
+10:30:00.123 [answer-pool-3] [Room: 1234] [Q:42] ⚡ [ANSWER-START] Procesando respuesta de 'Ana'
+10:30:00.125 [answer-pool-5] [Room: 5678] [Q:51] ⚡ [ANSWER-START] Procesando respuesta de 'Luis'
+10:30:00.230 [answer-pool-3] [Room: 1234] [Q:42] ✓ [ANSWER-DONE] Jugador: 'Ana' | Puntos: 100
+10:30:15.000 [timer-pool-1] [Room: 1234] [Q:42] ⏰ [TIMER-EXPIRED] Tiempo agotado para pregunta 42
+10:30:15.010 [Room: 1234] [Q:42] ■ [QUESTION-CLOSE] Pregunta 42 cerrada (3 respuestas recibidas)
+```
+
 ## 👥 Autores
 
 Proyecto desarrollado para la asignatura PSP - DAM2

@@ -73,16 +73,26 @@ public class PlayerService {
     }
 
     /**
- * Buscar jugador por ID
- */
+     * Buscar jugador por ID
+     */
     public Player getPlayerById(Long playerId) {
         return playerRepository.findById(playerId)
                 .orElseThrow(() -> new IllegalArgumentException("Player not found"));
     }
 
     /**
- * Actualizar puntuación del jugador (thread-safe si se llama con sincronización adecuada)
- */
+     * Obtener jugadores de una sala por PIN
+     * Útil para el monitoring controller
+     */
+    public List<Player> getPlayersByRoomPin(String pin) {
+        Room room = roomRepository.findByPin(pin)
+                .orElseThrow(() -> new IllegalArgumentException("Room not found with PIN: " + pin));
+        return playerRepository.findByRoomId(room.getId());
+    }
+
+    /**
+     * Actualizar puntuación del jugador (thread-safe si se llama con sincronización adecuada)
+     */
     @Transactional
     public void updatePlayerScore(Long playerId, int points) {
         Player player = playerRepository.findById(playerId)

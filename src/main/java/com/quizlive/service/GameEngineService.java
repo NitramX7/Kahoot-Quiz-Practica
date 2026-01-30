@@ -93,7 +93,8 @@ public class GameEngineService {
     @Transactional
     public void startGame(String pin) {
         setMDC(pin);
-        log.info("[Thread: {}] Starting game", Thread.currentThread().getName());
+        long startTime = System.currentTimeMillis();
+        log.info("█ [GAME-START] Iniciando juego en sala PIN: {}", pin);
 
         Room room = roomService.getRoomByPin(pin);
         if (!room.isWaiting()) {
@@ -111,8 +112,9 @@ public class GameEngineService {
         room.start();
         roomRepository.save(room);
 
-        log.info("[Thread: {}] Game initialized with {} questions", 
-                Thread.currentThread().getName(), questions.size());
+        long duration = System.currentTimeMillis() - startTime;
+        log.info("█ [GAME-START] Sala {} inicializada con {} preguntas en {}ms", 
+                pin, questions.size(), duration);
 
         startNextQuestion(pin);
         clearMDC();
@@ -123,13 +125,13 @@ public class GameEngineService {
         setMDC(pin);
         RoomState roomState = activeRooms.get(pin);
         if (roomState == null) {
-            log.warn("[Thread: {}] Room state not found", Thread.currentThread().getName());
+            log.warn("⚠ [ROOM-ERROR] Estado de sala no encontrado para PIN: {}", pin);
             clearMDC();
             return;
         }
 
         if (!roomState.hasMoreQuestions()) {
-            log.info("[Thread: {}] All questions completed, finishing game", Thread.currentThread().getName());
+            log.info("✓ [GAME-COMPLETE] Todas las preguntas completadas en sala {}", pin);
             finishGame(pin);
             clearMDC();
             return;
@@ -142,29 +144,32 @@ public class GameEngineService {
                 return;
             }
 
+            setMDC(pin, question.getId());
+            long startTime = System.currentTimeMillis();
+            
             question.open();
             roomQuestionRepository.save(question);
 
-            log.info("[Thread: {}] Question {} opened (order: {})", 
-                    Thread.currentThread().getName(), question.getId(), question.getOrderNum());
+            long duration = System.currentTimeMillis() - startTime;
+            log.info("▶ [QUESTION-OPEN] Pregunta {} abierta (orden: {}/{}) en {}ms", 
+                    question.getId(), question.getOrderNum(), roomState.questions.size(), duration);
 
             roomState.currentTimer = timerExecutor.schedule(() -> {
-                setMDC(pin);
-                log.info("[Thread: {}] Timer expired for question {}", 
-                        Thread.currentThread().getName(), question.getId());
+                setMDC(pin, question.getId());
+                log.info("⏰ [TIMER-EXPIRED] Tiempo agotado para pregunta {} ({}s)", 
+                        question.getId(), roomState.timePerQuestion);
                 closeQuestion(pin, question.getId());
                 clearMDC();
             }, roomState.timePerQuestion, TimeUnit.SECONDS);
 
-            log.info("[Thread: {}] Timer scheduled for {} seconds", 
-                    Thread.currentThread().getName(), roomState.timePerQuestion);
+            log.info("⏱ [TIMER-START] Temporizador iniciado: {} segundos", roomState.timePerQuestion);
         }
         clearMDC();
     }
 
     @Transactional
     public void closeQuestion(String pin, Long roomQuestionId) {
-        setMDC(pin);
+        setMDC(pin, roomQuestionId);
         RoomState roomState = activeRooms.get(pin);
         if (roomState == null) {
             clearMDC();
@@ -176,13 +181,20 @@ public class GameEngineService {
             if (question != null && question.getIsOpen()) {
                 question.close();
                 roomQuestionRepository.save(question);
-                log.info("[Thread: {}] Question {} closed", Thread.currentThread().getName(), roomQuestionId);
+                
+                int answersCount = roomState.playerAnsweredQuestions.entrySet().stream()
+                        .filter(entry -> entry.getValue().contains(roomQuestionId))
+                        .mapToInt(e -> 1)
+                        .sum();
+                
+                log.info("■ [QUESTION-CLOSE] Pregunta {} cerrada ({} respuestas recibidas)", 
+                        roomQuestionId, answersCount);
             }
 
             roomState.cancelTimer();
-
             roomState.moveToNextQuestion();
             
+            log.debug("⏭ [QUESTION-NEXT] Avanzando a siguiente pregunta en 2 segundos...");
             timerExecutor.schedule(() -> startNextQuestion(pin), 2, TimeUnit.SECONDS);
         }
         clearMDC();
@@ -191,11 +203,11 @@ public class GameEngineService {
     public CompletableFuture<Answer> submitAnswer(String pin, String playerName, 
                                                     Long roomQuestionId, Integer selectedOption) {
         return CompletableFuture.supplyAsync(() -> {
-            setMDC(pin);
+            setMDC(pin, roomQuestionId);
             long startTime = System.currentTimeMillis();
             
-            log.info("[Thread: {}] Processing answer from player '{}' for question {}", 
-                    Thread.currentThread().getName(), playerName, roomQuestionId);
+            log.info("⚡ [ANSWER-START] Procesando respuesta de '{}' (opción: {})", 
+                    playerName, selectedOption);
 
             try {
                 RoomState roomState = activeRooms.get(pin);
@@ -207,8 +219,8 @@ public class GameEngineService {
                         .orElseThrow(() -> new IllegalArgumentException("Question not found"));
 
                 if (!roomQuestion.canAcceptAnswers()) {
-                    log.warn("[Thread: {}] Question {} is closed, rejecting answer", 
-                            Thread.currentThread().getName(), roomQuestionId);
+                    log.warn("⛔ [ANSWER-REJECT] Pregunta {} cerrada - Respuesta de '{}' rechazada", 
+                            roomQuestionId, playerName);
                     throw new IllegalStateException("Question is no longer accepting answers");
                 }
 
@@ -216,8 +228,8 @@ public class GameEngineService {
                         .orElseThrow(() -> new IllegalArgumentException("Player not found"));
 
                 if (!roomState.canPlayerAnswer(player.getId(), roomQuestionId)) {
-                    log.warn("[Thread: {}] Player {} already answered question {}", 
-                            Thread.currentThread().getName(), playerName, roomQuestionId);
+                    log.warn("⛔ [ANSWER-DUPLICATE] Jugador '{}' ya respondió pregunta {}", 
+                            playerName, roomQuestionId);
                     throw new IllegalStateException("You have already answered this question");
                 }
 
@@ -249,15 +261,15 @@ public class GameEngineService {
                 playerRepository.flush();
 
                 long processingTime = System.currentTimeMillis() - startTime;
-                log.info("[Thread: {}] Answer processed in {}ms - Player: {}, Correct: {}, Points: {}", 
-                        Thread.currentThread().getName(), processingTime, playerName, 
-                        isCorrect, answer.getPointsEarned());
+                String resultIcon = isCorrect ? "✓" : "✗";
+                log.info("{} [ANSWER-DONE] Jugador: '{}' | Correcto: {} | Puntos: {} | Tiempo: {}ms", 
+                        resultIcon, playerName, isCorrect, answer.getPointsEarned(), processingTime);
 
                 return savedAnswer;
 
             } catch (Exception e) {
-                log.error("[Thread: {}] Error processing answer: {}", 
-                        Thread.currentThread().getName(), e.getMessage());
+                log.error("❌ [ANSWER-ERROR] Error procesando respuesta de '{}': {}", 
+                        playerName, e.getMessage());
                 throw e;
             } finally {
                 clearMDC();
@@ -277,8 +289,8 @@ public class GameEngineService {
                                     Thread.currentThread().getName(), answersCount, totalPlayers, roomQuestionId);
 
                             if (answersCount >= totalPlayers) {
-                                log.info("[Thread: {}] All active players ({}) answered. Closing question early.", 
-                                        Thread.currentThread().getName(), totalPlayers);
+                                log.info("⚡ [AUTO-CLOSE] Todos los jugadores ({}) respondieron - Cerrando pregunta anticipadamente", 
+                                        totalPlayers);
                                 timerExecutor.schedule(() -> closeQuestion(pin, roomQuestionId), 1, TimeUnit.SECONDS);
                             }
                         }
@@ -292,19 +304,21 @@ public class GameEngineService {
     @Transactional
     public void finishGame(String pin) {
         setMDC(pin);
-        log.info("[Thread: {}] Finishing game", Thread.currentThread().getName());
+        log.info("🏁 [GAME-END] Finalizando juego en sala {}", pin);
 
         RoomState roomState = activeRooms.get(pin);
         if (roomState != null) {
             roomState.cancelTimer();
             activeRooms.remove(pin);
+            log.info("🏁 [GAME-END] Sala {} eliminada de salas activas ({} salas restantes)", 
+                    pin, activeRooms.size());
         }
 
         Room room = roomService.getRoomByPin(pin);
         room.finish();
         roomRepository.save(room);
 
-        log.info("[Thread: {}] Game finished successfully", Thread.currentThread().getName());
+        log.info("🏁 [GAME-END] Juego finalizado exitosamente en sala {}", pin);
         clearMDC();
     }
 
@@ -327,6 +341,13 @@ public class GameEngineService {
 
     private void setMDC(String pin) {
         MDC.put("roomPin", pin);
+    }
+
+    private void setMDC(String pin, Long questionId) {
+        MDC.put("roomPin", pin);
+        if (questionId != null) {
+            MDC.put("questionId", questionId.toString());
+        }
     }
 
     private void clearMDC() {
