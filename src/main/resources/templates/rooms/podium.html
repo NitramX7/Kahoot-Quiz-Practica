@@ -4,10 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Podio | QuizMaster Pro</title>
+    <title>Clasificación Final | QuizMaster Pro</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="/css/quizmaster.css?v=2">
-    <link rel="stylesheet" href="/css/rooms/podium.css?v=2">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/rooms/podium.css?v=3">
 </head>
 
 <body>
@@ -15,36 +18,47 @@
         <main class="main-content podium-main">
             <!-- Header -->
             <div class="podium-header">
-                <h1 class="podium-title">🏆 Clasificación Final</h1>
-                <p class="podium-subtitle">¡Gran partida! Aquí están los resultados</p>
+                <h1 class="podium-title">
+                    <i class="fas fa-trophy"></i> Clasificación Final
+                </h1>
+                <p class="podium-subtitle">¡Gran partida! Aquí están los resultados finales</p>
             </div>
 
-            <!-- Podio de ganadores -->
-            <div class="podium-container">
-                <div class="podium-step step-2" th:if="${ranking.size() > 1}">
-                    <div class="podium-rank">2°</div>
-                    <i class="fas fa-medal medal" style="color: #C0C0C0;"></i>
-                    <span class="player-name" th:text="${ranking[1].name}">P2</span>
-                    <div class="score" th:text="${ranking[1].score} + ' pts'">0</div>
-                </div>
+            <!-- PODIO SECTION -->
+            <div class="podium-section">
+                <div class="podium-container">
+                    
+                    <!-- 2nd Place -->
+                    <div class="podium-step step-2" th:if="${ranking.size() > 1}">
+                        <div class="podium-rank">2°</div>
+                        <i class="fas fa-medal medal-icon"></i>
+                        <span class="player-name" th:text="${ranking[1].name}">Jose</span>
+                        <div class="score-badge" th:text="${ranking[1].score + ' pts'}">0 pts</div>
+                    </div>
 
-                <div class="podium-step step-1" th:if="${ranking.size() > 0}">
-                    <i class="fas fa-crown crown-icon"></i>
-                    <div class="podium-rank">1°</div>
-                    <i class="fas fa-medal medal" style="color: #FFD700;"></i>
-                    <span class="player-name" th:text="${ranking[0].name}">P1</span>
-                    <div class="score" th:text="${ranking[0].score} + ' pts'">0</div>
-                </div>
+                    <!-- 1st Place -->
+                    <div class="podium-step step-1" th:if="${ranking.size() > 0}">
+                        <div class="crown-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="podium-rank">1°</div>
+                        <i class="fas fa-medal medal-icon" style="color: white;"></i>
+                        <span class="player-name" th:text="${ranking[0].name}">MARTIN</span>
+                        <div class="score-badge" th:text="${ranking[0].score + ' pts'}">2 pts</div>
+                    </div>
 
-                <div class="podium-step step-3" th:if="${ranking.size() > 2}">
-                    <div class="podium-rank">3°</div>
-                    <i class="fas fa-medal medal" style="color: #CD7F32;"></i>
-                    <span class="player-name" th:text="${ranking[2].name}">P3</span>
-                    <div class="score" th:text="${ranking[2].score} + ' pts'">0</div>
+                    <!-- 3rd Place -->
+                    <div class="podium-step step-3" th:if="${ranking.size() > 2}">
+                        <div class="podium-rank">3°</div>
+                        <i class="fas fa-medal medal-icon"></i>
+                        <span class="player-name" th:text="${ranking[2].name}">Sofia</span>
+                        <div class="score-badge" th:text="${ranking[2].score + ' pts'}">0 pts</div>
+                    </div>
+
                 </div>
             </div>
 
-            <!-- Estadísticas Globales -->
+            <!-- GLOBAL STATS -->
             <div class="stats-section">
                 <h2 class="stats-title">
                     <i class="fas fa-chart-bar"></i> Estadísticas del Juego
@@ -53,111 +67,100 @@
                 <div class="stats-grid">
                     <!-- Pregunta más fallada -->
                     <div class="stat-card stat-danger" th:if="${mostFailedQuestion != null}">
-                        <div class="stat-icon">
-                            <i class="fas fa-times-circle"></i>
+                        <div class="stat-icon-wrapper">
+                            <i class="fas fa-times"></i>
                         </div>
                         <div class="stat-content">
-                            <div class="stat-label">Pregunta más fallada</div>
-                            <div class="stat-value" th:text="${mostFailedQuestion}">Pregunta difícil</div>
-                            <div class="stat-detail">
-                                <span th:text="${mostFailedCount}">0</span> respuestas incorrectas
+                            <div class="stat-label">PREGUNTA MÁS FALLADA</div>
+                            <div class="stat-value" th:text="${mostFailedQuestion}">3 + 3</div>
+                            <div class="stat-subtext">
+                                <span th:text="${mostFailedCount}">1</span> respuestas incorrectas
                             </div>
                         </div>
                     </div>
 
                     <!-- Pregunta más acertada -->
                     <div class="stat-card stat-success" th:if="${mostCorrectQuestion != null}">
-                        <div class="stat-icon">
-                            <i class="fas fa-check-circle"></i>
+                        <div class="stat-icon-wrapper">
+                            <i class="fas fa-check"></i>
                         </div>
                         <div class="stat-content">
-                            <div class="stat-label">Pregunta más acertada</div>
-                            <div class="stat-value" th:text="${mostCorrectQuestion}">Pregunta fácil</div>
-                            <div class="stat-detail">
-                                <span th:text="${mostCorrectCount}">0</span> respuestas correctas
+                            <div class="stat-label">PREGUNTA MÁS ACERTADA</div>
+                            <div class="stat-value" th:text="${mostCorrectQuestion}">3 + 3</div>
+                            <div class="stat-subtext">
+                                <span th:text="${mostCorrectCount}">1</span> respuestas correctas
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tasa global de aciertos -->
+                    <!-- Tasa global -->
                     <div class="stat-card stat-info" th:if="${globalSuccessRate != null}">
-                        <div class="stat-icon">
+                        <div class="stat-icon-wrapper">
                             <i class="fas fa-percentage"></i>
                         </div>
                         <div class="stat-content">
-                            <div class="stat-label">Tasa de Aciertos Global</div>
+                            <div class="stat-label">TASA DE ACIERTOS GLOBAL</div>
                             <div class="stat-value-large">
-                                <span th:text="${globalSuccessRate}">0</span>%
+                                <span th:text="${globalSuccessRate}">50,0</span>%
                             </div>
-                            <div class="stat-detail">Porcentaje general de respuestas correctas</div>
+                            <div class="stat-subtext">Porcentaje general de respuestas correctas</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Estadísticas Personales -->
+            <!-- PERSONAL STATS (Meters) -->
             <div class="stats-section" th:if="${playerCorrect != null}">
-                <h2 class="stats-title">
+                <h2 class="stats-title" style="justify-content: center;">
                     <i class="fas fa-user"></i> Tu Rendimiento
                 </h2>
                 
-                <div class="personal-stats">
-                    <div class="personal-stat">
-                        <div class="personal-stat-circle success">
+                <div class="personal-stats-container">
+                    <!-- Correctas -->
+                    <div class="meter-card">
+                        <div class="meter-circle meter-success">
                             <i class="fas fa-check"></i>
-                            <span class="personal-stat-number" th:text="${playerCorrect}">0</span>
+                            <span th:text="${playerCorrect}">2</span>
                         </div>
-                        <div class="personal-stat-label">Correctas</div>
+                        <span class="meter-label">Correctas</span>
                     </div>
 
-                    <div class="personal-stat">
-                        <div class="personal-stat-circle danger">
+                    <!-- Incorrectas -->
+                    <div class="meter-card">
+                        <div class="meter-circle meter-danger">
                             <i class="fas fa-times"></i>
-                            <span class="personal-stat-number" th:text="${playerIncorrect}">0</span>
+                            <span th:text="${playerIncorrect}">0</span>
                         </div>
-                        <div class="personal-stat-label">Incorrectas</div>
+                        <span class="meter-label">Incorrectas</span>
                     </div>
 
-                    <div class="personal-stat">
-                        <div class="personal-stat-circle info">
+                    <!-- Tasa Acierto -->
+                    <div class="meter-card">
+                        <div class="meter-circle meter-info">
                             <i class="fas fa-chart-line"></i>
-                            <span class="personal-stat-number">
-                                <span th:text="${playerSuccessRate}">0</span>%
-                            </span>
+                            <span th:text="${playerSuccessRate} + '%'">100%</span>
                         </div>
-                        <div class="personal-stat-label">Tasa de Acierto</div>
+                        <span class="meter-label">Tasa de Acierto</span>
                     </div>
 
-                    <div class="personal-stat" th:if="${playerBestTime != null}">
-                        <div class="personal-stat-circle warning">
+                    <!-- Mejor Tiempo -->
+                    <div class="meter-card" th:if="${playerBestTime != null}">
+                        <div class="meter-circle meter-warning">
                             <i class="fas fa-bolt"></i>
-                            <span class="personal-stat-number">
-                                <span th:text="${playerBestTime}">0</span>s
-                            </span>
+                            <span th:text="${playerBestTime} + 's'">2.08s</span>
                         </div>
-                        <div class="personal-stat-label">Mejor Tiempo</div>
+                        <span class="meter-label">Mejor Tiempo</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Ranking completo -->
-            <div class="full-ranking" th:if="${ranking.size() > 3}">
-                <h3 class="ranking-title">Clasificación Completa</h3>
-                <div class="ranking-list">
-                    <div th:each="p, iter : ${ranking}" th:if="${iter.index > 2}" class="ranking-item">
-                        <div class="ranking-position" th:text="${iter.count} + '°'">4°</div>
-                        <div class="ranking-name" th:text="${p.name}">Name</div>
-                        <div class="ranking-score" th:text="${p.score} + ' pts'">0 pts</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Botón volver -->
-            <div class="podium-actions">
-                <a href="/blocks" class="btn btn-primary btn-home">
+            <!-- BUTTON HOME -->
+            <div class="action-area">
+                <a href="/blocks" class="btn-primary-glow">
                     <i class="fas fa-home"></i> Volver al Inicio
                 </a>
             </div>
+
         </main>
     </div>
 </body>

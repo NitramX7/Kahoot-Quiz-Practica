@@ -417,30 +417,49 @@ textarea.form-control {
 /* === BOTÓN TOGGLE SIDEBAR === */
 #sidebarToggle {
     position: fixed;
-    top: 20px;
-    left: 20px;
-    width: 44px;
-    height: 44px;
-    background: white;
-    border: 1px solid var(--gray-300);
+    top: 15px; /* Slightly higher to align with brand center */
+    left: 15px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1); /* Transparent/Subtle on dark sidebar */
+    color: white; /* Icon white */
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 998;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 1002; /* Higher than sidebar */
     transition: all 0.2s;
+    backdrop-filter: blur(4px);
 }
 
 #sidebarToggle:hover {
-    background: var(--gray-50);
-    border-color: var(--gray-400);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: white;
 }
 
 #sidebarToggle i {
     font-size: 20px;
-    color: var(--gray-700);
+    color: white;
+}
+
+/* Adjust Sidebar Brand to make room for toggle */
+.sidebar-brand {
+    padding-left: 70px; /* Space for the button */
+}
+
+/* Adjust for collapsed state */
+body:has(.sidebar.collapsed) .sidebar-brand {
+    padding-left: 20px; /* Reset padding when collapsed if needed, or keep centered */
+    justify-content: center;
+}
+
+/* Ensure button stays aligned when collapsed */
+@media (min-width: 769px) {
+    body:has(.sidebar.collapsed) #sidebarToggle {
+        left: 20px; /* Keep it centered in the 80px sidebar */
+    }
 }
 
 /* === BOTÓN CERRAR SIDEBAR (MÓVIL) === */
