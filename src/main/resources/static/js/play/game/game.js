@@ -24,7 +24,7 @@ function submitAnswer(option) {
   });
 
   // Ocultar opciones y mostrar pantalla de espera
-  document.getElementById("questionContainer").style.display = "none";
+  document.getElementById("gameScreen").style.display = "none";
   document.getElementById("waitingScreen").style.display = "flex";
 
   console.log("Submitting answer...", { option, currentQuestionId });
