@@ -12,11 +12,19 @@
 
 <body>
     <div class="app-layout">
+        <!--Botón toggle sidebar-->
+        <button id="sidebarToggle" aria-label="Toggle menú">
+            <i class="fas fa-bars"></i>
+        </button>
+        
         <!--Barra lateral-->
         <div th:replace="~{fragments/sidebar :: sidebar('')}"></div>
+        
+        <!--Overlay para móvil-->
+        <div id="sidebarOverlay"></div>
 
         <!--Contenido principal-->
-        <main class="main-content" style="max-width: 1000px; margin: 0 auto;">
+        <main class="main-content lobby-content">
             <div class="pin-display">
                 <p
                     style="font-size: 18px; color: #94A3B8; text-transform: uppercase; font-weight: 800; letter-spacing: 2px;">
@@ -66,6 +74,8 @@
         const roomPin = [[${ room.pin }]];
         const roomId = [[${ room.id }]];
 
+        let currentPlayers = new Set();
+
         function refreshPlayers() {
             fetch(`/api/rooms/${roomId}/players`)
                 .then(response => response.json())
@@ -81,21 +91,44 @@
                                 <i class="fas fa-spinner fa-spin" style="font-size: 32px; margin-bottom: 12px;"></i>
                                 <p>Esperando a que entren los jugadores...</p>
                             </div>`;
+                        currentPlayers.clear();
                         return;
                     }
 
-                    container.innerHTML = players.map(p => `
-                        <div class="player-badge">
-                            <i class="fas fa-user-circle" style="display: block; font-size: 24px; margin-bottom: 8px; color: #2563EB;"></i>
-                            <span>${p.name}</span>
-                        </div>
-                    `).join('');
+                    // Obtener IDs de jugadores actuales en DOM
+                    const newPlayerIds = new Set(players.map(p => p.id));
+                    
+                    // Eliminar jugadores que ya no están
+                    currentPlayers.forEach(playerId => {
+                        if (!newPlayerIds.has(playerId)) {
+                            const elem = document.querySelector(`[data-player-id="${playerId}"]`);
+                            if (elem) elem.remove();
+                            currentPlayers.delete(playerId);
+                        }
+                    });
+
+                    // Agregar solo jugadores nuevos
+                    players.forEach(p => {
+                        if (!currentPlayers.has(p.id)) {
+                            const playerDiv = document.createElement('div');
+                            playerDiv.className = 'player-badge';
+                            playerDiv.setAttribute('data-player-id', p.id);
+                            playerDiv.innerHTML = `
+                                <i class="fas fa-user-circle" style="display: block; font-size: 24px; margin-bottom: 8px; color: #2563EB;"></i>
+                                <span>${p.name}</span>
+                            `;
+                            container.appendChild(playerDiv);
+                            currentPlayers.add(p.id);
+                        }
+                    });
                 });
         }
 
         // Poll every 2 seconds
         setInterval(refreshPlayers, 2000);
     </script>
+    
+    <script src="/js/sidebar.js"></script>
 </body>
 
 </html>

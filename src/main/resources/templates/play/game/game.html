@@ -13,6 +13,7 @@
     <script th:inline="javascript">
         window.roomId = /*[[${room.id}]]*/ 0;
         window.playerId = /*[[${player.id}]]*/ 0;
+        window.playerName = /*[[${player.name}]]*/ '';
         window.currentQuestionId = /*[[${currentQuestion != null ? currentQuestion.id : null}]]*/ null;
     </script>
     <script src="/js/play/game/game.js?v=1"></script>
@@ -62,7 +63,7 @@
             </div>
 
             <div id="waitingScreen" class="waiting-screen">
-                <i class="fas fa-check-circle" style="font-size: 60px; color: #10B981; margin-bottom: 20px;"></i>
+                <i id="resultIcon" class="fas fa-check-circle" style="font-size: 60px; color: #10B981; margin-bottom: 20px;"></i>
                 <h2 id="resultTitle">¡Respuesta enviada!</h2>
                 <p id="resultText" class="text-muted">Espera a que termine el tiempo...</p>
             </div>

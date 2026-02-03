@@ -395,11 +395,113 @@ textarea.form-control {
     color: #9333EA;
 }
 
+/* === OVERLAY PARA MÓVIL === */
+#sidebarOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#sidebarOverlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* === BOTÓN TOGGLE SIDEBAR === */
+#sidebarToggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 44px;
+    height: 44px;
+    background: white;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 998;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.2s;
+}
+
+#sidebarToggle:hover {
+    background: var(--gray-50);
+    border-color: var(--gray-400);
+}
+
+#sidebarToggle i {
+    font-size: 20px;
+    color: var(--gray-700);
+}
+
+/* === BOTÓN CERRAR SIDEBAR (MÓVIL) === */
+#sidebarClose {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--gray-400);
+    font-size: 24px;
+    transition: color 0.2s;
+}
+
+#sidebarClose:hover {
+    color: white;
+}
+
+/* === SIDEBAR COLAPSADO (DESKTOP) === */
+.sidebar {
+    transition: width 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar.collapsed {
+    width: 80px;
+}
+
+.sidebar.collapsed .sidebar-brand a {
+    justify-content: center;
+}
+
+.sidebar.collapsed .sidebar-brand span,
+.sidebar.collapsed .menu-item span {
+    display: none;
+}
+
+.sidebar.collapsed .user-details {
+    display: none;
+}
+
+.sidebar.collapsed .user-card {
+    justify-content: center;
+}
+
+.main-content {
+    transition: margin-left 0.3s ease, max-width 0.3s ease;
+}
+
+.main-content.sidebar-collapsed {
+    margin-left: 80px;
+    max-width: calc(100% - 80px);
+}
+
 /* === RESPONSIVE MÓVIL === */
 @media (max-width: 768px) {
     .sidebar {
         transform: translateX(-100%);
-        transition: transform 0.3s ease;
         z-index: 1000;
     }
 
@@ -407,10 +509,23 @@ textarea.form-control {
         transform: translateX(0);
     }
 
+    #sidebarClose {
+        display: block;
+    }
+
     .main-content {
         margin-left: 0;
         max-width: 100%;
-        padding: 20px;
+        padding: 80px 20px 20px 20px; /* Espacio para el botón toggle */
+    }
+
+    .main-content.sidebar-collapsed {
+        margin-left: 0;
+        max-width: 100%;
+    }
+
+    .sidebar.collapsed {
+        width: 260px; /* En móvil mantener ancho completo */
     }
 
     .options-grid {
@@ -426,6 +541,4 @@ textarea.form-control {
     .page-title {
         font-size: 24px;
     }
-    
-    /* Haría falta un botón para alternar la barra lateral, pero en vista de juego queremos ancho completo */
 }

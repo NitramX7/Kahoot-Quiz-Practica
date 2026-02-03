@@ -11,8 +11,16 @@
 
 <body>
     <div class="app-layout">
+        <!--Botón toggle sidebar-->
+        <button id="sidebarToggle" aria-label="Toggle menú">
+            <i class="fas fa-bars"></i>
+        </button>
+        
         <!--Barra lateral-->
         <div th:replace="~{fragments/sidebar :: sidebar('bloques')}"></div>
+        
+        <!--Overlay para móvil-->
+        <div id="sidebarOverlay"></div>
 
         <!--Contenido principal-->
         <main class="main-content">
@@ -54,6 +62,8 @@
             </div>
         </main>
     </div>
+    
+    <script src="/js/sidebar.js"></script>
 </body>
 
 </html>

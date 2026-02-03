@@ -72,15 +72,31 @@ public class GameEngineService {
             currentQuestionIndex.incrementAndGet();
         }
 
-        public boolean canPlayerAnswer(Long playerId, Long roomQuestionId) {
+        // Método ATÓMICO usando operaciones atómicas de ConcurrentHashMap
+        // Retorna true si se registró exitosamente, false si ya había respondido
+        public boolean tryRecordPlayerAnswer(Long playerId, Long roomQuestionId, int points) {
+            log.debug("[tryRecordPlayerAnswer] Player {} attempting to answer question {}", playerId, roomQuestionId);
+            
             Set<Long> answeredQuestions = playerAnsweredQuestions.computeIfAbsent(playerId, k -> ConcurrentHashMap.newKeySet());
-            return !answeredQuestions.contains(roomQuestionId);
-        }
-
-        public void recordPlayerAnswer(Long playerId, Long roomQuestionId, int points) {
-            Set<Long> answeredQuestions = playerAnsweredQuestions.computeIfAbsent(playerId, k -> ConcurrentHashMap.newKeySet());
-            answeredQuestions.add(roomQuestionId);
-            playerScores.merge(playerId, points, Integer::sum);
+            
+            log.debug("[tryRecordPlayerAnswer] Player {} currently has answered: {}", playerId, answeredQuestions);
+            
+            // add() en ConcurrentHashMap.newKeySet() es atómico
+            // Retorna true si se agregó, false si ya existía
+            boolean wasAdded = answeredQuestions.add(roomQuestionId);
+            
+            log.debug("[tryRecordPlayerAnswer] Player {} add result: {} (question {})", playerId, wasAdded, roomQuestionId);
+            
+            if (wasAdded) {
+                // Solo actualizar puntos si realmente agregamos la respuesta
+                playerScores.merge(playerId, points, Integer::sum);
+                log.info("[tryRecordPlayerAnswer] Player {} successfully recorded answer to question {}, earned {} points", 
+                        playerId, roomQuestionId, points);
+            } else {
+                log.warn("[tryRecordPlayerAnswer] Player {} already answered question {}", playerId, roomQuestionId);
+            }
+            
+            return wasAdded;
         }
 
         public void cancelTimer() {
@@ -191,77 +207,7 @@ public class GameEngineService {
     public CompletableFuture<Answer> submitAnswer(String pin, String playerName, 
                                                     Long roomQuestionId, Integer selectedOption) {
         return CompletableFuture.supplyAsync(() -> {
-            setMDC(pin);
-            long startTime = System.currentTimeMillis();
-            
-            log.info("[Thread: {}] Processing answer from player '{}' for question {}", 
-                    Thread.currentThread().getName(), playerName, roomQuestionId);
-
-            try {
-                RoomState roomState = activeRooms.get(pin);
-                if (roomState == null) {
-                    throw new IllegalStateException("Room not active");
-                }
-
-                RoomQuestion roomQuestion = roomQuestionRepository.findByIdWithQuestion(roomQuestionId)
-                        .orElseThrow(() -> new IllegalArgumentException("Question not found"));
-
-                if (!roomQuestion.canAcceptAnswers()) {
-                    log.warn("[Thread: {}] Question {} is closed, rejecting answer", 
-                            Thread.currentThread().getName(), roomQuestionId);
-                    throw new IllegalStateException("Question is no longer accepting answers");
-                }
-
-                Player player = playerRepository.findByRoomPinAndName(pin, playerName)
-                        .orElseThrow(() -> new IllegalArgumentException("Player not found"));
-
-                if (!roomState.canPlayerAnswer(player.getId(), roomQuestionId)) {
-                    log.warn("[Thread: {}] Player {} already answered question {}", 
-                            Thread.currentThread().getName(), playerName, roomQuestionId);
-                    throw new IllegalStateException("You have already answered this question");
-                }
-
-                if (answerRepository.existsByPlayerIdAndRoomQuestionId(player.getId(), roomQuestionId)) {
-                    throw new IllegalStateException("Answer already submitted");
-                }
-
-                long responseTime = System.currentTimeMillis() - roomQuestion.getStartTime()
-                        .atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli();
-
-                Question question = roomQuestion.getQuestion();
-                boolean isCorrect = question.isCorrect(selectedOption);
-
-                Answer answer = new Answer();
-                answer.setPlayer(player);
-                answer.setRoomQuestion(roomQuestion);
-                answer.setSelectedOption(selectedOption);
-                answer.setResponseTime(responseTime);
-                answer.setIsCorrect(isCorrect);
-                
-                answer.calculatePoints(false, roomState.timePerQuestion);
-                
-                Answer savedAnswer = answerRepository.save(answer);
-
-                roomState.recordPlayerAnswer(player.getId(), roomQuestionId, answer.getPointsEarned());
-                
-                player.addScore(answer.getPointsEarned());
-                playerRepository.save(player);
-                playerRepository.flush();
-
-                long processingTime = System.currentTimeMillis() - startTime;
-                log.info("[Thread: {}] Answer processed in {}ms - Player: {}, Correct: {}, Points: {}", 
-                        Thread.currentThread().getName(), processingTime, playerName, 
-                        isCorrect, answer.getPointsEarned());
-
-                return savedAnswer;
-
-            } catch (Exception e) {
-                log.error("[Thread: {}] Error processing answer: {}", 
-                        Thread.currentThread().getName(), e.getMessage());
-                throw e;
-            } finally {
-                clearMDC();
-            }
+            return processAnswer(pin, playerName, roomQuestionId, selectedOption);
         }, answerProcessingExecutor)
                 .thenApply(answer -> {
                     try {
@@ -287,6 +233,85 @@ public class GameEngineService {
                     }
                     return answer;
                 });
+    }
+    
+    @Transactional
+    private Answer processAnswer(String pin, String playerName, Long roomQuestionId, Integer selectedOption) {
+        setMDC(pin);
+        long startTime = System.currentTimeMillis();
+        
+        log.info("[Thread: {}] Processing answer from player '{}' for question {}", 
+                Thread.currentThread().getName(), playerName, roomQuestionId);
+
+        try {
+            RoomState roomState = activeRooms.get(pin);
+            if (roomState == null) {
+                throw new IllegalStateException("Room not active");
+            }
+
+            RoomQuestion roomQuestion = roomQuestionRepository.findByIdWithQuestion(roomQuestionId)
+                    .orElseThrow(() -> new IllegalArgumentException("Question not found"));
+
+            if (!roomQuestion.canAcceptAnswers()) {
+                log.warn("[Thread: {}] Question {} is closed, rejecting answer", 
+                        Thread.currentThread().getName(), roomQuestionId);
+                throw new IllegalStateException("Question is no longer accepting answers");
+            }
+
+            Player player = playerRepository.findByRoomPinAndName(pin, playerName)
+                    .orElseThrow(() -> new IllegalArgumentException("Player not found"));
+
+            log.info("[processAnswer] Found player - ID: {}, Name: '{}', Pin: '{}'", 
+                    player.getId(), player.getName(), pin);
+
+            long responseTime = System.currentTimeMillis() - roomQuestion.getStartTime()
+                    .atZone(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli();
+
+            Question question = roomQuestion.getQuestion();
+            boolean isCorrect = question.isCorrect(selectedOption);
+
+            Answer answer = new Answer();
+            answer.setPlayer(player);
+            answer.setRoomQuestion(roomQuestion);
+            answer.setSelectedOption(selectedOption);
+            answer.setResponseTime(responseTime);
+            answer.setIsCorrect(isCorrect);
+            
+            answer.calculatePoints(false, roomState.timePerQuestion);
+            
+            log.debug("[processAnswer] About to try recording - Player ID: {}, Question ID: {}, Points: {}", 
+                    player.getId(), roomQuestionId, answer.getPointsEarned());
+            
+            // Intentar registrar de forma ATÓMICA (verifica + registra en una operación)
+            // Si retorna false, significa que ya respondió (race condition evitada)
+            if (!roomState.tryRecordPlayerAnswer(player.getId(), roomQuestionId, answer.getPointsEarned())) {
+                log.warn("[Thread: {}] Player {} already answered question {} (detected in atomic operation)", 
+                        Thread.currentThread().getName(), playerName, roomQuestionId);
+                throw new IllegalStateException("You have already answered this question");
+            }
+            
+            // Solo llegamos aquí si el registro fue exitoso
+            // Ahora guardar en base de datos
+            Answer savedAnswer = answerRepository.save(answer);
+
+            player.addScore(answer.getPointsEarned());
+            playerRepository.save(player);
+            playerRepository.flush();
+
+            long processingTime = System.currentTimeMillis() - startTime;
+            log.info("[Thread: {}] Answer processed in {}ms - Player: {}, Correct: {}, Points: {}", 
+                    Thread.currentThread().getName(), processingTime, playerName, 
+                    isCorrect, answer.getPointsEarned());
+
+            return savedAnswer;
+
+        } catch (Exception e) {
+            log.error("[Thread: {}] Error processing answer: {}", 
+                    Thread.currentThread().getName(), e.getMessage());
+            throw e;
+        } finally {
+            clearMDC();
+        }
     }
 
     @Transactional

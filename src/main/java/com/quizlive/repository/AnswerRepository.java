@@ -27,4 +27,14 @@ public interface AnswerRepository extends JpaRepository<Answer, Long> {
 
     @Query("SELECT a FROM Answer a WHERE a.roomQuestion.room.id = :roomId")
     List<Answer> findByRoomId(@Param("roomId") Long roomId);
+
+    // Queries para estadísticas del podio
+    @Query("SELECT a.roomQuestion, COUNT(a) FROM Answer a WHERE a.roomQuestion.room.id = :roomId AND a.isCorrect = false GROUP BY a.roomQuestion ORDER BY COUNT(a) DESC")
+    List<Object[]> findMostFailedQuestionsByRoom(@Param("roomId") Long roomId);
+
+    @Query("SELECT a.roomQuestion, COUNT(a) FROM Answer a WHERE a.roomQuestion.room.id = :roomId AND a.isCorrect = true GROUP BY a.roomQuestion ORDER BY COUNT(a) DESC")
+    List<Object[]> findMostCorrectQuestionsByRoom(@Param("roomId") Long roomId);
+
+    @Query("SELECT a FROM Answer a WHERE a.player.id = :playerId AND a.roomQuestion.room.id = :roomId ORDER BY a.roomQuestion.orderNum")
+    List<Answer> findPlayerAnswersInRoom(@Param("playerId") Long playerId, @Param("roomId") Long roomId);
 }

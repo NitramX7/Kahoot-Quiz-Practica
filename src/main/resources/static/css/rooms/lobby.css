@@ -41,3 +41,68 @@
     0% { transform: scale(0.5); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
 }
+
+/* === LOBBY CONTENT === */
+.lobby-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1200px) {
+    .lobby-content {
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .pin-code {
+        font-size: 80px;
+        letter-spacing: 10px;
+    }
+    
+    .pin-display {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pin-code {
+        font-size: 60px;
+        letter-spacing: 8px;
+    }
+    
+    .pin-display {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .pin-display p {
+        font-size: 14px !important;
+    }
+    
+    .players-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pin-code {
+        font-size: 48px;
+        letter-spacing: 5px;
+    }
+    
+    .pin-display {
+        padding: 15px;
+    }
+    
+    .players-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 10px;
+    }
+    
+    .player-badge {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
