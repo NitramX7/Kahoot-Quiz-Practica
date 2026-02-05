@@ -1,0 +1,2518 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< com.quizlive:quiz-live >-----------------------
+[INFO] Building Quiz Live 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.1:run (default-cli) > test-compile @ quiz-live >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ quiz-live ---
+[INFO] Copying 3 resources from src\main\resources to target\classes
+[INFO] Copying 35 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ quiz-live ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ quiz-live ---
+[INFO] skip non existing resourceDirectory C:\Users\nitra\Documents\DAM2\juanto\PracticaSpringBoot+Hilos\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ quiz-live ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot:3.2.1:run (default-cli) < test-compile @ quiz-live <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.1:run (default-cli) @ quiz-live ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.1)
+
+2026-02-03 17:00:02 [restartedMain] [Room ] INFO  com.quizlive.QuizLiveApplication - Starting QuizLiveApplication using Java 17.0.17 with PID 101516 (C:\Users\nitra\Documents\DAM2\juanto\PracticaSpringBoot+Hilos\target\classes started by nitra in C:\Users\nitra\Documents\DAM2\juanto\PracticaSpringBoot+Hilos)
+2026-02-03 17:00:02 [restartedMain] [Room ] DEBUG com.quizlive.QuizLiveApplication - Running with Spring Boot v3.2.1, Spring v6.1.2
+2026-02-03 17:00:02 [restartedMain] [Room ] INFO  com.quizlive.QuizLiveApplication - The following 1 profile is active: "prod"
+2026-02-03 17:00:02 [restartedMain] [Room ] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-02-03 17:00:02 [restartedMain] [Room ] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-02-03 17:00:03 [restartedMain] [Room ] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-03 17:00:03 [restartedMain] [Room ] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 77 ms. Found 7 JPA repository interfaces.
+2026-02-03 17:00:04 [restartedMain] [Room ] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-02-03 17:00:04 [restartedMain] [Room ] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-03 17:00:04 [restartedMain] [Room ] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.17]
+2026-02-03 17:00:04 [restartedMain] [Room ] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-02-03 17:00:04 [restartedMain] [Room ] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1197 ms
+2026-02-03 17:00:04 [restartedMain] [Room ] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-03 17:00:04 [restartedMain] [Room ] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6bdae682
+2026-02-03 17:00:04 [restartedMain] [Room ] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-03 17:00:04 [restartedMain] [Room ] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/kahoot?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true'
+2026-02-03 17:00:04 [restartedMain] [Room ] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-03 17:00:04 [restartedMain] [Room ] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+2026-02-03 17:00:04 [restartedMain] [Room ] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-02-03 17:00:04 [restartedMain] [Room ] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-03 17:00:04 [restartedMain] [Room ] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-03 17:00:04 [restartedMain] [Room ] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-02-03 17:00:05 [restartedMain] [Room ] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-03 17:00:05 [restartedMain] [Room ] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-03 17:00:06 [restartedMain] [Room ] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-03 17:00:06 [restartedMain] [Room ] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-03 17:00:06 [restartedMain] [Room ] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page template: index
+2026-02-03 17:00:06 [restartedMain] [Room ] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1d8084e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4a00ef1a, org.springframework.security.web.context.SecurityContextHolderFilter@35e5d43b, org.springframework.security.web.header.HeaderWriterFilter@61fd4a75, org.springframework.web.filter.CorsFilter@98a8391, org.springframework.security.web.csrf.CsrfFilter@122d1722, org.springframework.security.web.authentication.logout.LogoutFilter@71dca2a9, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@176a9467, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@57a3a82e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2c621006, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@269795f1, org.springframework.security.web.access.ExceptionTranslationFilter@76c46f24, org.springframework.security.web.access.intercept.AuthorizationFilter@76f7bc8b]
+2026-02-03 17:00:06 [restartedMain] [Room ] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-02-03 17:00:06 [restartedMain] [Room ] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2026-02-03 17:00:07 [restartedMain] [Room ] INFO  com.quizlive.QuizLiveApplication - Started QuizLiveApplication in 4.353 seconds (process running for 4.694)
+Hibernate: 
+    select
+        count(*) 
+    from
+        users u1_0
+2026-02-03 17:00:07 [restartedMain] [Room ] INFO  com.quizlive.DataInitializer - Database already initialized, skipping data creation
+
+=================================================
+   Quiz Live Application Started Successfully   
+=================================================
+   Access at: http://localhost:8080             
+   H2 Console: http://localhost:8080/h2-console 
+=================================================
+
+2026-02-03 17:00:07 [http-nio-8080-exec-1] [Room ] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-03 17:00:07 [http-nio-8080-exec-1] [Room ] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-02-03 17:00:07 [http-nio-8080-exec-1] [Room ] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-02-03 17:00:07 [http-nio-8080-exec-1] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /rooms/28/game
+2026-02-03 17:00:07 [http-nio-8080-exec-1] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:07 [http-nio-8080-exec-1] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /rooms/28/game
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_color,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.quizzes_won,
+        u1_0.role,
+        u1_0.total_points,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_color,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.quizzes_won,
+        u1_0.role,
+        u1_0.total_points,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.id=?
+2026-02-03 17:00:07 [http-nio-8080-exec-1] [Room ] WARN  c.quizlive.controller.RoomController - Could not fetch current question for room 0959: Room not active
+2026-02-03 17:00:07 [http-nio-8080-exec-3] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/rooms/game_host.css
+2026-02-03 17:00:07 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/quizmaster.css?v=2
+2026-02-03 17:00:07 [http-nio-8080-exec-4] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /js/rooms/game_host.js
+2026-02-03 17:00:07 [http-nio-8080-exec-3] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/rooms/game_host.css
+2026-02-03 17:00:07 [http-nio-8080-exec-4] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /js/rooms/game_host.js
+2026-02-03 17:00:07 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/quizmaster.css?v=2
+2026-02-03 17:00:07 [http-nio-8080-exec-3] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:07 [http-nio-8080-exec-2] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:07 [http-nio-8080-exec-4] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:08 [http-nio-8080-exec-5] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /rooms/0959/lobby
+2026-02-03 17:00:08 [http-nio-8080-exec-5] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:08 [http-nio-8080-exec-5] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /rooms/0959/lobby
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_color,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.quizzes_won,
+        u1_0.role,
+        u1_0.total_points,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_color,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.quizzes_won,
+        u1_0.role,
+        u1_0.total_points,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.pin=?
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.room_id,
+        p1_0.score 
+    from
+        players p1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=p1_0.room_id 
+    where
+        r1_0.id=?
+2026-02-03 17:00:08 [http-nio-8080-exec-6] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/quizmaster.css?v=2
+2026-02-03 17:00:08 [http-nio-8080-exec-6] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/quizmaster.css?v=2
+2026-02-03 17:00:08 [http-nio-8080-exec-6] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:08 [http-nio-8080-exec-7] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/rooms/lobby.css
+2026-02-03 17:00:08 [http-nio-8080-exec-8] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /js/sidebar.js
+2026-02-03 17:00:08 [http-nio-8080-exec-8] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /js/sidebar.js
+2026-02-03 17:00:08 [http-nio-8080-exec-7] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/rooms/lobby.css
+2026-02-03 17:00:08 [http-nio-8080-exec-8] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:08 [http-nio-8080-exec-7] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:10 [http-nio-8080-exec-9] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /play/game
+2026-02-03 17:00:10 [http-nio-8080-exec-9] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /play/game
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.pin=?
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.room_id,
+        p1_0.score 
+    from
+        players p1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=p1_0.room_id 
+    where
+        r1_0.pin=? 
+        and p1_0.name=?
+2026-02-03 17:00:10 [http-nio-8080-exec-9] [Room ] WARN  c.quizlive.controller.PlayController - Could not fetch current question for room 0959: Room not active
+2026-02-03 17:00:10 [http-nio-8080-exec-9] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:10 [http-nio-8080-exec-10] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/quizmaster.css?v=2
+2026-02-03 17:00:10 [http-nio-8080-exec-10] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/quizmaster.css?v=2
+2026-02-03 17:00:10 [http-nio-8080-exec-1] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/play/game/game.css?v=1
+2026-02-03 17:00:10 [http-nio-8080-exec-1] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/play/game/game.css?v=1
+2026-02-03 17:00:10 [http-nio-8080-exec-10] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:10 [http-nio-8080-exec-1] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:10 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /js/play/game/game.js?v=1
+2026-02-03 17:00:10 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /js/play/game/game.js?v=1
+2026-02-03 17:00:10 [http-nio-8080-exec-2] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:10 [http-nio-8080-exec-4] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /favicon.ico
+2026-02-03 17:00:10 [http-nio-8080-exec-4] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:10 [http-nio-8080-exec-4] [Room ] DEBUG o.s.s.web.DefaultRedirectStrategy - Redirecting to http://de9e8b0fd2ff.ngrok-free.app/login
+2026-02-03 17:00:10 [http-nio-8080-exec-5] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/28/players
+2026-02-03 17:00:10 [http-nio-8080-exec-5] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/28/players
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.room_id,
+        p1_0.score 
+    from
+        players p1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=p1_0.room_id 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        a1_0.player_id,
+        a1_0.id,
+        a1_0.is_correct,
+        a1_0.points_earned,
+        a1_0.response_time,
+        a1_0.room_question_id,
+        a1_0.selected_option,
+        a1_0.submitted_at 
+    from
+        answers a1_0 
+    where
+        a1_0.player_id=?
+Hibernate: 
+    select
+        a1_0.player_id,
+        a1_0.id,
+        a1_0.is_correct,
+        a1_0.points_earned,
+        a1_0.response_time,
+        a1_0.room_question_id,
+        a1_0.selected_option,
+        a1_0.submitted_at 
+    from
+        answers a1_0 
+    where
+        a1_0.player_id=?
+2026-02-03 17:00:10 [http-nio-8080-exec-5] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:11 [http-nio-8080-exec-6] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /play/wait
+2026-02-03 17:00:11 [http-nio-8080-exec-6] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /play/wait
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.pin=?
+2026-02-03 17:00:11 [http-nio-8080-exec-6] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:11 [http-nio-8080-exec-8] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/quizmaster.css?v=2
+2026-02-03 17:00:11 [http-nio-8080-exec-7] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/play/wait.css
+2026-02-03 17:00:11 [http-nio-8080-exec-8] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/quizmaster.css?v=2
+2026-02-03 17:00:11 [http-nio-8080-exec-7] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/play/wait.css
+2026-02-03 17:00:11 [http-nio-8080-exec-7] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:11 [http-nio-8080-exec-8] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:11 [http-nio-8080-exec-9] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /favicon.ico
+2026-02-03 17:00:11 [http-nio-8080-exec-9] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:11 [http-nio-8080-exec-9] [Room ] DEBUG o.s.s.web.DefaultRedirectStrategy - Redirecting to http://de9e8b0fd2ff.ngrok-free.app/login
+2026-02-03 17:00:11 [http-nio-8080-exec-10] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /play/join
+2026-02-03 17:00:11 [http-nio-8080-exec-10] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /play/join
+2026-02-03 17:00:11 [http-nio-8080-exec-10] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:12 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/quizmaster.css?v=2
+2026-02-03 17:00:12 [http-nio-8080-exec-1] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/play/join.css
+2026-02-03 17:00:12 [http-nio-8080-exec-1] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/play/join.css
+2026-02-03 17:00:12 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/quizmaster.css?v=2
+2026-02-03 17:00:12 [http-nio-8080-exec-2] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:12 [http-nio-8080-exec-1] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:12 [http-nio-8080-exec-3] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /favicon.ico
+2026-02-03 17:00:12 [http-nio-8080-exec-3] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:12 [http-nio-8080-exec-3] [Room ] DEBUG o.s.s.web.DefaultRedirectStrategy - Redirecting to http://de9e8b0fd2ff.ngrok-free.app/login
+2026-02-03 17:00:12 [http-nio-8080-exec-4] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/28/players
+2026-02-03 17:00:12 [http-nio-8080-exec-4] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/28/players
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.room_id,
+        p1_0.score 
+    from
+        players p1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=p1_0.room_id 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        a1_0.player_id,
+        a1_0.id,
+        a1_0.is_correct,
+        a1_0.points_earned,
+        a1_0.response_time,
+        a1_0.room_question_id,
+        a1_0.selected_option,
+        a1_0.submitted_at 
+    from
+        answers a1_0 
+    where
+        a1_0.player_id=?
+Hibernate: 
+    select
+        a1_0.player_id,
+        a1_0.id,
+        a1_0.is_correct,
+        a1_0.points_earned,
+        a1_0.response_time,
+        a1_0.room_question_id,
+        a1_0.selected_option,
+        a1_0.submitted_at 
+    from
+        answers a1_0 
+    where
+        a1_0.player_id=?
+2026-02-03 17:00:12 [http-nio-8080-exec-4] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:14 [http-nio-8080-exec-5] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/28/players
+2026-02-03 17:00:14 [http-nio-8080-exec-5] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/28/players
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.room_id,
+        p1_0.score 
+    from
+        players p1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=p1_0.room_id 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        a1_0.player_id,
+        a1_0.id,
+        a1_0.is_correct,
+        a1_0.points_earned,
+        a1_0.response_time,
+        a1_0.room_question_id,
+        a1_0.selected_option,
+        a1_0.submitted_at 
+    from
+        answers a1_0 
+    where
+        a1_0.player_id=?
+Hibernate: 
+    select
+        a1_0.player_id,
+        a1_0.id,
+        a1_0.is_correct,
+        a1_0.points_earned,
+        a1_0.response_time,
+        a1_0.room_question_id,
+        a1_0.selected_option,
+        a1_0.submitted_at 
+    from
+        answers a1_0 
+    where
+        a1_0.player_id=?
+2026-02-03 17:00:14 [http-nio-8080-exec-5] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:15 [http-nio-8080-exec-6] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /play/game
+2026-02-03 17:00:15 [http-nio-8080-exec-6] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /play/game
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.pin=?
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.room_id,
+        p1_0.score 
+    from
+        players p1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=p1_0.room_id 
+    where
+        r1_0.pin=? 
+        and p1_0.name=?
+2026-02-03 17:00:15 [http-nio-8080-exec-6] [Room ] WARN  c.quizlive.controller.PlayController - Could not fetch current question for room 0959: Room not active
+2026-02-03 17:00:15 [http-nio-8080-exec-6] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:15 [http-nio-8080-exec-8] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/play/game/game.css?v=1
+2026-02-03 17:00:15 [http-nio-8080-exec-7] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/quizmaster.css?v=2
+2026-02-03 17:00:15 [http-nio-8080-exec-8] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/play/game/game.css?v=1
+2026-02-03 17:00:15 [http-nio-8080-exec-7] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/quizmaster.css?v=2
+2026-02-03 17:00:15 [http-nio-8080-exec-7] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:15 [http-nio-8080-exec-8] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:15 [http-nio-8080-exec-9] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /js/play/game/game.js?v=1
+2026-02-03 17:00:15 [http-nio-8080-exec-9] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /js/play/game/game.js?v=1
+2026-02-03 17:00:15 [http-nio-8080-exec-9] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:15 [http-nio-8080-exec-1] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /play/wait
+2026-02-03 17:00:15 [http-nio-8080-exec-1] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /play/wait
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.pin=?
+2026-02-03 17:00:15 [http-nio-8080-exec-1] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:15 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /favicon.ico
+2026-02-03 17:00:15 [http-nio-8080-exec-2] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:15 [http-nio-8080-exec-2] [Room ] DEBUG o.s.s.web.DefaultRedirectStrategy - Redirecting to http://de9e8b0fd2ff.ngrok-free.app/login
+2026-02-03 17:00:15 [http-nio-8080-exec-4] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/quizmaster.css?v=2
+2026-02-03 17:00:15 [http-nio-8080-exec-4] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/quizmaster.css?v=2
+2026-02-03 17:00:15 [http-nio-8080-exec-4] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:15 [http-nio-8080-exec-5] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/play/wait.css
+2026-02-03 17:00:15 [http-nio-8080-exec-5] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/play/wait.css
+2026-02-03 17:00:15 [http-nio-8080-exec-5] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:15 [http-nio-8080-exec-6] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /favicon.ico
+2026-02-03 17:00:15 [http-nio-8080-exec-6] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:15 [http-nio-8080-exec-6] [Room ] DEBUG o.s.s.web.DefaultRedirectStrategy - Redirecting to http://de9e8b0fd2ff.ngrok-free.app/login
+2026-02-03 17:00:15 [http-nio-8080-exec-7] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /play/join
+2026-02-03 17:00:15 [http-nio-8080-exec-7] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /play/join
+2026-02-03 17:00:15 [http-nio-8080-exec-7] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:16 [http-nio-8080-exec-8] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/quizmaster.css?v=2
+2026-02-03 17:00:16 [http-nio-8080-exec-9] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/play/join.css
+2026-02-03 17:00:16 [http-nio-8080-exec-8] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/quizmaster.css?v=2
+2026-02-03 17:00:16 [http-nio-8080-exec-9] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/play/join.css
+2026-02-03 17:00:16 [http-nio-8080-exec-8] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:16 [http-nio-8080-exec-9] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:16 [http-nio-8080-exec-10] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /favicon.ico
+2026-02-03 17:00:16 [http-nio-8080-exec-10] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:16 [http-nio-8080-exec-10] [Room ] DEBUG o.s.s.web.DefaultRedirectStrategy - Redirecting to http://de9e8b0fd2ff.ngrok-free.app/login
+2026-02-03 17:00:16 [http-nio-8080-exec-1] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/28/players
+2026-02-03 17:00:16 [http-nio-8080-exec-1] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/28/players
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.room_id,
+        p1_0.score 
+    from
+        players p1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=p1_0.room_id 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        a1_0.player_id,
+        a1_0.id,
+        a1_0.is_correct,
+        a1_0.points_earned,
+        a1_0.response_time,
+        a1_0.room_question_id,
+        a1_0.selected_option,
+        a1_0.submitted_at 
+    from
+        answers a1_0 
+    where
+        a1_0.player_id=?
+Hibernate: 
+    select
+        a1_0.player_id,
+        a1_0.id,
+        a1_0.is_correct,
+        a1_0.points_earned,
+        a1_0.response_time,
+        a1_0.room_question_id,
+        a1_0.selected_option,
+        a1_0.submitted_at 
+    from
+        answers a1_0 
+    where
+        a1_0.player_id=?
+2026-02-03 17:00:16 [http-nio-8080-exec-1] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:18 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/28/players
+2026-02-03 17:00:18 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/28/players
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.room_id,
+        p1_0.score 
+    from
+        players p1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=p1_0.room_id 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        a1_0.player_id,
+        a1_0.id,
+        a1_0.is_correct,
+        a1_0.points_earned,
+        a1_0.response_time,
+        a1_0.room_question_id,
+        a1_0.selected_option,
+        a1_0.submitted_at 
+    from
+        answers a1_0 
+    where
+        a1_0.player_id=?
+Hibernate: 
+    select
+        a1_0.player_id,
+        a1_0.id,
+        a1_0.is_correct,
+        a1_0.points_earned,
+        a1_0.response_time,
+        a1_0.room_question_id,
+        a1_0.selected_option,
+        a1_0.submitted_at 
+    from
+        answers a1_0 
+    where
+        a1_0.player_id=?
+2026-02-03 17:00:18 [http-nio-8080-exec-2] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:19 [http-nio-8080-exec-3] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /rooms/new
+2026-02-03 17:00:19 [http-nio-8080-exec-3] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:19 [http-nio-8080-exec-3] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /rooms/new
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_color,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.quizzes_won,
+        u1_0.role,
+        u1_0.total_points,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_color,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.quizzes_won,
+        u1_0.role,
+        u1_0.total_points,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.name,
+        b1_0.user_id 
+    from
+        blocks b1_0 
+    join
+        users o1_0 
+            on o1_0.id=b1_0.user_id 
+    where
+        o1_0.id=?
+Hibernate: 
+    select
+        q1_0.block_id,
+        q1_0.id,
+        q1_0.correct_option,
+        q1_0.option1,
+        q1_0.option2,
+        q1_0.option3,
+        q1_0.option4,
+        q1_0.text 
+    from
+        questions q1_0 
+    where
+        q1_0.block_id=?
+2026-02-03 17:00:19 [http-nio-8080-exec-4] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/quizmaster.css?v=2
+2026-02-03 17:00:19 [http-nio-8080-exec-4] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/quizmaster.css?v=2
+2026-02-03 17:00:19 [http-nio-8080-exec-4] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:21 [http-nio-8080-exec-5] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing POST /rooms
+2026-02-03 17:00:21 [http-nio-8080-exec-5] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:21 [http-nio-8080-exec-5] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured POST /rooms
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_color,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.quizzes_won,
+        u1_0.role,
+        u1_0.total_points,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_color,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.quizzes_won,
+        u1_0.role,
+        u1_0.total_points,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.name,
+        b1_0.user_id 
+    from
+        blocks b1_0 
+    where
+        b1_0.id=?
+Hibernate: 
+    select
+        q1_0.block_id,
+        q1_0.id,
+        q1_0.correct_option,
+        q1_0.option1,
+        q1_0.option2,
+        q1_0.option3,
+        q1_0.option4,
+        q1_0.text 
+    from
+        questions q1_0 
+    where
+        q1_0.block_id=?
+Hibernate: 
+    select
+        r1_0.id 
+    from
+        rooms r1_0 
+    where
+        r1_0.pin=? 
+    limit
+        ?
+Hibernate: 
+    insert 
+    into
+        rooms
+        (block_id, created_at, finished_at, host_id, num_questions, pin, selection_mode, started_at, state, time_per_question) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        room_questions
+        (close_time, is_open, order_num, question_id, room_id, start_time) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        room_questions
+        (close_time, is_open, order_num, question_id, room_id, start_time) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2026-02-03 17:00:21 [http-nio-8080-exec-5] [Room ] INFO  com.quizlive.service.RoomService - Created room with PIN 2887 for user martin
+2026-02-03 17:00:21 [http-nio-8080-exec-6] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /rooms/2887/lobby
+2026-02-03 17:00:21 [http-nio-8080-exec-6] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:21 [http-nio-8080-exec-6] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /rooms/2887/lobby
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_color,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.quizzes_won,
+        u1_0.role,
+        u1_0.total_points,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_color,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.quizzes_won,
+        u1_0.role,
+        u1_0.total_points,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.pin=?
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.room_id,
+        p1_0.score 
+    from
+        players p1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=p1_0.room_id 
+    where
+        r1_0.id=?
+2026-02-03 17:00:21 [http-nio-8080-exec-7] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/quizmaster.css?v=2
+2026-02-03 17:00:21 [http-nio-8080-exec-7] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/quizmaster.css?v=2
+2026-02-03 17:00:21 [http-nio-8080-exec-7] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:21 [http-nio-8080-exec-8] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/rooms/lobby.css
+2026-02-03 17:00:21 [http-nio-8080-exec-8] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/rooms/lobby.css
+2026-02-03 17:00:21 [http-nio-8080-exec-9] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /js/sidebar.js
+2026-02-03 17:00:21 [http-nio-8080-exec-9] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /js/sidebar.js
+2026-02-03 17:00:21 [http-nio-8080-exec-8] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:21 [http-nio-8080-exec-9] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:23 [http-nio-8080-exec-10] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing POST /rooms
+2026-02-03 17:00:23 [http-nio-8080-exec-10] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:23 [http-nio-8080-exec-10] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured POST /rooms
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_color,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.quizzes_won,
+        u1_0.role,
+        u1_0.total_points,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_color,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.quizzes_won,
+        u1_0.role,
+        u1_0.total_points,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.created_at,
+        b1_0.description,
+        b1_0.name,
+        b1_0.user_id 
+    from
+        blocks b1_0 
+    where
+        b1_0.id=?
+Hibernate: 
+    select
+        q1_0.block_id,
+        q1_0.id,
+        q1_0.correct_option,
+        q1_0.option1,
+        q1_0.option2,
+        q1_0.option3,
+        q1_0.option4,
+        q1_0.text 
+    from
+        questions q1_0 
+    where
+        q1_0.block_id=?
+Hibernate: 
+    select
+        r1_0.id 
+    from
+        rooms r1_0 
+    where
+        r1_0.pin=? 
+    limit
+        ?
+Hibernate: 
+    insert 
+    into
+        rooms
+        (block_id, created_at, finished_at, host_id, num_questions, pin, selection_mode, started_at, state, time_per_question) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        room_questions
+        (close_time, is_open, order_num, question_id, room_id, start_time) 
+    values
+        (?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        room_questions
+        (close_time, is_open, order_num, question_id, room_id, start_time) 
+    values
+        (?, ?, ?, ?, ?, ?)
+2026-02-03 17:00:23 [http-nio-8080-exec-10] [Room ] INFO  com.quizlive.service.RoomService - Created room with PIN 5533 for user martin
+2026-02-03 17:00:23 [http-nio-8080-exec-1] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /rooms/5533/lobby
+2026-02-03 17:00:23 [http-nio-8080-exec-1] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:23 [http-nio-8080-exec-1] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /rooms/5533/lobby
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_color,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.quizzes_won,
+        u1_0.role,
+        u1_0.total_points,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_color,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.quizzes_won,
+        u1_0.role,
+        u1_0.total_points,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.pin=?
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.room_id,
+        p1_0.score 
+    from
+        players p1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=p1_0.room_id 
+    where
+        r1_0.id=?
+2026-02-03 17:00:23 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/quizmaster.css?v=2
+2026-02-03 17:00:23 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/quizmaster.css?v=2
+2026-02-03 17:00:23 [http-nio-8080-exec-2] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:23 [http-nio-8080-exec-3] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/rooms/lobby.css
+2026-02-03 17:00:23 [http-nio-8080-exec-3] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/rooms/lobby.css
+2026-02-03 17:00:23 [http-nio-8080-exec-3] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:23 [http-nio-8080-exec-4] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /js/sidebar.js
+2026-02-03 17:00:23 [http-nio-8080-exec-4] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /js/sidebar.js
+2026-02-03 17:00:23 [http-nio-8080-exec-4] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:25 [http-nio-8080-exec-5] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/30/players
+2026-02-03 17:00:25 [http-nio-8080-exec-5] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/30/players
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.room_id,
+        p1_0.score 
+    from
+        players p1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=p1_0.room_id 
+    where
+        r1_0.id=?
+2026-02-03 17:00:25 [http-nio-8080-exec-5] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:27 [http-nio-8080-exec-6] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/30/players
+2026-02-03 17:00:27 [http-nio-8080-exec-6] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/30/players
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.room_id,
+        p1_0.score 
+    from
+        players p1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=p1_0.room_id 
+    where
+        r1_0.id=?
+2026-02-03 17:00:27 [http-nio-8080-exec-6] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:27 [http-nio-8080-exec-7] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing POST /play/join
+2026-02-03 17:00:27 [http-nio-8080-exec-7] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured POST /play/join
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.pin=?
+Hibernate: 
+    select
+        p1_0.id 
+    from
+        players p1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=p1_0.room_id 
+    where
+        r1_0.id=? 
+        and p1_0.name=? 
+    limit
+        ?
+Hibernate: 
+    insert 
+    into
+        players
+        (joined_at, name, room_id, score) 
+    values
+        (?, ?, ?, ?)
+2026-02-03 17:00:27 [http-nio-8080-exec-7] [Room ] INFO  com.quizlive.service.PlayerService - [Room 5533] Player pepe joined
+2026-02-03 17:00:27 [http-nio-8080-exec-7] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:27 [http-nio-8080-exec-8] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /play/wait
+2026-02-03 17:00:27 [http-nio-8080-exec-8] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /play/wait
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.pin=?
+2026-02-03 17:00:27 [http-nio-8080-exec-8] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:28 [http-nio-8080-exec-10] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/quizmaster.css?v=2
+2026-02-03 17:00:28 [http-nio-8080-exec-9] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/play/wait.css
+2026-02-03 17:00:28 [http-nio-8080-exec-9] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/play/wait.css
+2026-02-03 17:00:28 [http-nio-8080-exec-10] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/quizmaster.css?v=2
+2026-02-03 17:00:28 [http-nio-8080-exec-9] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:28 [http-nio-8080-exec-10] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:28 [http-nio-8080-exec-1] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /favicon.ico
+2026-02-03 17:00:28 [http-nio-8080-exec-1] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:28 [http-nio-8080-exec-1] [Room ] DEBUG o.s.s.web.DefaultRedirectStrategy - Redirecting to http://de9e8b0fd2ff.ngrok-free.app/login
+2026-02-03 17:00:28 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing POST /play/join
+2026-02-03 17:00:28 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured POST /play/join
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.pin=?
+Hibernate: 
+    select
+        p1_0.id 
+    from
+        players p1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=p1_0.room_id 
+    where
+        r1_0.id=? 
+        and p1_0.name=? 
+    limit
+        ?
+Hibernate: 
+    insert 
+    into
+        players
+        (joined_at, name, room_id, score) 
+    values
+        (?, ?, ?, ?)
+2026-02-03 17:00:28 [http-nio-8080-exec-2] [Room ] INFO  com.quizlive.service.PlayerService - [Room 5533] Player martin joined
+2026-02-03 17:00:28 [http-nio-8080-exec-2] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:28 [http-nio-8080-exec-3] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /play/wait
+2026-02-03 17:00:28 [http-nio-8080-exec-3] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /play/wait
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.pin=?
+2026-02-03 17:00:28 [http-nio-8080-exec-3] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:29 [http-nio-8080-exec-5] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/quizmaster.css?v=2
+2026-02-03 17:00:29 [http-nio-8080-exec-4] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/play/wait.css
+2026-02-03 17:00:29 [http-nio-8080-exec-5] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/quizmaster.css?v=2
+2026-02-03 17:00:29 [http-nio-8080-exec-4] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/play/wait.css
+2026-02-03 17:00:29 [http-nio-8080-exec-4] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:29 [http-nio-8080-exec-5] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:29 [http-nio-8080-exec-6] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/5533/status
+2026-02-03 17:00:29 [http-nio-8080-exec-6] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/5533/status
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.pin=?
+2026-02-03 17:00:29 [http-nio-8080-exec-6] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:29 [http-nio-8080-exec-7] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /favicon.ico
+2026-02-03 17:00:29 [http-nio-8080-exec-7] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:29 [http-nio-8080-exec-7] [Room ] DEBUG o.s.s.web.DefaultRedirectStrategy - Redirecting to http://de9e8b0fd2ff.ngrok-free.app/login
+2026-02-03 17:00:29 [http-nio-8080-exec-8] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/30/players
+2026-02-03 17:00:29 [http-nio-8080-exec-8] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/30/players
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.room_id,
+        p1_0.score 
+    from
+        players p1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=p1_0.room_id 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        a1_0.player_id,
+        a1_0.id,
+        a1_0.is_correct,
+        a1_0.points_earned,
+        a1_0.response_time,
+        a1_0.room_question_id,
+        a1_0.selected_option,
+        a1_0.submitted_at 
+    from
+        answers a1_0 
+    where
+        a1_0.player_id=?
+Hibernate: 
+    select
+        a1_0.player_id,
+        a1_0.id,
+        a1_0.is_correct,
+        a1_0.points_earned,
+        a1_0.response_time,
+        a1_0.room_question_id,
+        a1_0.selected_option,
+        a1_0.submitted_at 
+    from
+        answers a1_0 
+    where
+        a1_0.player_id=?
+2026-02-03 17:00:29 [http-nio-8080-exec-8] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:30 [http-nio-8080-exec-10] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/5533/status
+2026-02-03 17:00:30 [http-nio-8080-exec-10] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/5533/status
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.pin=?
+2026-02-03 17:00:30 [http-nio-8080-exec-10] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:30 [http-nio-8080-exec-9] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing POST /rooms/30/start
+2026-02-03 17:00:30 [http-nio-8080-exec-9] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:30 [http-nio-8080-exec-9] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured POST /rooms/30/start
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_color,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.quizzes_won,
+        u1_0.role,
+        u1_0.total_points,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_color,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.quizzes_won,
+        u1_0.role,
+        u1_0.total_points,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.id=?
+2026-02-03 17:00:30 [http-nio-8080-exec-9] [Room 5533] INFO  c.quizlive.service.GameEngineService - [Thread: http-nio-8080-exec-9] Starting game
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.pin=?
+Hibernate: 
+    select
+        rq1_0.id,
+        rq1_0.close_time,
+        rq1_0.is_open,
+        rq1_0.order_num,
+        rq1_0.question_id,
+        rq1_0.room_id,
+        rq1_0.start_time 
+    from
+        room_questions rq1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=rq1_0.room_id 
+    where
+        r1_0.id=? 
+    order by
+        rq1_0.order_num
+2026-02-03 17:00:30 [http-nio-8080-exec-9] [Room 5533] INFO  c.quizlive.service.GameEngineService - [Thread: http-nio-8080-exec-9] Game initialized with 2 questions
+2026-02-03 17:00:30 [http-nio-8080-exec-9] [Room 5533] INFO  c.quizlive.service.GameEngineService - [Thread: http-nio-8080-exec-9] Question 56 opened (order: 1)
+2026-02-03 17:00:30 [http-nio-8080-exec-9] [Room 5533] INFO  c.quizlive.service.GameEngineService - [Thread: http-nio-8080-exec-9] Timer scheduled for 20 seconds
+Hibernate: 
+    update
+        rooms 
+    set
+        block_id=?,
+        finished_at=?,
+        host_id=?,
+        num_questions=?,
+        pin=?,
+        selection_mode=?,
+        started_at=?,
+        state=?,
+        time_per_question=? 
+    where
+        id=?
+Hibernate: 
+    update
+        room_questions 
+    set
+        close_time=?,
+        is_open=?,
+        order_num=?,
+        question_id=?,
+        room_id=?,
+        start_time=? 
+    where
+        id=?
+2026-02-03 17:00:30 [http-nio-8080-exec-1] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /rooms/30/game
+2026-02-03 17:00:30 [http-nio-8080-exec-1] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:30 [http-nio-8080-exec-1] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /rooms/30/game
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_color,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.quizzes_won,
+        u1_0.role,
+        u1_0.total_points,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.avatar_color,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.display_name,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.quizzes_won,
+        u1_0.role,
+        u1_0.total_points,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        rq1_0.id,
+        rq1_0.close_time,
+        rq1_0.is_open,
+        rq1_0.order_num,
+        rq1_0.question_id,
+        q1_0.id,
+        q1_0.block_id,
+        q1_0.correct_option,
+        q1_0.option1,
+        q1_0.option2,
+        q1_0.option3,
+        q1_0.option4,
+        q1_0.text,
+        rq1_0.room_id,
+        rq1_0.start_time 
+    from
+        room_questions rq1_0 
+    join
+        questions q1_0 
+            on q1_0.id=rq1_0.question_id 
+    where
+        rq1_0.id=?
+Hibernate: 
+    select
+        p1_0.room_id,
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.score 
+    from
+        players p1_0 
+    where
+        p1_0.room_id=?
+2026-02-03 17:00:30 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/5533/status
+2026-02-03 17:00:30 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/5533/status
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.pin=?
+2026-02-03 17:00:30 [http-nio-8080-exec-2] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:30 [http-nio-8080-exec-3] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/quizmaster.css?v=2
+2026-02-03 17:00:30 [http-nio-8080-exec-5] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /js/rooms/game_host.js
+2026-02-03 17:00:30 [http-nio-8080-exec-4] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/rooms/game_host.css
+2026-02-03 17:00:30 [http-nio-8080-exec-5] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /js/rooms/game_host.js
+2026-02-03 17:00:30 [http-nio-8080-exec-4] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/rooms/game_host.css
+2026-02-03 17:00:30 [http-nio-8080-exec-3] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/quizmaster.css?v=2
+2026-02-03 17:00:30 [http-nio-8080-exec-3] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:30 [http-nio-8080-exec-5] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:30 [http-nio-8080-exec-4] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:30 [http-nio-8080-exec-6] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /play/game
+2026-02-03 17:00:30 [http-nio-8080-exec-6] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /play/game
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.pin=?
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.room_id,
+        p1_0.score 
+    from
+        players p1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=p1_0.room_id 
+    where
+        r1_0.pin=? 
+        and p1_0.name=?
+Hibernate: 
+    select
+        rq1_0.id,
+        rq1_0.close_time,
+        rq1_0.is_open,
+        rq1_0.order_num,
+        rq1_0.question_id,
+        q1_0.id,
+        q1_0.block_id,
+        q1_0.correct_option,
+        q1_0.option1,
+        q1_0.option2,
+        q1_0.option3,
+        q1_0.option4,
+        q1_0.text,
+        rq1_0.room_id,
+        rq1_0.start_time 
+    from
+        room_questions rq1_0 
+    join
+        questions q1_0 
+            on q1_0.id=rq1_0.question_id 
+    where
+        rq1_0.id=?
+2026-02-03 17:00:30 [http-nio-8080-exec-6] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:30 [http-nio-8080-exec-8] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/quizmaster.css?v=2
+2026-02-03 17:00:30 [http-nio-8080-exec-7] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /js/play/game/game.js?v=1
+2026-02-03 17:00:30 [http-nio-8080-exec-7] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /js/play/game/game.js?v=1
+2026-02-03 17:00:30 [http-nio-8080-exec-8] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/quizmaster.css?v=2
+2026-02-03 17:00:30 [http-nio-8080-exec-7] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:30 [http-nio-8080-exec-8] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:30 [http-nio-8080-exec-10] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/play/game/game.css?v=1
+2026-02-03 17:00:30 [http-nio-8080-exec-10] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/play/game/game.css?v=1
+2026-02-03 17:00:30 [http-nio-8080-exec-10] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:30 [http-nio-8080-exec-1] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /favicon.ico
+2026-02-03 17:00:30 [http-nio-8080-exec-1] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:30 [http-nio-8080-exec-1] [Room ] DEBUG o.s.s.web.DefaultRedirectStrategy - Redirecting to http://de9e8b0fd2ff.ngrok-free.app/login
+2026-02-03 17:00:31 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/5533/status
+2026-02-03 17:00:31 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/5533/status
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.pin=?
+2026-02-03 17:00:31 [http-nio-8080-exec-2] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:31 [http-nio-8080-exec-3] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /play/game
+2026-02-03 17:00:31 [http-nio-8080-exec-3] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /play/game
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.pin=?
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.room_id,
+        p1_0.score 
+    from
+        players p1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=p1_0.room_id 
+    where
+        r1_0.pin=? 
+        and p1_0.name=?
+Hibernate: 
+    select
+        rq1_0.id,
+        rq1_0.close_time,
+        rq1_0.is_open,
+        rq1_0.order_num,
+        rq1_0.question_id,
+        q1_0.id,
+        q1_0.block_id,
+        q1_0.correct_option,
+        q1_0.option1,
+        q1_0.option2,
+        q1_0.option3,
+        q1_0.option4,
+        q1_0.text,
+        rq1_0.room_id,
+        rq1_0.start_time 
+    from
+        room_questions rq1_0 
+    join
+        questions q1_0 
+            on q1_0.id=rq1_0.question_id 
+    where
+        rq1_0.id=?
+2026-02-03 17:00:31 [http-nio-8080-exec-3] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:31 [http-nio-8080-exec-5] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/30/current-question
+2026-02-03 17:00:31 [http-nio-8080-exec-5] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/30/current-question
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        rq1_0.id,
+        rq1_0.close_time,
+        rq1_0.is_open,
+        rq1_0.order_num,
+        rq1_0.question_id,
+        q1_0.id,
+        q1_0.block_id,
+        q1_0.correct_option,
+        q1_0.option1,
+        q1_0.option2,
+        q1_0.option3,
+        q1_0.option4,
+        q1_0.text,
+        rq1_0.room_id,
+        rq1_0.start_time 
+    from
+        room_questions rq1_0 
+    join
+        questions q1_0 
+            on q1_0.id=rq1_0.question_id 
+    where
+        rq1_0.id=?
+Hibernate: 
+    select
+        count(a1_0.id) 
+    from
+        answers a1_0 
+    join
+        room_questions rq1_0 
+            on rq1_0.id=a1_0.room_question_id 
+    where
+        rq1_0.id=?
+2026-02-03 17:00:31 [http-nio-8080-exec-5] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:31 [http-nio-8080-exec-6] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/play/game/game.css?v=1
+2026-02-03 17:00:31 [http-nio-8080-exec-4] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/quizmaster.css?v=2
+2026-02-03 17:00:31 [http-nio-8080-exec-4] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/quizmaster.css?v=2
+2026-02-03 17:00:31 [http-nio-8080-exec-6] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/play/game/game.css?v=1
+2026-02-03 17:00:31 [http-nio-8080-exec-7] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /js/play/game/game.js?v=1
+2026-02-03 17:00:31 [http-nio-8080-exec-7] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /js/play/game/game.js?v=1
+2026-02-03 17:00:31 [http-nio-8080-exec-6] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:31 [http-nio-8080-exec-4] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:31 [http-nio-8080-exec-7] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:31 [http-nio-8080-exec-10] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /favicon.ico
+2026-02-03 17:00:31 [http-nio-8080-exec-10] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:31 [http-nio-8080-exec-10] [Room ] DEBUG o.s.s.web.DefaultRedirectStrategy - Redirecting to http://de9e8b0fd2ff.ngrok-free.app/login
+2026-02-03 17:00:31 [http-nio-8080-exec-9] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/rooms/30/submit-answer
+2026-02-03 17:00:31 [http-nio-8080-exec-9] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/rooms/30/submit-answer
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.room_id,
+        p1_0.score 
+    from
+        players p1_0 
+    where
+        p1_0.id=?
+2026-02-03 17:00:31 [answer-pool-45] [Room 5533] INFO  c.quizlive.service.GameEngineService - [Thread: answer-pool-45] Processing answer from player 'martin' for question 56
+Hibernate: 
+    select
+        rq1_0.id,
+        rq1_0.close_time,
+        rq1_0.is_open,
+        rq1_0.order_num,
+        rq1_0.question_id,
+        q1_0.id,
+        q1_0.block_id,
+        q1_0.correct_option,
+        q1_0.option1,
+        q1_0.option2,
+        q1_0.option3,
+        q1_0.option4,
+        q1_0.text,
+        rq1_0.room_id,
+        rq1_0.start_time 
+    from
+        room_questions rq1_0 
+    join
+        questions q1_0 
+            on q1_0.id=rq1_0.question_id 
+    where
+        rq1_0.id=?
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.room_id,
+        p1_0.score 
+    from
+        players p1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=p1_0.room_id 
+    where
+        r1_0.pin=? 
+        and p1_0.name=?
+Hibernate: 
+    insert 
+    into
+        answers
+        (is_correct, player_id, points_earned, response_time, room_question_id, selected_option, submitted_at) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.room_id,
+        p1_0.score,
+        a1_0.player_id,
+        a1_0.id,
+        a1_0.is_correct,
+        a1_0.points_earned,
+        a1_0.response_time,
+        a1_0.room_question_id,
+        a1_0.selected_option,
+        a1_0.submitted_at 
+    from
+        players p1_0 
+    left join
+        answers a1_0 
+            on p1_0.id=a1_0.player_id 
+    where
+        p1_0.id=?
+Hibernate: 
+    update
+        players 
+    set
+        name=?,
+        room_id=?,
+        score=? 
+    where
+        id=?
+2026-02-03 17:00:31 [answer-pool-45] [Room 5533] INFO  c.quizlive.service.GameEngineService - [Thread: answer-pool-45] Answer processed in 46ms - Player: martin, Correct: true, Points: 1
+Hibernate: 
+    select
+        count(p1_0.id) 
+    from
+        players p1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=p1_0.room_id 
+    where
+        r1_0.id=?
+2026-02-03 17:00:31 [answer-pool-45] [Room ] DEBUG c.quizlive.service.GameEngineService - [Thread: answer-pool-45] Progress check: 1/2 answers for question 56
+2026-02-03 17:00:31 [http-nio-8080-exec-9] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:32 [http-nio-8080-exec-1] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/30/current-question
+2026-02-03 17:00:32 [http-nio-8080-exec-1] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/30/current-question
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        rq1_0.id,
+        rq1_0.close_time,
+        rq1_0.is_open,
+        rq1_0.order_num,
+        rq1_0.question_id,
+        q1_0.id,
+        q1_0.block_id,
+        q1_0.correct_option,
+        q1_0.option1,
+        q1_0.option2,
+        q1_0.option3,
+        q1_0.option4,
+        q1_0.text,
+        rq1_0.room_id,
+        rq1_0.start_time 
+    from
+        room_questions rq1_0 
+    join
+        questions q1_0 
+            on q1_0.id=rq1_0.question_id 
+    where
+        rq1_0.id=?
+Hibernate: 
+    select
+        count(a1_0.id) 
+    from
+        answers a1_0 
+    join
+        room_questions rq1_0 
+            on rq1_0.id=a1_0.room_question_id 
+    where
+        rq1_0.id=?
+2026-02-03 17:00:32 [http-nio-8080-exec-1] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:32 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/30/current-question
+2026-02-03 17:00:32 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/30/current-question
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        rq1_0.id,
+        rq1_0.close_time,
+        rq1_0.is_open,
+        rq1_0.order_num,
+        rq1_0.question_id,
+        q1_0.id,
+        q1_0.block_id,
+        q1_0.correct_option,
+        q1_0.option1,
+        q1_0.option2,
+        q1_0.option3,
+        q1_0.option4,
+        q1_0.text,
+        rq1_0.room_id,
+        rq1_0.start_time 
+    from
+        room_questions rq1_0 
+    join
+        questions q1_0 
+            on q1_0.id=rq1_0.question_id 
+    where
+        rq1_0.id=?
+Hibernate: 
+    select
+        count(a1_0.id) 
+    from
+        answers a1_0 
+    join
+        room_questions rq1_0 
+            on rq1_0.id=a1_0.room_question_id 
+    where
+        rq1_0.id=?
+2026-02-03 17:00:32 [http-nio-8080-exec-2] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:32 [http-nio-8080-exec-3] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/rooms/30/submit-answer
+2026-02-03 17:00:32 [http-nio-8080-exec-3] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/rooms/30/submit-answer
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.room_id,
+        p1_0.score 
+    from
+        players p1_0 
+    where
+        p1_0.id=?
+2026-02-03 17:00:32 [answer-pool-46] [Room 5533] INFO  c.quizlive.service.GameEngineService - [Thread: answer-pool-46] Processing answer from player 'martin' for question 56
+Hibernate: 
+    select
+        rq1_0.id,
+        rq1_0.close_time,
+        rq1_0.is_open,
+        rq1_0.order_num,
+        rq1_0.question_id,
+        q1_0.id,
+        q1_0.block_id,
+        q1_0.correct_option,
+        q1_0.option1,
+        q1_0.option2,
+        q1_0.option3,
+        q1_0.option4,
+        q1_0.text,
+        rq1_0.room_id,
+        rq1_0.start_time 
+    from
+        room_questions rq1_0 
+    join
+        questions q1_0 
+            on q1_0.id=rq1_0.question_id 
+    where
+        rq1_0.id=?
+Hibernate: 
+    select
+        p1_0.id,
+        p1_0.joined_at,
+        p1_0.name,
+        p1_0.room_id,
+        p1_0.score 
+    from
+        players p1_0 
+    join
+        rooms r1_0 
+            on r1_0.id=p1_0.room_id 
+    where
+        r1_0.pin=? 
+        and p1_0.name=?
+2026-02-03 17:00:32 [answer-pool-46] [Room 5533] WARN  c.quizlive.service.GameEngineService - [Thread: answer-pool-46] Player martin already answered question 56 (detected in atomic operation)
+2026-02-03 17:00:32 [answer-pool-46] [Room 5533] ERROR c.quizlive.service.GameEngineService - [Thread: answer-pool-46] Error processing answer: You have already answered this question
+2026-02-03 17:00:32 [http-nio-8080-exec-3] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:32 [http-nio-8080-exec-3] [Room ] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.util.concurrent.CompletionException: java.lang.IllegalStateException: You have already answered this question] with root cause
+java.lang.IllegalStateException: You have already answered this question
+	at com.quizlive.service.GameEngineService.processAnswer(GameEngineService.java:274)
+	at com.quizlive.service.GameEngineService.lambda$submitAnswer$2(GameEngineService.java:200)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2026-02-03 17:00:32 [http-nio-8080-exec-3] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing POST /error
+2026-02-03 17:00:32 [http-nio-8080-exec-3] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured POST /error
+2026-02-03 17:00:32 [http-nio-8080-exec-3] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:33 [http-nio-8080-exec-5] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/30/current-question
+2026-02-03 17:00:33 [http-nio-8080-exec-5] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/30/current-question
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        rq1_0.id,
+        rq1_0.close_time,
+        rq1_0.is_open,
+        rq1_0.order_num,
+        rq1_0.question_id,
+        q1_0.id,
+        q1_0.block_id,
+        q1_0.correct_option,
+        q1_0.option1,
+        q1_0.option2,
+        q1_0.option3,
+        q1_0.option4,
+        q1_0.text,
+        rq1_0.room_id,
+        rq1_0.start_time 
+    from
+        room_questions rq1_0 
+    join
+        questions q1_0 
+            on q1_0.id=rq1_0.question_id 
+    where
+        rq1_0.id=?
+Hibernate: 
+    select
+        count(a1_0.id) 
+    from
+        answers a1_0 
+    join
+        room_questions rq1_0 
+            on rq1_0.id=a1_0.room_question_id 
+    where
+        rq1_0.id=?
+2026-02-03 17:00:33 [http-nio-8080-exec-5] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:33 [http-nio-8080-exec-4] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/30/current-question
+2026-02-03 17:00:33 [http-nio-8080-exec-4] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/30/current-question
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        rq1_0.id,
+        rq1_0.close_time,
+        rq1_0.is_open,
+        rq1_0.order_num,
+        rq1_0.question_id,
+        q1_0.id,
+        q1_0.block_id,
+        q1_0.correct_option,
+        q1_0.option1,
+        q1_0.option2,
+        q1_0.option3,
+        q1_0.option4,
+        q1_0.text,
+        rq1_0.room_id,
+        rq1_0.start_time 
+    from
+        room_questions rq1_0 
+    join
+        questions q1_0 
+            on q1_0.id=rq1_0.question_id 
+    where
+        rq1_0.id=?
+Hibernate: 
+    select
+        count(a1_0.id) 
+    from
+        answers a1_0 
+    join
+        room_questions rq1_0 
+            on rq1_0.id=a1_0.room_question_id 
+    where
+        rq1_0.id=?
+2026-02-03 17:00:33 [http-nio-8080-exec-4] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:34 [http-nio-8080-exec-6] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/30/current-question
+2026-02-03 17:00:34 [http-nio-8080-exec-6] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/30/current-question
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        rq1_0.id,
+        rq1_0.close_time,
+        rq1_0.is_open,
+        rq1_0.order_num,
+        rq1_0.question_id,
+        q1_0.id,
+        q1_0.block_id,
+        q1_0.correct_option,
+        q1_0.option1,
+        q1_0.option2,
+        q1_0.option3,
+        q1_0.option4,
+        q1_0.text,
+        rq1_0.room_id,
+        rq1_0.start_time 
+    from
+        room_questions rq1_0 
+    join
+        questions q1_0 
+            on q1_0.id=rq1_0.question_id 
+    where
+        rq1_0.id=?
+Hibernate: 
+    select
+        count(a1_0.id) 
+    from
+        answers a1_0 
+    join
+        room_questions rq1_0 
+            on rq1_0.id=a1_0.room_question_id 
+    where
+        rq1_0.id=?
+2026-02-03 17:00:34 [http-nio-8080-exec-6] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:34 [http-nio-8080-exec-7] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/30/current-question
+2026-02-03 17:00:34 [http-nio-8080-exec-7] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/30/current-question
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        rq1_0.id,
+        rq1_0.close_time,
+        rq1_0.is_open,
+        rq1_0.order_num,
+        rq1_0.question_id,
+        q1_0.id,
+        q1_0.block_id,
+        q1_0.correct_option,
+        q1_0.option1,
+        q1_0.option2,
+        q1_0.option3,
+        q1_0.option4,
+        q1_0.text,
+        rq1_0.room_id,
+        rq1_0.start_time 
+    from
+        room_questions rq1_0 
+    join
+        questions q1_0 
+            on q1_0.id=rq1_0.question_id 
+    where
+        rq1_0.id=?
+Hibernate: 
+    select
+        count(a1_0.id) 
+    from
+        answers a1_0 
+    join
+        room_questions rq1_0 
+            on rq1_0.id=a1_0.room_question_id 
+    where
+        rq1_0.id=?
+2026-02-03 17:00:34 [http-nio-8080-exec-7] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:35 [http-nio-8080-exec-8] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/quizmaster.css?v=2
+2026-02-03 17:00:35 [http-nio-8080-exec-8] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/quizmaster.css?v=2
+2026-02-03 17:00:35 [http-nio-8080-exec-10] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /css/play/game/game.css?v=1
+2026-02-03 17:00:35 [http-nio-8080-exec-10] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /css/play/game/game.css?v=1
+2026-02-03 17:00:35 [http-nio-8080-exec-8] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:35 [http-nio-8080-exec-10] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:35 [http-nio-8080-exec-9] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/30/current-question
+2026-02-03 17:00:35 [http-nio-8080-exec-9] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/30/current-question
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        rq1_0.id,
+        rq1_0.close_time,
+        rq1_0.is_open,
+        rq1_0.order_num,
+        rq1_0.question_id,
+        q1_0.id,
+        q1_0.block_id,
+        q1_0.correct_option,
+        q1_0.option1,
+        q1_0.option2,
+        q1_0.option3,
+        q1_0.option4,
+        q1_0.text,
+        rq1_0.room_id,
+        rq1_0.start_time 
+    from
+        room_questions rq1_0 
+    join
+        questions q1_0 
+            on q1_0.id=rq1_0.question_id 
+    where
+        rq1_0.id=?
+Hibernate: 
+    select
+        count(a1_0.id) 
+    from
+        answers a1_0 
+    join
+        room_questions rq1_0 
+            on rq1_0.id=a1_0.room_question_id 
+    where
+        rq1_0.id=?
+2026-02-03 17:00:35 [http-nio-8080-exec-9] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:35 [http-nio-8080-exec-1] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/30/current-question
+2026-02-03 17:00:35 [http-nio-8080-exec-1] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/30/current-question
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        rq1_0.id,
+        rq1_0.close_time,
+        rq1_0.is_open,
+        rq1_0.order_num,
+        rq1_0.question_id,
+        q1_0.id,
+        q1_0.block_id,
+        q1_0.correct_option,
+        q1_0.option1,
+        q1_0.option2,
+        q1_0.option3,
+        q1_0.option4,
+        q1_0.text,
+        rq1_0.room_id,
+        rq1_0.start_time 
+    from
+        room_questions rq1_0 
+    join
+        questions q1_0 
+            on q1_0.id=rq1_0.question_id 
+    where
+        rq1_0.id=?
+Hibernate: 
+    select
+        count(a1_0.id) 
+    from
+        answers a1_0 
+    join
+        room_questions rq1_0 
+            on rq1_0.id=a1_0.room_question_id 
+    where
+        rq1_0.id=?
+2026-02-03 17:00:35 [http-nio-8080-exec-1] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-02-03 17:00:36 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/30/current-question
+2026-02-03 17:00:36 [http-nio-8080-exec-2] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/30/current-question
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        rq1_0.id,
+        rq1_0.close_time,
+        rq1_0.is_open,
+        rq1_0.order_num,
+        rq1_0.question_id,
+        q1_0.id,
+        q1_0.block_id,
+        q1_0.correct_option,
+        q1_0.option1,
+        q1_0.option2,
+        q1_0.option3,
+        q1_0.option4,
+        q1_0.text,
+        rq1_0.room_id,
+        rq1_0.start_time 
+    from
+        room_questions rq1_0 
+    join
+        questions q1_0 
+            on q1_0.id=rq1_0.question_id 
+    where
+        rq1_0.id=?
+Hibernate: 
+    select
+        count(a1_0.id) 
+    from
+        answers a1_0 
+    join
+        room_questions rq1_0 
+            on rq1_0.id=a1_0.room_question_id 
+    where
+        rq1_0.id=?
+2026-02-03 17:00:36 [http-nio-8080-exec-2] [Room ] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=martin@martin.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_HOST]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=4E5AD13BA667CAD2067774704F2102B3], Granted Authorities=[ROLE_HOST]]]
+2026-02-03 17:00:36 [http-nio-8080-exec-3] [Room ] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/rooms/30/current-question
+2026-02-03 17:00:36 [http-nio-8080-exec-3] [Room ] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/rooms/30/current-question
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.block_id,
+        r1_0.created_at,
+        r1_0.finished_at,
+        r1_0.host_id,
+        r1_0.num_questions,
+        r1_0.pin,
+        r1_0.selection_mode,
+        r1_0.started_at,
+        r1_0.state,
+        r1_0.time_per_question 
+    from
+        rooms r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        rq1_0.id,
+        rq1_0.close_time,
+        rq1_0.is_open,
+        rq1_0.order_num,
+        rq1_0.question_id,
+        q1_0.id,
+        q1_0.block_id,
+        q1_0.correct_option,
+        q1_0.option1,
+        q1_0.option2,
+        q1_0.option3,
+        q1_0.option4,
+        q1_0.text,
+        rq1_0.room_id,
+        rq1_0.start_time 
+    from
+        room_questions rq1_0 
+    join
+        questions q1_0 
+            on q1_0.id=rq1_0.question_id 
+    where
+        rq1_0.id=?
+Hibernate: 
+    select
+        count(a1_0.id) 
+    from
+        answers a1_0 
+    join
+        room_questions rq1_0 
+            on rq1_0.id=a1_0.room_question_id 
+    where
+        rq1_0.id=?
+2026-02-03 17:00:36 [http-nio-8080-exec-3] [Room ] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
