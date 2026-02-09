@@ -1,8 +1,12 @@
 package com.quizlive.controller;
 
+import com.quizlive.model.Answer;
 import com.quizlive.model.Block;
+import com.quizlive.model.Player;
 import com.quizlive.model.Room;
+import com.quizlive.model.RoomQuestion;
 import com.quizlive.model.User;
+import com.quizlive.repository.AnswerRepository;
 import com.quizlive.service.BlockService;
 import com.quizlive.service.GameEngineService;
 import com.quizlive.service.PlayerService;
@@ -13,9 +17,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/rooms")
@@ -28,6 +35,7 @@ public class RoomController {
     private final UserService userService;
     private final PlayerService playerService;
     private final GameEngineService gameEngineService;
+    private final AnswerRepository answerRepository;
 
     @GetMapping("/new")
     public String showCreateRoomForm(Principal principal, Model model) {
@@ -48,14 +56,23 @@ public class RoomController {
                              @RequestParam Integer numQuestions,
                              @RequestParam Integer timePerQuestion,
                              @RequestParam String selectionMode,
-                             Principal principal) {
+                             Principal principal,
+                             RedirectAttributes redirectAttributes) {
         User host = userService.findByUsername(principal.getName());
         
-        Room.SelectionMode mode = Room.SelectionMode.valueOf(selectionMode.toUpperCase());
-        
-        Room room = roomService.createRoom(blockId, numQuestions, mode, timePerQuestion, host, null);
-        
-        return "redirect:/rooms/" + room.getPin() + "/lobby";
+        try {
+            Room.SelectionMode mode = Room.SelectionMode.valueOf(selectionMode.toUpperCase());
+            
+            Room room = roomService.createRoom(blockId, numQuestions, mode, timePerQuestion, host, null);
+            
+            return "redirect:/rooms/" + room.getPin() + "/lobby";
+        } catch (IllegalArgumentException e) {
+            // Capturar error cuando hay más preguntas solicitadas que disponibles
+            log.warn("Error creating room: {}", e.getMessage());
+            redirectAttributes.addFlashAttribute("error", 
+                "El bloque seleccionado no tiene suficientes preguntas. Por favor, elige un número menor o selecciona otro bloque.");
+            return "redirect:/rooms/new";
+        }
     }
 
     @GetMapping("/{pin}/lobby")
@@ -109,8 +126,79 @@ public class RoomController {
     }
 
     @GetMapping("/{id}/podium")
-    public String showPodium(@PathVariable Long id, Model model) {
-        model.addAttribute("ranking", playerService.getRankingByRoom(id));
+    public String showPodium(@PathVariable Long id, 
+                            @RequestParam(required = false) String playerName,
+                            Model model) {
+        // Ranking de jugadores
+        List<Player> ranking = playerService.getRankingByRoom(id);
+        model.addAttribute("ranking", ranking);
+        
+        // Solo buscar estadísticas personales si hay un playerName en la URL
+        Long currentPlayerId = null;
+        if (playerName != null && !playerName.isEmpty()) {
+            Player currentPlayer = ranking.stream()
+                .filter(p -> p.getName().equalsIgnoreCase(playerName))
+                .findFirst()
+                .orElse(null);
+            if (currentPlayer != null) {
+                currentPlayerId = currentPlayer.getId();
+            }
+        }
+        
+        // Estadísticas globales: pregunta más fallada
+        List<Object[]> failedQuestions = answerRepository.findMostFailedQuestionsByRoom(id);
+        if (!failedQuestions.isEmpty()) {
+            Object[] mostFailed = failedQuestions.get(0);
+            RoomQuestion roomQuestion = (RoomQuestion) mostFailed[0];
+            Long failCount = (Long) mostFailed[1];
+            model.addAttribute("mostFailedQuestion", roomQuestion.getQuestion().getText());
+            model.addAttribute("mostFailedCount", failCount);
+        }
+        
+        // Estadísticas globales: pregunta más acertada
+        List<Object[]> correctQuestions = answerRepository.findMostCorrectQuestionsByRoom(id);
+        if (!correctQuestions.isEmpty()) {
+            Object[] mostCorrect = correctQuestions.get(0);
+            RoomQuestion roomQuestion = (RoomQuestion) mostCorrect[0];
+            Long correctCount = (Long) mostCorrect[1];
+            model.addAttribute("mostCorrectQuestion", roomQuestion.getQuestion().getText());
+            model.addAttribute("mostCorrectCount", correctCount);
+        }
+        
+        // Calcular tasa global de aciertos
+        List<Answer> allAnswers = answerRepository.findByRoomId(id);
+        if (!allAnswers.isEmpty()) {
+            long totalCorrect = allAnswers.stream().filter(Answer::getIsCorrect).count();
+            double successRate = (double) totalCorrect / allAnswers.size() * 100;
+            model.addAttribute("globalSuccessRate", String.format("%.1f", successRate));
+        }
+        
+        // Estadísticas personales del jugador actual (solo si playerName está presente)
+        if (currentPlayerId != null) {
+            List<Answer> playerAnswers = answerRepository.findPlayerAnswersInRoom(currentPlayerId, id);
+            if (!playerAnswers.isEmpty()) {
+                long correct = playerAnswers.stream().filter(Answer::getIsCorrect).count();
+                long incorrect = playerAnswers.size() - correct;
+                double personalRate = (double) correct / playerAnswers.size() * 100;
+                
+                // Mejor tiempo de respuesta
+                Long bestTime = playerAnswers.stream()
+                    .filter(a -> a.getResponseTime() != null)
+                    .map(Answer::getResponseTime)
+                    .min(Long::compareTo)
+                    .orElse(null);
+                
+                model.addAttribute("playerCorrect", correct);
+                model.addAttribute("playerIncorrect", incorrect);
+                model.addAttribute("playerSuccessRate", String.format("%.1f", personalRate));
+                model.addAttribute("playerName", playerName); // Para mostrar "Tu Rendimiento ({nombre})"
+                if (bestTime != null) {
+                    double bestTimeSeconds = bestTime / 1000.0;
+                    model.addAttribute("playerBestTime", String.format("%.2f", bestTimeSeconds));
+                }
+            }
+        }
+        
         return "rooms/podium";
     }
 }

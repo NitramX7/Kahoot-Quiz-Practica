@@ -1,0 +1,148 @@
+.play-game {
+    background: #ffffff;
+    min-height: 100vh;
+}
+
+.play-game__main {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.play-game__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.play-game__player {
+    font-weight: 700;
+    font-size: 18px;
+    color: #0F172A;
+}
+
+.play-game__score {
+    font-size: 14px;
+}
+
+.play-game__question {
+    text-align: center;
+    margin: 20px 0 10px;
+}
+
+.play-game__title {
+    font-size: clamp(20px, 3.2vw, 28px);
+    color: #1E293B;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.play-game__subtitle {
+    font-size: clamp(13px, 2.2vw, 15px);
+    color: #64748B;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.option-btn {
+    border: none;
+    border-radius: 16px;
+    font-size: 22px;
+    font-weight: 800;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+    min-height: 96px;
+    padding: 16px;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.option-btn:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+.opt-1 {
+    background: #EF4444;
+}
+
+/* Rojo */
+.opt-2 {
+    background: #3B82F6;
+}
+
+/* Azul */
+.opt-3 {
+    background: #F59E0B;
+}
+
+/* Amarillo */
+.opt-4 {
+    background: #10B981;
+}
+
+/* Verde */
+
+.waiting-screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    text-align: center;
+}
+
+@media (max-width: 720px) {
+    .play-game__main {
+        padding: 16px;
+    }
+
+    .play-game__player {
+        font-size: 16px;
+    }
+
+    .options-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .option-btn {
+        min-height: 72px;
+        font-size: 20px;
+        border-radius: 14px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .options-grid {
+        gap: 20px;
+    }
+    .option-btn {
+        min-height: 110px;
+        font-size: 24px;
+    }
+}
+
+.play-game__loading {
+    padding: 40px;
+}
+
+.play-game__loading-icon {
+    font-size: 40px;
+    color: var(--primary);
+}
+
+.play-game__loading-text {
+    margin-top: 20px;
+}

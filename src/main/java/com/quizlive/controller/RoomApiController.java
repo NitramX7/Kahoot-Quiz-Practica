@@ -58,12 +58,27 @@ public class RoomApiController {
 
         Room room = roomService.getRoomById(roomId);
         Player player = playerService.getPlayerById(playerId);
-        var answer = gameEngineService.submitAnswer(room.getPin(), player.getName(), questionId, selectedOption).join();
-        Map<String, Object> response = new HashMap<>();
-        response.put("correct", answer.getIsCorrect());
-        response.put("points", answer.getPointsEarned());
-        response.put("totalScore", answer.getPlayer() != null ? answer.getPlayer().getScore() : 0);
-        return response;
+        
+        try {
+            var answer = gameEngineService.submitAnswer(room.getPin(), player.getName(), questionId, selectedOption).join();
+            Map<String, Object> response = new HashMap<>();
+            response.put("correct", answer.getIsCorrect());
+            response.put("points", answer.getPointsEarned());
+            response.put("totalScore", answer.getPlayer() != null ? answer.getPlayer().getScore() : 0);
+            return response;
+        } catch (java.util.concurrent.CompletionException e) {
+            // Unwrap CompletionException to get actual cause
+            Throwable cause = e.getCause();
+            if (cause instanceof IllegalStateException) {
+                // Player already answered - this is expected in race conditions
+                throw new org.springframework.web.server.ResponseStatusException(
+                    org.springframework.http.HttpStatus.CONFLICT, 
+                    cause.getMessage()
+                );
+            }
+            // Re-throw other exceptions
+            throw new RuntimeException("Error processing answer", cause);
+        }
     }
 
     @GetMapping("/{roomId}/current-question")

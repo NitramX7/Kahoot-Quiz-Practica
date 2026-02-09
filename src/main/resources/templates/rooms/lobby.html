@@ -5,68 +5,171 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sala de Espera | QuizMaster Pro</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/quizmaster.css?v=2">
-    <link rel="stylesheet" href="/css/rooms/lobby.css">
+    <link rel="stylesheet" href="/css/rooms/lobby.css?v=2">
 </head>
 
 <body>
     <div class="app-layout">
+        <!--Botón toggle sidebar-->
+        <button id="sidebarToggle" aria-label="Toggle menú">
+            <i class="fas fa-bars"></i>
+        </button>
+
         <!--Barra lateral-->
         <div th:replace="~{fragments/sidebar :: sidebar('')}"></div>
 
+        <!--Overlay para móvil-->
+        <div id="sidebarOverlay"></div>
+
         <!--Contenido principal-->
-        <main class="main-content" style="max-width: 1000px; margin: 0 auto;">
+        <main class="main-content lobby-content">
+            
+            <!-- TARJETA DEL PIN -->
             <div class="pin-display">
-                <p
-                    style="font-size: 18px; color: #94A3B8; text-transform: uppercase; font-weight: 800; letter-spacing: 2px;">
-                    Únete en <span style="color: white;">QuizMaster.pro</span> con el PIN:</p>
-                <div class="pin-code" th:text="${room.pin}">000000</div>
-                <div class="d-flex justify-center gap-4">
-                    <div
-                        style="background: rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 50px; font-size: 14px;">
-                        <i class="fas fa-users"></i> <span id="playerCount" th:text="${#lists.size(players)}">0</span>
+                <p class="pin-label">
+                    Únete en <span>QuizMaster.pro</span> con el PIN:
+                </p>
+                <div class="pin-code" th:text="${room.pin}">8296</div>
+                <div class="lobby-stats">
+                    <div class="stat-chip chip-dark">
+                        <i class="fas fa-users"></i>
+                        <span id="playerCount" th:text="${#lists.size(players)}">0</span>
                         Jugadores
                     </div>
-                    <div
-                        style="background: rgba(37, 99, 235, 0.2); padding: 10px 20px; border-radius: 50px; font-size: 14px; color: #60A5FA;">
-                        <i class="fas fa-clock"></i> <span th:text="${room.timePerQuestion}">20</span>s por pregunta
+                    <div class="stat-chip chip-blue">
+                        <i class="fas fa-clock"></i>
+                        <span th:text="${room.timePerQuestion}">20</span>s por pregunta
                     </div>
                 </div>
             </div>
 
-            <div class="d-flex justify-between align-center mb-4">
-                <h2 style="font-weight: 800; color: #1E293B;">Jugadores conectados</h2>
+            <!-- CABECERA DE JUGADORES + BOTÓN START -->
+            <div class="players-section-header">
+                <h2 class="players-title">Jugadores conectados</h2>
                 <form th:action="@{/rooms/{id}/start(id=${room.id})}" method="post">
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-                    <button type="submit" class="btn btn-primary" style="padding: 12px 40px; font-size: 18px;">
+                    <button type="submit" class="btn-start-game">
                         <i class="fas fa-play"></i> Empezar Juego
                     </button>
                 </form>
             </div>
 
+            <!-- GRID DE JUGADORES -->
             <div class="players-grid" id="playersContainer">
-                <div th:each="player : ${players}" class="player-badge">
-                    <i class="fas fa-user-circle"
-                        style="display: block; font-size: 24px; margin-bottom: 8px; color: #2563EB;"></i>
+                <!-- Los jugadores se cargarán aquí dinámicamente -->
+                <div th:each="player : ${players}" class="player-badge" th:attr="data-player-id=${player.id}">
+                    <div class="player-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
                     <span th:text="${player.name}">Jugador</span>
                 </div>
 
-                <div th:if="${players.isEmpty()}"
+                <div th:if="${players.isEmpty()}" id="waitingMessage"
                     style="grid-column: 1/-1; text-align: center; padding: 40px; color: #94A3B8; border: 2px dashed #E2E8F0; border-radius: 20px;">
                     <i class="fas fa-spinner fa-spin" style="font-size: 32px; margin-bottom: 12px;"></i>
                     <p>Esperando a que entren los jugadores...</p>
                 </div>
             </div>
+
         </main>
     </div>
 
+<<<<<<< HEAD
     <script th:inline="javascript">
         // Pass server-side data to JavaScript
         roomPin = [[${ room.pin }]];
         roomId = [[${ room.id }]];
     </script>
     <script src="/js/rooms/lobby.js"></script>
+=======
+    <!-- SCRIPT DE ACTUALIZACIÓN EN TIEMPO REAL -->
+    <script th:inline="javascript">
+        const roomPin = [[${ room.pin }]];
+        const roomId = [[${ room.id }]];
+
+        // Track existing players to avoid re-adding them
+        const existingPlayers = new Set();
+        
+        // Initialize existing players from server render
+        /*[# th:each="player : ${players}"]*/
+        existingPlayers.add([[${player.id}]]);
+        /*[/]*/
+
+        function refreshPlayers() {
+            fetch(`/api/rooms/${roomId}/players`)
+                .then(response => response.json())
+                .then(players => {
+                    const container = document.getElementById('playersContainer');
+                    const countElem = document.getElementById('playerCount');
+                    
+                    if(countElem) countElem.innerText = players.length;
+
+                    // Message Handling
+                    const waitingMsg = document.getElementById('waitingMessage');
+                    if (players.length > 0 && waitingMsg) {
+                        waitingMsg.style.display = 'none';
+                    } else if (players.length === 0 && !waitingMsg) {
+                        // Re-create waiting msg if needed... simplified for now
+                    }
+
+                    // ADD NEW PLAYERS
+                    players.forEach(player => {
+                        if (!existingPlayers.has(player.id)) {
+                            existingPlayers.add(player.id);
+
+                            const playerBadge = document.createElement('div');
+                            playerBadge.className = 'player-badge';
+                            playerBadge.setAttribute('data-player-id', player.id);
+                            playerBadge.style.opacity = '0';
+                            playerBadge.style.transform = 'scale(0.8)';
+                            
+                            playerBadge.innerHTML = `
+                                <div class="player-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <span>${player.name}</span>
+                            `;
+
+                            container.appendChild(playerBadge);
+
+                            // Animation
+                            requestAnimationFrame(() => {
+                                playerBadge.style.opacity = '1';
+                                playerBadge.style.transform = 'scale(1)';
+                            });
+                        }
+                    });
+
+                    // REMOVE LEFT PLAYERS
+                    const currentPlayerIds = new Set(players.map(p => p.id));
+                    const badges = container.querySelectorAll('.player-badge');
+                    
+                    badges.forEach(badge => {
+                        const pid = parseInt(badge.getAttribute('data-player-id'));
+                        if (!currentPlayerIds.has(pid)) {
+                            badge.style.opacity = '0';
+                            badge.style.transform = 'scale(0.8)';
+                            setTimeout(() => badge.remove(), 300);
+                            existingPlayers.delete(pid);
+                        }
+                    });
+                })
+                .catch(err => console.error("Error polling players:", err));
+        }
+
+        // Poll every 2 seconds
+        setInterval(refreshPlayers, 2000);
+    </script>
+    
+    <script src="/js/sidebar.js"></script>
+>>>>>>> d623d65761301a8c602b311d7ac208e3cb94eb5d
 </body>
 
 </html>
