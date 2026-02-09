@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.security.SecureRandom;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,41 +25,35 @@ public class RoomService {
     private final BlockService blockService;
     private final PlayerRepository playerRepository;
     private final SecureRandom random = new SecureRandom();
-    
-    // Lock per block to prevent concurrent room creation from the same block
-    private final ConcurrentHashMap<Long, Object> blockLocks = new ConcurrentHashMap<>();
 
     @Transactional
     public Room createRoom(Long blockId, Integer numQuestions, Room.SelectionMode selectionMode,
                           Integer timePerQuestion, User host, List<Long> manualQuestionIds) {
-        // Get or create lock object for this specific block to prevent race conditions
-        Object blockLock = blockLocks.computeIfAbsent(blockId, k -> new Object());
-        
-        synchronized (blockLock) {
-            Block block = blockService.getBlockById(blockId, host.getId());
+        Block block = blockService.getBlockById(blockId, host.getId());
 
-            if (numQuestions > block.getQuestions().size()) {
-                throw new IllegalArgumentException("Number of questions exceeds available questions in block");
-            }
-
-            String pin = generateUniquePin();
-
-            Room room = new Room();
-            room.setPin(pin);
-            room.setHost(host);
-            room.setBlock(block);
-            room.setNumQuestions(numQuestions);
-            room.setSelectionMode(selectionMode);
-            room.setTimePerQuestion(timePerQuestion);
-            room.setState(Room.RoomState.WAITING);
-
-            Room savedRoom = roomRepository.save(room);
-
-            selectQuestionsForRoom(savedRoom, selectionMode, numQuestions, manualQuestionIds);
-
-            log.info("Created room with PIN {} for user {}", pin, host.getUsername());
-            return savedRoom;
+        // Validar que el bloque tiene suficientes preguntas
+        // Las preguntas pueden ser reutilizadas en múltiples salas
+        if (numQuestions > block.getQuestions().size()) {
+            throw new IllegalArgumentException("Number of questions exceeds available questions in block");
         }
+
+        String pin = generateUniquePin();
+
+        Room room = new Room();
+        room.setPin(pin);
+        room.setHost(host);
+        room.setBlock(block);
+        room.setNumQuestions(numQuestions);
+        room.setSelectionMode(selectionMode);
+        room.setTimePerQuestion(timePerQuestion);
+        room.setState(Room.RoomState.WAITING);
+
+        Room savedRoom = roomRepository.save(room);
+
+        selectQuestionsForRoom(savedRoom, selectionMode, numQuestions, manualQuestionIds);
+
+        log.info("Created room with PIN {} for user {}", pin, host.getUsername());
+        return savedRoom;
     }
 
     @Transactional

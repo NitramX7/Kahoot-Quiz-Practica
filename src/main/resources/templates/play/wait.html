@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="wait-container">
+    <div class="wait-container" th:attr="data-room-pin=${room.pin}">
         <div class="spinner">
             <i class="fas fa-gamepad"></i>
         </div>
@@ -31,24 +31,11 @@
         </div>
     </div>
 
-    <!--Script para comprobar el estado de la sala y redirigir cuando empieza el juego-->
     <script th:inline="javascript">
-        const roomPin = /*[[${room.pin}]]*/ '0000';
-
-        function checkStatus() {
-            fetch('/api/rooms/' + roomPin + '/status')
-                .then(response => response.json())
-                .then(data => {
-                    if (data.state === 'RUNNING') {
-                        window.location.href = '/play/game';
-                    }
-                })
-                .catch(err => console.error('Error checking room status', err));
-        }
-
-        // Poll every 1 second for faster response
-        setInterval(checkStatus, 1000);
+        // Pass server-side data to JavaScript
+        roomPin = /*[[${room.pin}]]*/ '0000';
     </script>
+    <script src="/js/play/wait.js"></script>
 </body>
 
 </html>

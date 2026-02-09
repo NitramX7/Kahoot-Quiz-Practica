@@ -1,3 +1,9 @@
+// Game host page functionality
+// Variables set by inline script from server-side data
+let roomId = null;
+let timeLimit = 20;
+let timeLeft = timeLimit;
+let currentQuestionId = null;
 
 const timerFill = document.getElementById('timerFill');
 const timerDisplay = document.querySelector('#timerDisplay span');
