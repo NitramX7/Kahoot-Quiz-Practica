@@ -2,6 +2,8 @@ const roomId = window.roomId ?? 0;
 const playerId = window.playerId ?? 0;
 // Usar inicialización segura desde el atributo del modelo, por defecto null si no existe
 let currentQuestionId = window.currentQuestionId ?? null;
+// Variable para controlar el intervalo de polling
+let pollInterval = 2000; // por defecto 2 segundos
 
 console.log("Game initialized", { roomId, playerId, currentQuestionId });
 
@@ -93,8 +95,8 @@ function submitAnswer(option) {
     });
 }
 
-// Consultar la siguiente pregunta
-setInterval(() => {
+// Función de polling dinámico
+function pollQuestionStatus() {
   fetch(`/api/rooms/${roomId}/current-question`)
     .then((res) => res.json())
     .then((data) => {
@@ -102,15 +104,59 @@ setInterval(() => {
       console.log("data.finished =", data.finished);
       console.log("Todas las propiedades:", Object.keys(data));
       
-      if (data.id && data.id !== currentQuestionId) {
-        // ¡Nueva pregunta!
-        console.log("Nueva pregunta detectada, recargando...");
-        window.location.reload();
-      }
+      // Si el juego terminó, redirigir al podio
       if (data.finished) {
         console.log("¡Juego terminado! Redirigiendo a podio...", { roomId });
         window.location.href = `/rooms/${roomId}/podium?playerName=${encodeURIComponent(window.playerName)}`;
+        return;
       }
+
+      // Si hay una nueva pregunta ACTIVA Y ABIERTA diferente, recargar
+      // IMPORTANTE: Verificar isOpen para evitar recargar durante transición
+      if (data.id && data.id !== currentQuestionId && data.state === 'ACTIVE' && data.isOpen) {
+        console.log("Nueva pregunta activa y abierta detectada, recargando...");
+        window.location.reload();
+        return;
+      }
+
+
+      // Si estamos esperando y hay una pregunta en camino, mostrar mensaje de espera
+      // y ACELERAR el polling
+      if (data.state === 'WAITING' && data.nextQuestionSoon) {
+        console.log("Esperando siguiente pregunta...");
+        const waitingText = document.getElementById("resultText");
+        if (waitingText) {
+          waitingText.textContent = "Preparando siguiente pregunta...";
+        }
+        // Polling más rápido cuando esperamos pregunta
+        pollInterval = 500;
+        setTimeout(pollQuestionStatus, pollInterval);
+        return;
+      }
+
+      // Si la pregunta actual está cerrada y hay otra en camino
+      if (data.state === 'CLOSED' && data.nextQuestionSoon) {
+        console.log("Pregunta cerrada, siguiente pregunta en camino...");
+        const waitingText = document.getElementById("resultText");
+        if (waitingText) {
+          waitingText.textContent = "Siguiente pregunta en camino...";
+        }
+        // Polling más rápido cuando esperamos pregunta
+        pollInterval = 500;
+        setTimeout(pollQuestionStatus, pollInterval);
+        return;
+      }
+
+      // Polling normal
+      pollInterval = 2000;
+      setTimeout(pollQuestionStatus, pollInterval);
     })
-    .catch((error) => console.error("Error en polling:", error));
-}, 2000);
+    .catch((error) => {
+      console.error("Error en polling:", error);
+      // Reintentar después de error
+      setTimeout(pollQuestionStatus, 2000);
+    });
+}
+
+// Iniciar el polling
+pollQuestionStatus();

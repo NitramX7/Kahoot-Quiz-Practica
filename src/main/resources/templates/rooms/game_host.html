@@ -51,25 +51,24 @@
                 </h2>
                 <p style="color: #64748B;">En unos segundos debería mostrarse automáticamente.</p>
             </div>
-
-            <div class="text-center">
-                <button id="nextBtn" class="btn btn-primary" onclick="nextQuestion()"
-                    style="display: none; font-size: 20px; padding: 15px 40px;">
-                    Siguiente Pregunta <i class="fas fa-arrow-right ml-2"></i>
-                </button>
-            </div>
         </main>
     </div>
 
+    <!--Añadir token CSRF para JS-->
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    
+    <!-- IMPORTANTE: El inline script debe ir ANTES del archivo externo -->
+    <!-- NO usar 'var' para que las variables sean globales -->
     <script th:inline="javascript">
-        // Pass server-side data to JavaScript
+        // Pass server-side data to JavaScript (GLOBAL SCOPE)
         roomId = /*[[${room.id}]]*/ null;
         timeLimit = /*[[${room.timePerQuestion}]]*/ 20;
         timeLeft = timeLimit;
         currentQuestionId = /*[[${currentQuestion != null ? currentQuestion.id : null}]]*/ null;
+        
+        console.log('[HOST] Variables inicializadas:', { roomId, timeLimit, currentQuestionId });
     </script>
-    <!--Añadir token CSRF para JS-->
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    
     <script src="/js/rooms/game_host.js"></script>
 </body>
 

@@ -115,11 +115,17 @@ public class RoomApiController {
                 long total = question.getRoom().getTimePerQuestion();
                 response.put("remainingSeconds", Math.max(0, total - elapsed));
             } else {
-                 response.put("state", "CLOSED");
+                response.put("state", "CLOSED");
+                // Indicar que hay una próxima pregunta en camino
+                response.put("nextQuestionSoon", true);
             }
         } else {
+            // No hay pregunta actual - podría estar en transición
             response.put("finished", false);
             response.put("state", "WAITING");
+            // Verificar si el juego está activo (significa que hay una pregunta en camino)
+            boolean isRoomActive = gameEngineService.isRoomActive(room.getPin());
+            response.put("nextQuestionSoon", isRoomActive);
         }
         return response;
     }
