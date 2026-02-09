@@ -30,7 +30,7 @@
 
         <!--Contenido principal-->
         <main class="main-content lobby-content">
-            
+
             <!-- TARJETA DEL PIN -->
             <div class="pin-display">
                 <p class="pin-label">
@@ -71,9 +71,8 @@
                     <span th:text="${player.name}">Jugador</span>
                 </div>
 
-                <div th:if="${players.isEmpty()}" id="waitingMessage"
-                    style="grid-column: 1/-1; text-align: center; padding: 40px; color: #94A3B8; border: 2px dashed #E2E8F0; border-radius: 20px;">
-                    <i class="fas fa-spinner fa-spin" style="font-size: 32px; margin-bottom: 12px;"></i>
+                <div th:if="${players.isEmpty()}" id="waitingMessage" class="waiting-message">
+                    <i class="fas fa-spinner fa-spin waiting-message__icon"></i>
                     <p>Esperando a que entren los jugadores...</p>
                 </div>
             </div>
@@ -81,85 +80,12 @@
         </main>
     </div>
 
-    <!-- SCRIPT DE ACTUALIZACIÓN EN TIEMPO REAL -->
+    <!-- Pass server-side data to JavaScript -->
     <script th:inline="javascript">
-        const roomPin = [[${ room.pin }]];
-        const roomId = [[${ room.id }]];
-
-        // Track existing players to avoid re-adding them
-        const existingPlayers = new Set();
-        
-        // Initialize existing players from server render
-        /*[# th:each="player : ${players}"]*/
-        existingPlayers.add([[${player.id}]]);
-        /*[/]*/
-
-        function refreshPlayers() {
-            fetch(`/api/rooms/${roomId}/players`)
-                .then(response => response.json())
-                .then(players => {
-                    const container = document.getElementById('playersContainer');
-                    const countElem = document.getElementById('playerCount');
-                    
-                    if(countElem) countElem.innerText = players.length;
-
-                    // Message Handling
-                    const waitingMsg = document.getElementById('waitingMessage');
-                    if (players.length > 0 && waitingMsg) {
-                        waitingMsg.style.display = 'none';
-                    } else if (players.length === 0 && !waitingMsg) {
-                        // Re-create waiting msg if needed... simplified for now
-                    }
-
-                    // ADD NEW PLAYERS
-                    players.forEach(player => {
-                        if (!existingPlayers.has(player.id)) {
-                            existingPlayers.add(player.id);
-
-                            const playerBadge = document.createElement('div');
-                            playerBadge.className = 'player-badge';
-                            playerBadge.setAttribute('data-player-id', player.id);
-                            playerBadge.style.opacity = '0';
-                            playerBadge.style.transform = 'scale(0.8)';
-                            
-                            playerBadge.innerHTML = `
-                                <div class="player-icon">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                                <span>${player.name}</span>
-                            `;
-
-                            container.appendChild(playerBadge);
-
-                            // Animation
-                            requestAnimationFrame(() => {
-                                playerBadge.style.opacity = '1';
-                                playerBadge.style.transform = 'scale(1)';
-                            });
-                        }
-                    });
-
-                    // REMOVE LEFT PLAYERS
-                    const currentPlayerIds = new Set(players.map(p => p.id));
-                    const badges = container.querySelectorAll('.player-badge');
-                    
-                    badges.forEach(badge => {
-                        const pid = parseInt(badge.getAttribute('data-player-id'));
-                        if (!currentPlayerIds.has(pid)) {
-                            badge.style.opacity = '0';
-                            badge.style.transform = 'scale(0.8)';
-                            setTimeout(() => badge.remove(), 300);
-                            existingPlayers.delete(pid);
-                        }
-                    });
-                })
-                .catch(err => console.error("Error polling players:", err));
-        }
-
-        // Poll every 2 seconds
-        setInterval(refreshPlayers, 2000);
+        roomPin = [[${ room.pin }]];
+        roomId = [[${ room.id }]];
     </script>
-    
+    <script src="/js/rooms/lobby.js"></script>
     <script src="/js/sidebar.js"></script>
 </body>
 
